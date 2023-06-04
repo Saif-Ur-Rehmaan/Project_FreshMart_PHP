@@ -72,8 +72,8 @@
         if (isset($_GET['submitted'])) {
             // print_r($_POST);
 
-            $connection = mysqli_connect('localhost', 'root', '', 'admin');
-            $response = mysqli_query($connection, "SELECT * FROM `freshmartadmin`");
+            $connection = mysqli_connect('localhost', 'root', '', 'freshcart');
+            $response = mysqli_query($connection, "SELECT `UserName`,`Password` FROM `admin`");
             $row = mysqli_fetch_assoc($response);
 
             if ($row['UserName'] == $_POST['Username'] && $row['Password'] == $_POST['password']) {

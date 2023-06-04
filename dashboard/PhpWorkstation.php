@@ -1,0 +1,84 @@
+<!-- add product work start -->
+<?php
+$connection = mysqli_connect('localhost', 'root', '', 'freshcart');
+if (isset($_POST["Add_Product"])) {
+    $P_Title = $_POST["P_Title"];
+    $_Catagori = $_POST["_Catagori"];
+    $P_Weight = $_POST["P_Weight"];
+    $P_Units = $_POST["P_Units"];
+    $P_Description = $_POST["P_Description"];
+
+    if (isset($_POST["P_InStock"])) {
+        $P_InStock = 1;
+    }else{
+        $P_InStock = 0;
+
+    }
+
+
+    $P_Code = $_POST["P_Code"];
+    $P_SKU = $_POST["P_SKU"];
+    $P_Status = $_POST["P_Status"];
+    $P_RegularPrice = $_POST["P_RegularPrice"];
+    $P_SalePrice = $_POST["P_SalePrice"];
+    $P_MetaTitle = $_POST["P_MetaTitle"];
+    $P_MetaDescription = $_POST["P_MetaDescription"];
+
+    $images = $_FILES["file"]; //array
+
+    $P_Images = "";
+    $form;
+
+    foreach ($images as $key => $value) {
+        if ($key == "tmp_name") {
+            foreach ($value as $k => $tempname) {
+                $form = $tempname;
+                print_r($form);
+            };
+        };
+        if ($key == "name") {
+            foreach ($value as $k => $name) {
+                $P_Images .= $name . " , ";
+                $to = '../assets/images/products/' . $name;
+            };
+            print_r($P_Images);
+        };
+        echo "<br>";
+        echo "<br>";
+    };
+
+
+
+    $query = "INSERT INTO `products` (`P_Title`,`_Catagori`, `P_Weight`, `P_Units`, `P_Images`, `P_Description`, `P_InStock`, `P_Code`, `P_SKU`, `P_Status`, `P_RegularPrice`, `P_SalePrice`, `P_MetaTitle`, `P_MetaDescription`)
+  VALUES ('$P_Title','$_Catagori', '$P_Weight', '$P_Units', '$P_Images', '$P_Description', '$P_InStock', '$P_Code', '$P_SKU', '$P_Status', '$P_RegularPrice', '$P_SalePrice', '$P_MetaTitle', '$P_MetaDescription')";
+
+    $connection = mysqli_connect('localhost', 'root', '', 'freshcart');
+    if (mysqli_query($connection, $query)) {
+        if (move_uploaded_file($form, $to)) {
+        } else {
+            echo "not done";
+        };
+        header('location: products.php');
+        die();
+    };
+}
+?>
+<!-- add product work end -->
+
+
+<!-- Delete Product start -->
+<?php
+
+if (isset($_GET["DeleteProductOfId"])) {
+    $ID=$_GET["DeleteProductOfId"];
+    
+    if (mysqli_query($connection,"DELETE FROM `products` WHERE `P_Id` = $ID")) {
+        header('location: products.php');
+    }
+}
+
+?>
+
+
+
+<!-- Delete Product end -->

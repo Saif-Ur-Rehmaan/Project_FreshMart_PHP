@@ -70,7 +70,12 @@
                 if (isset($_GET['signin'])) {
                   echo "<h1>Something’s wrong with the database connection...</h1>";
                   
-                }else{
+                }elseif (isset($_GET['signin'])) {
+                    echo "<h1>Something’s wrong while adding the product...</h1>";
+                    
+                  
+                }
+                else{
                 ?>
                 <h1>Something’s wrong here...</h1>
                 <?php }?>
