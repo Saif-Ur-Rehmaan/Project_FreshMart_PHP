@@ -516,159 +516,319 @@
                     </div>
                 </div>
                 <!-- row -->
-                <form action="PhpWorkstation.php"  method="post" enctype="multipart/form-data">
+                <form action="PhpWorkstation.php" method="post" enctype="multipart/form-data">
                     <div class="row">
+                        <?php
+                        if (isset($_GET['EditProductOfId'])) {
+                            $EditId = $_GET['EditProductOfId'];
+                            include "includes/config.php";
+                            $query = "SELECT * FROM `products` WHERE `P_Id`=$EditId";
+                            $row = mysqli_fetch_assoc(mysqli_query($connection, $query));
+                            // echo "<pre>";
+                            // print_r($row);
+                            // echo "</pre>";
+                        ?>
+                            <div class="col-lg-8 col-12">
+                                <!-- card -->
+                                <div class="card mb-6 card-lg">
+                                    <!-- card body -->
+                                    <div class="card-body p-6 ">
+                                        <h4 class="mb-4 h5">Product Information</h4>
+                                        <div class="row">
+                                            <!-- input -->
+                                            <div class="mb-3 col-lg-6">
+                                                <label class="form-label">Title</label>
+                                                <input type="text" class="form-control" value="<?php echo $row["P_Title"]; ?>" name="P_Title" placeholder="Product Name" required>
+                                            </div>
+                                            <!-- input catagori -->
+                                            <div class="mb-3 col-lg-6">
+                                                <label class="form-label">Product Category</label>
+                                                <select name="_Catagori" class="form-select">
+                                                    <option>Product Category</option>
+                                                    <!-- value my Catagori id aai gi jo forien key h  -->
+                                                    <!-- <option value="2" <?php //$catId=0;if ($catId==$row['_Catagori']) { echo 'checked';} 
+                                                                            ?>>DryFruit & Bakery</option> -->
 
-                        <div class="col-lg-8 col-12">
-                            <!-- card -->
-                            <div class="card mb-6 card-lg">
-                                <!-- card body -->
-                                <div class="card-body p-6 ">
-                                    <h4 class="mb-4 h5">Product Information</h4>
-                                    <div class="row">
-                                        <!-- input -->
-                                        <div class="mb-3 col-lg-6">
-                                            <label class="form-label">Title</label>
-                                            <input type="text" class="form-control" name="P_Title" placeholder="Product Name" required>
-                                        </div>
-                                        <!-- input catagori -->
-                                        <div class="mb-3 col-lg-6">
-                                            <label class="form-label">Product Category</label>
-                                            <select name="_Catagori" class="form-select">
-                                                <option selected>Product Category</option>
-                                                <!-- value my Catagori id aai gi jo forien key h  -->
-                                                <option value="2">DryFruit & Bakery</option>
-                                                
                                                     <!-- php loop chly ga or categori ki table sy catagories aain gi -->
-                                            </select>
-                                        </div>
-                                        <!-- input -->
-                                        <div class="mb-3 col-lg-6">
-                                            <label for="P_Weight" class="form-label">Weight</label>
-                                            <input type="text" id="P_Weight" name="P_Weight" class="form-control" placeholder="Weight" required>
-                                        </div>
-                                        <!-- input -->
-                                        <div class="mb-3 col-lg-6">
-                                            <label for="P_Units" class="form-label">Units</label>
-                                            <select name="P_Units" class="form-select">
-                                                <option selected>Select Units</option>
-                                                <option value="10">10</option>
-                                                <option value="20">20</option>
-                                                <option value="30">30</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <div class="mb-3 col-lg-12 mt-5">
-                                                <!-- heading -->
-                                                <h4 class="mb-3 h5">Product Images</h4>
+                                                </select>
+                                            </div>
+                                            <!-- input -->
+                                            <div class="mb-3 col-lg-6">
+                                                <label for="P_Weight" class="form-label">Weight</label>
+                                                <input type="text" id="P_Weight" value="<?php echo $row["P_Weight"] ?>" name="P_Weight" class="form-control" placeholder="Weight" required>
+                                            </div>
+                                            <!-- input -->
+                                            <div class="mb-3 col-lg-6">
+                                                <label for="P_Units" class="form-label">Units</label>
+                                                <select name="P_Units" class="form-select">
+                                                    <option>Select Units</option>
+                                                    <option <?php echo ($row["P_Units"] == "10") ? "selected" : ""; ?> value="10">10</option>
+                                                    <option <?php echo ($row["P_Units"] == "20") ? "selected" : ""; ?> value="20">20</option>
+                                                    <option <?php echo ($row["P_Units"] == "30") ? "selected" : ""; ?> value="30">30</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <div class="mb-3 col-lg-12 mt-5">
+                                                    <!-- heading -->
+                                                    <h4 class="mb-3 h5">Product Images</h4>
 
-                                                <!-- input -->
-                                                <div action="#" style="min-height: 20vh; cursor: pointer;" id="dropbox" class="d-flex justify-content-center border-dashed rounded-2 ">
-                                                
-                                                <div class="fallback d-flex align-items-center" >
-                                                        <input name="file[]" type="file" id="choosefile" multiple>
+                                                    <!-- input -->
+                                                    <div action="#" style="min-height: 20vh; cursor: pointer;" id="dropbox" class="d-flex justify-content-center border-dashed rounded-2 ">
+
+                                                        <div class="fallback d-flex align-items-center">
+                                                            <input name="file[]" type="file" id="choosefile" multiple>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- input -->
-                                        <div class="mb-3 col-lg-12 mt-5">
-                                            <h4 class="mb-3 h5">Product Descriptions</h4>
-                                            <textarea class="py-8" style="width: inherit;" name="P_Description" id="editor"></textarea>
+                                            <!-- input -->
+                                            <div class="mb-3 col-lg-12 mt-5">
+                                                <h4 class="mb-3 h5">Product Descriptions</h4>
+                                                <textarea class="py-8" style="width: inherit;" name="P_Description" id=""><?php echo $row["P_Description"]; ?></textarea>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        </div>
-                        <div class="col-lg-4 col-12">
-                            <!-- card -->
-                            <div class="card mb-6 card-lg">
-                                <!-- card body -->
-                                <div class="card-body p-6">
-                                    <!-- input -->
-                                    <div class="form-check form-switch mb-4">
-                                        <input name="P_InStock" class="form-check-input" type="checkbox" role="switch" id="flexSwitchStock" checked>
-                                        <label class="form-check-label" for="flexSwitchStock">In Stock</label>
-                                    </div>
-                                    <!-- input -->
-                                    <div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="P_Code" >Product Code</label>
-                                            <input type="text" name="P_Code" class="form-control" placeholder="Enter Product Title">
+                            </div>
+                            <div class="col-lg-4 col-12">
+                                <!-- card -->
+                                <div class="card mb-6 card-lg">
+                                    <!-- card body -->
+                                    <div class="card-body p-6">
+                                        <!-- input -->
+                                        <div class="form-check form-switch mb-4">
+                                            <input <?php echo ($row["P_InStock"] == 1) ? "checked" : ""; ?> name="P_InStock" class="form-check-input" type="checkbox" role="switch" id="flexSwitchStock">
+                                            <label class="form-check-label" for="flexSwitchStock">In Stock</label>
                                         </div>
                                         <!-- input -->
-                                        <div class="mb-3">
-                                            <label class="form-label">Product SKU</label>
-                                            <input type="text" name="P_SKU" class="form-control" placeholder="Enter Product Title">
-                                        </div>
-                                        <!-- input -->
-                                        <div class="mb-3">
-                                            <label class="form-label" id="productSKU">Status</label><br>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="P_Status" id="inlineRadio1" value="1" checked>
-                                                <label class="form-check-label" for="inlineRadio1">Active</label>
+                                        <div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="P_Code">Product Code</label>
+                                                <input type="text" value="<?php echo $row["P_Code"] ?>" name="P_Code" class="form-control" placeholder="Enter Product Title">
                                             </div>
                                             <!-- input -->
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="P_Status" id="inlineRadio2" value="0">
-                                                <label class="form-check-label" for="inlineRadio2">Disabled</label>
+                                            <div class="mb-3">
+                                                <label class="form-label">Product SKU</label>
+                                                <input type="text" value="<?php echo $row["P_SKU"] ?>" name="P_SKU" class="form-control" placeholder="Enter Product Title">
                                             </div>
                                             <!-- input -->
+                                            <div class="mb-3">
+                                                <label class="form-label" id="productSKU">Status</label><br>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" <?php echo ($row["P_Status"] == 1) ? "checked" : ""; ?> name="P_Status" id="inlineRadio1" value="1">
+                                                    <label class="form-check-label" for="inlineRadio1">Active</label>
+                                                </div>
+                                                <!-- input -->
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" <?php echo ($row["P_Status"] == 0) ? "checked" : ""; ?> name="P_Status" id="inlineRadio2" value="0">
+                                                    <label class="form-check-label" for="inlineRadio2">Disabled</label>
+                                                </div>
+                                                <!-- input -->
 
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- card -->
+                                <div class="card mb-6 card-lg">
+                                    <!-- card body -->
+                                    <div class="card-body p-6">
+                                        <h4 class="mb-4 h5">Product Price</h4>
+                                        <!-- input -->
+                                        <div class="mb-3">
+                                            <label class="form-label">Regular Price</label>
+                                            <input type="text" value="<?php echo $row["P_RegularPrice"] ?>" name="P_RegularPrice" class="form-control" placeholder="$0.00">
+                                        </div>
+                                        <!-- input -->
+                                        <div class="mb-3">
+                                            <label class="form-label">Sale Price</label>
+                                            <input type="text" class="form-control" value="<?php echo $row["P_SalePrice"] ?>" name="P_SalePrice" placeholder="$0.00">
                                         </div>
 
                                     </div>
                                 </div>
-                            </div>
-                            <!-- card -->
-                            <div class="card mb-6 card-lg">
-                                <!-- card body -->
-                                <div class="card-body p-6">
-                                    <h4 class="mb-4 h5">Product Price</h4>
-                                    <!-- input -->
-                                    <div class="mb-3">
-                                        <label class="form-label">Regular Price</label>
-                                        <input type="text" name="P_RegularPrice" class="form-control" placeholder="$0.00">
+                                <!-- card -->
+                                <div class="card mb-6 card-lg">
+                                    <!-- card body -->
+                                    <div class="card-body p-6">
+                                        <h4 class="mb-4 h5">Meta Data</h4>
+                                        <!-- input -->
+                                        <div class="mb-3">
+                                            <label class="form-label">Meta Title</label>
+                                            <input type="text" value="<?php echo $row["P_MetaTitle"] ?>" name="P_MetaTitle" class="form-control" placeholder="Title">
+                                        </div>
+
+                                        <!-- input -->
+                                        <div class="mb-3">
+                                            <label class="form-label">Meta Description</label>
+                                            <textarea name="P_MetaDescription" class="form-control" rows="3" placeholder="Meta Description"><?php echo $row["P_MetaDescription"] ?></textarea>
+                                        </div>
                                     </div>
-                                    <!-- input -->
-                                    <div class="mb-3">
-                                        <label class="form-label">Sale Price</label>
-                                        <input type="text" class="form-control" name="P_SalePrice" placeholder="$0.00">
-                                    </div>
+                                </div>
+                                <!-- button -->
+                                <div class="d-grid">
+
+                                    <input type="submit" class="btn btn-primary" value="EDIT Product" name="Edit_Product">
+                                    <input style="visibility: hidden;" class="btn btn-primary" value="<?php echo $row["P_Id"] ?>" name="Edit_Product_id">
 
                                 </div>
                             </div>
-                            <!-- card -->
-                            <div class="card mb-6 card-lg">
-                                <!-- card body -->
-                                <div class="card-body p-6">
-                                    <h4 class="mb-4 h5">Meta Data</h4>
-                                    <!-- input -->
-                                    <div class="mb-3">
-                                        <label class="form-label">Meta Title</label>
-                                        <input type="text" name="P_MetaTitle" class="form-control" placeholder="Title">
-                                    </div>
+                        <?php
+                        } else {
+                        ?>
+                            <div class="col-lg-8 col-12">
+                                <!-- card -->
+                                <div class="card mb-6 card-lg">
+                                    <!-- card body -->
+                                    <div class="card-body p-6 ">
+                                        <h4 class="mb-4 h5">Product Information</h4>
+                                        <div class="row">
+                                            <!-- input -->
+                                            <div class="mb-3 col-lg-6">
+                                                <label class="form-label">Title</label>
+                                                <input type="text" class="form-control" name="P_Title" placeholder="Product Name" required>
+                                            </div>
+                                            <!-- input catagori -->
+                                            <div class="mb-3 col-lg-6">
+                                                <label class="form-label">Product Category</label>
+                                                <select name="_Catagori" class="form-select">
+                                                    <option selected>Product Category</option>
+                                                    <!-- value my Catagori id aai gi jo forien key h  -->
+                                                    <option value="2">DryFruit & Bakery</option>
 
-                                    <!-- input -->
-                                    <div class="mb-3">
-                                        <label class="form-label">Meta Description</label>
-                                        <textarea name="P_MetaDescription" class="form-control" rows="3" placeholder="Meta Description"></textarea>
+                                                    <!-- php loop chly ga or categori ki table sy catagories aain gi -->
+                                                </select>
+                                            </div>
+                                            <!-- input -->
+                                            <div class="mb-3 col-lg-6">
+                                                <label for="P_Weight" class="form-label">Weight</label>
+                                                <input type="text" id="P_Weight" name="P_Weight" class="form-control" placeholder="Weight" required>
+                                            </div>
+                                            <!-- input -->
+                                            <div class="mb-3 col-lg-6">
+                                                <label for="P_Units" class="form-label">Units</label>
+                                                <select name="P_Units" class="form-select">
+                                                    <option selected>Select Units</option>
+                                                    <option value="10">10</option>
+                                                    <option value="20">20</option>
+                                                    <option value="30">30</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <div class="mb-3 col-lg-12 mt-5">
+                                                    <!-- heading -->
+                                                    <h4 class="mb-3 h5">Product Images</h4>
+
+                                                    <!-- input -->
+                                                    <div action="#" style="min-height: 20vh; cursor: pointer;" id="dropbox" class="d-flex justify-content-center border-dashed rounded-2 ">
+
+                                                        <div class="fallback d-flex align-items-center">
+                                                            <input name="file[]" type="file" id="choosefile" multiple>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- input -->
+                                            <div class="mb-3 col-lg-12 mt-5">
+                                                <h4 class="mb-3 h5">Product Descriptions</h4>
+                                                <textarea class="py-8" style="width: inherit;" name="P_Description" id="editor"></textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- button -->
-                            <div class="d-grid">
-                                
-                                <input type="submit" class="btn btn-primary" value="Create Product" name="Add_Product">
 
                             </div>
-                        </div>
+                            <div class="col-lg-4 col-12">
+                                <!-- card -->
+                                <div class="card mb-6 card-lg">
+                                    <!-- card body -->
+                                    <div class="card-body p-6">
+                                        <!-- input -->
+                                        <div class="form-check form-switch mb-4">
+                                            <input name="P_InStock" class="form-check-input" type="checkbox" role="switch" id="flexSwitchStock" checked>
+                                            <label class="form-check-label" for="flexSwitchStock">In Stock</label>
+                                        </div>
+                                        <!-- input -->
+                                        <div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="P_Code">Product Code</label>
+                                                <input type="text" name="P_Code" class="form-control" placeholder="Enter Product Title">
+                                            </div>
+                                            <!-- input -->
+                                            <div class="mb-3">
+                                                <label class="form-label">Product SKU</label>
+                                                <input type="text" name="P_SKU" class="form-control" placeholder="Enter Product Title">
+                                            </div>
+                                            <!-- input -->
+                                            <div class="mb-3">
+                                                <label class="form-label" id="productSKU">Status</label><br>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="P_Status" id="inlineRadio1" value="1" checked>
+                                                    <label class="form-check-label" for="inlineRadio1">Active</label>
+                                                </div>
+                                                <!-- input -->
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="P_Status" id="inlineRadio2" value="0">
+                                                    <label class="form-check-label" for="inlineRadio2">Disabled</label>
+                                                </div>
+                                                <!-- input -->
 
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- card -->
+                                <div class="card mb-6 card-lg">
+                                    <!-- card body -->
+                                    <div class="card-body p-6">
+                                        <h4 class="mb-4 h5">Product Price</h4>
+                                        <!-- input -->
+                                        <div class="mb-3">
+                                            <label class="form-label">Regular Price</label>
+                                            <input type="text" name="P_RegularPrice" class="form-control" placeholder="$0.00">
+                                        </div>
+                                        <!-- input -->
+                                        <div class="mb-3">
+                                            <label class="form-label">Sale Price</label>
+                                            <input type="text" class="form-control" name="P_SalePrice" placeholder="$0.00">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- card -->
+                                <div class="card mb-6 card-lg">
+                                    <!-- card body -->
+                                    <div class="card-body p-6">
+                                        <h4 class="mb-4 h5">Meta Data</h4>
+                                        <!-- input -->
+                                        <div class="mb-3">
+                                            <label class="form-label">Meta Title</label>
+                                            <input type="text" name="P_MetaTitle" class="form-control" placeholder="Title">
+                                        </div>
+
+                                        <!-- input -->
+                                        <div class="mb-3">
+                                            <label class="form-label">Meta Description</label>
+                                            <textarea name="P_MetaDescription" class="form-control" rows="3" placeholder="Meta Description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- button -->
+                                <div class="d-grid">
+
+                                    <input type="submit" class="btn btn-primary" value="Create Product" name="Add_Product">
+
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </form>
 
-<div>
+                <div>
         </main>
 
     </div>
@@ -691,7 +851,3 @@
 <!-- Mirrored from freshcart.codescandy.com/dashboard/add-product.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Mar 2023 10:11:27 GMT -->
 
 </html>
-
-
-
-

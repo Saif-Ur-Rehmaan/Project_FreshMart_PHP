@@ -605,7 +605,7 @@
                                                             </a>
                                                             <ul class="dropdown-menu">
                                                                 <li><a class="dropdown-item" href="PhpWorkstation.php?DeleteProductOfId=<?php echo $row["P_Id"]; ?>"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                                                <li><a class="dropdown-item" href="PhpWorkstation.php?EditProductOfId=<?php echo $row["P_Id"]; ?>"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
+                                                                <li><a class="dropdown-item" href="add-product.php?EditProductOfId=<?php echo $row["P_Id"]; ?>"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
                                                                 </li>
                                                             </ul>
                                                         </div>
