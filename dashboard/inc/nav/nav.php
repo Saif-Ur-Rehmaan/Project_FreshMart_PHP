@@ -1,10 +1,4 @@
-<?php 
-session_start();
-if (!isset($_SESSION['loggedin'])) {
-    header('location: signup/signup.php');
-    die();
-}
-?>
+ 
 <nav class="navbar navbar-expand-lg navbar-glass">
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center w-100">
@@ -162,7 +156,7 @@ if (!isset($_SESSION['loggedin'])) {
                             </ul>
                             <div class="border-top px-5 py-3">
 
-                                <a href="includes/loggedout.php?logout=true">Log Out</a>
+                                <a href="">Log Out</a>
 
                             </div>
 

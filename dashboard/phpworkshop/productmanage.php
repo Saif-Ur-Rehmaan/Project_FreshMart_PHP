@@ -25,31 +25,14 @@ if (isset($_POST["Add_Product"])) {
 
     $images = $_FILES["file"]; //array
 
-    $P_Images = "";
-    $form;
+    $P_Images = $_FILES['file']['name'][0];
+    $from = $_FILES['file']['tmp_name'][0];
+    
 
-    foreach ($images as $key => $value) {
-        if ($key == "tmp_name") {
-            foreach ($value as $k => $tempname) {
-                $form = $tempname;
-                print_r($form);
-            };
-        };
-        if ($key == "name") {
-            foreach ($value as $k => $name) {
-                $P_Images .= $name . " , ";
-                $to = '../assets/images/products/' . $name;
-            };
-            print_r($P_Images);
-        };
-        echo "<br>";
-        echo "<br>";
-    };
-
-
-
+ 
+            
     $query = "INSERT INTO `products` (`P_Title`,`_Catagori`, `P_Weight`, `P_Units`, `P_Images`, `P_Description`, `P_InStock`, `P_Code`, `P_SKU`, `P_Status`, `P_RegularPrice`, `P_SalePrice`, `P_MetaTitle`, `P_MetaDescription`)
-  VALUES ('$P_Title','$_Catagori', '$P_Weight', '$P_Units', '$P_Images', '$P_Description', '$P_InStock', '$P_Code', '$P_SKU', '$P_Status', '$P_RegularPrice', '$P_SalePrice', '$P_MetaTitle', '$P_MetaDescription')";
+   VALUES ('$P_Title','$_Catagori', '$P_Weight', '$P_Units', '$P_Images', '$P_Description', '$P_InStock', '$P_Code', '$P_SKU', '$P_Status', '$P_RegularPrice', '$P_SalePrice', '$P_MetaTitle', '$P_MetaDescription')";
 
     $connection = mysqli_connect('localhost', 'root', '', 'freshcart');
     if (mysqli_query($connection, $query)) {
@@ -57,7 +40,7 @@ if (isset($_POST["Add_Product"])) {
         } else {
             echo "not done";
         };
-        header('location: products.php');
+        header('location: ../products.php');
         die();
     };
 }
@@ -72,7 +55,7 @@ if (isset($_GET["DeleteProductOfId"])) {
     $ID = $_GET["DeleteProductOfId"];
 
     if (mysqli_query($connection, "DELETE FROM `products` WHERE `P_Id` = $ID")) {
-        header('location: products.php');
+        header('location: ../products.php');
     }
 }
 
@@ -89,6 +72,7 @@ if (isset($_POST["Edit_Product"])) {
     echo $Edit_Product_id;
     echo "<pre>";
     print_r($_POST);
+    print_r($_FILES);
     echo "</pre>";
 
 
@@ -115,34 +99,26 @@ if (isset($_POST["Edit_Product"])) {
 
     $images = $_FILES["file"]; //array
 
-    $P_Images = "";
-    $form;
-
-    foreach ($images as $key => $value) {
-        if ($key == "tmp_name") {
-            foreach ($value as $k => $tempname) {
-                $form = $tempname;
-                print_r($form);
-            };
-        };
-        if ($key == "name") {
-            foreach ($value as $k => $name) {
-                $P_Images .= $name . " , ";
-                $to = '../assets/images/products/' . $name;
-            };
-            print_r($P_Images);
-        };
-        echo "<br>";
-        echo "<br>";
-    };
+    $P_Images = $_FILES['file']['name'][0];
+    $from = $_FILES['file']['tmp_name'][0];
+    $to = '../assets/images/products/' . $name;
+     
 
 
 
 
+  if($P_Images!=null){
     $editQuery = "UPDATE `products` SET `P_Title` = '$P_Title', `P_Weight` = '$P_Weight', `P_Units` = '$P_Units', `P_Images` = '$P_Images', `P_Description` = '$P_Description',`P_Status`='$P_Status',`P_InStock`='$P_InStock',`Date`=CURRENT_TIMESTAMP() , `P_Code` = '$P_Code', `P_SKU` = '$P_SKU', `P_RegularPrice` = '$P_RegularPrice', `P_SalePrice` = '$P_SalePrice', `P_MetaTitle` = '$P_MetaTitle', `P_MetaDescription` = '$P_MetaDescription' WHERE `products`.`P_Id` = $Edit_Product_id
-";
+    ";
+    // echo $editQuery;
+}else{
+    $editQuery = "UPDATE `products` SET `P_Title` = '$P_Title', `P_Weight` = '$P_Weight', `P_Units` = '$P_Units', `P_Description` = '$P_Description',`P_Status`='$P_Status',`P_InStock`='$P_InStock',`Date`=CURRENT_TIMESTAMP() , `P_Code` = '$P_Code', `P_SKU` = '$P_SKU', `P_RegularPrice` = '$P_RegularPrice', `P_SalePrice` = '$P_SalePrice', `P_MetaTitle` = '$P_MetaTitle', `P_MetaDescription` = '$P_MetaDescription' WHERE `products`.`P_Id` = $Edit_Product_id
+    ";
+    // echo $editQuery;
+
+  }
     if (mysqli_query($connection, $editQuery)) {
-        header("location: products.php");
+        header("location: ../products.php");
         die();
     } else {
         echo "<scrript>alert('product not added')</scrript>";

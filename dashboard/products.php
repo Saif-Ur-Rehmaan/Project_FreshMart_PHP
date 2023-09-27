@@ -1,487 +1,20 @@
+<?php include 'inc/config.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
 
 <!-- Mirrored from freshcart.codescandy.com/dashboard/products.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Mar 2023 10:11:08 GMT -->
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta content="Codescandy" name="author">
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-M8S4MT3EYG');
-    </script>
-
-    <!-- Favicon icon-->
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon/favicon.ico">
-
-
-    <!-- Libs CSS -->
-    <link href="../assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="../assets/libs/feather-webfont/dist/feather-icons.css" rel="stylesheet">
-    <link href="../assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
-
-
-    <!-- Theme CSS -->
-    <link rel="stylesheet" href="../assets/css/theme.min.css">
-
-
-    <title>Dashboard</title>
-</head>
+<?php include "inc/head/head1.php"; ?>
 
 <body>
     <!-- main wrapper-->
 
-    <?php include 'includes/nav.php' ?>
+    <?php include 'inc/nav/nav.php' ?>
     <div class="main-wrapper">
         <!-- navbar vertical -->
 
-        <nav class="navbar-vertical-nav d-none d-xl-block ">
-            <div class="navbar-vertical">
-                <div class="px-4 py-5">
-                    <a href="../index.php" class="navbar-brand">
-                        <img src="../assets/images/logo/freshcart-logo.svg" alt="">
-                    </a>
-                </div>
-                <div class="navbar-vertical-content flex-grow-1" data-simplebar="">
-                    <ul class="navbar-nav flex-column" id="sideNavbar">
-
-                        <li class="nav-item ">
-                            <a class="nav-link " href="index.php">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-house"></i></span>
-                                    <span class="nav-link-text">Dashboard</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item mt-6 mb-3">
-                            <span class="nav-label">Store Managements</span>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link  active " href="products.php">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-cart"></i></span>
-                                    <span class="nav-link-text">Products</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="categories.php">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-list-task"></i></span>
-                                    <span class="nav-link-text">Categories</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link   collapsed " href="#" data-bs-toggle="collapse" data-bs-target="#navCategoriesOrders" aria-expanded="false" aria-controls="navCategoriesOrders">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-bag"></i></span>
-                                    <span class="nav-link-text">Orders</span>
-                                </div>
-                            </a>
-                            <div id="navCategoriesOrders" class="collapse " data-bs-parent="#sideNavbar">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item ">
-                                        <a class="nav-link " href="order-list.php">
-                                            List
-                                        </a>
-                                    </li>
-                                    <!-- Nav item -->
-                                    <li class="nav-item ">
-                                        <a class="nav-link " href="order-single.php">
-                                            Single
-
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="nav-item ">
-                            <a class="nav-link " href="vendor-grid.php">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-shop"></i></span>
-                                    <span class="nav-link-text">Sellers / Vendors</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="customers.php">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-people"></i></span>
-                                    <span class="nav-link-text">Customers</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="reviews.php">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-star"></i></span>
-                                    <span class="nav-link-text">Reviews</span>
-                                </div>
-                            </a>
-                        </li>
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                            <a class="nav-link  collapsed " href="#" data-bs-toggle="collapse" data-bs-target="#navMenuLevelFirst" aria-expanded="false" aria-controls="navMenuLevelFirst">
-                                <span class="nav-link-icon"><i class=" bi bi-arrow-90deg-down"></i></span>
-                                <span class="nav-link-text">Menu Level</span>
-                            </a>
-                            <div id="navMenuLevelFirst" class="collapse " data-bs-parent="#sideNavbar">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link " href="#" data-bs-toggle="collapse" data-bs-target="#navMenuLevelSecond1" aria-expanded="false" aria-controls="navMenuLevelSecond1">
-                                            Two Level
-                                        </a>
-                                        <div id="navMenuLevelSecond1" class="collapse" data-bs-parent="#navMenuLevel">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link " href="#">NavItem 1</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link " href="#">NavItem 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link  collapsed  " href="#" data-bs-toggle="collapse" data-bs-target="#navMenuLevelThreeOne1" aria-expanded="false" aria-controls="navMenuLevelThreeOne1">
-                                            Three Level
-                                        </a>
-                                        <div id="navMenuLevelThreeOne1" class="collapse " data-bs-parent="#navMenuLevel">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link  collapsed " href="#" data-bs-toggle="collapse" data-bs-target="#navMenuLevelThreeTwo" aria-expanded="false" aria-controls="navMenuLevelThreeTwo">
-                                                        NavItem 1
-                                                    </a>
-                                                    <div id="navMenuLevelThreeTwo" class="collapse collapse " data-bs-parent="#navMenuLevelThree">
-                                                        <ul class="nav flex-column">
-                                                            <li class="nav-item">
-                                                                <a class="nav-link " href="#">
-                                                                    NavChild Item 1
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link " href="#">Nav
-                                                        Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="nav-item mt-6 mb-3">
-                            <span class="nav-label">Site Settings</span> <span class="badge bg-light-info text-dark-info">Coming Soon</span>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled" href="#!">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-newspaper"></i></span>
-                                    <span class="nav-link-text">Blog</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled" href="#!">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-images"></i></span>
-                                    <span class="nav-link-text">Media</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled" href="#!">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-gear"></i></span>
-                                    <span class="nav-link-text">Store Settings</span>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="nav-item mt-6 mb-3">
-                            <span class="nav-label">Support</span> <span class="badge bg-light-info text-dark-info">Coming Soon</span>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled" href="#!">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-headphones"></i></span>
-                                    <span class="nav-link-text">Support Ticket</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled" href="#">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-question-circle"></i></span>
-                                    <span class="nav-link-text">Help Center</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled" href="#!">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-infinity"></i></span>
-                                    <span class="nav-link-text">How FreshCart Works</span>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="nav-item mt-6 mb-3">
-                            <span class="nav-label">Our Apps</span>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled" href="#!">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-apple"></i></span>
-                                    <span class="nav-link-text">Apple Store</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled" href="#!">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-google-play"></i></span>
-                                    <span class="nav-link-text">Google Play Store</span>
-                                </div>
-                            </a>
-                        </li>
-
-
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <nav class="navbar-vertical-nav offcanvas offcanvas-start navbar-offcanvac" tabindex="-1" id="offcanvasExample">
-            <div class="navbar-vertical">
-                <div class="px-4 py-5 d-flex justify-content-between align-items-center">
-                    <a href="../index.php" class="navbar-brand">
-                        <img src="../assets/images/logo/freshcart-logo.svg" alt="">
-                    </a>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="navbar-vertical-content flex-grow-1" data-simplebar="">
-                    <ul class="navbar-nav flex-column">
-                        <li class="nav-item ">
-                            <a class="nav-link " href="index.php">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-house"></i></span>
-                                    <span>Dashboard</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item mt-6 mb-3">
-                            <span class="nav-label">Store Managements</span>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link  active " href="products.php">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-cart"></i></span>
-                                    <span class="nav-link-text">Products</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="categories.php">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-list-task"></i></span>
-                                    <span class="nav-link-text">Categories</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link   collapsed " href="#" data-bs-toggle="collapse" data-bs-target="#navOrders" aria-expanded="false" aria-controls="navOrders">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-bag"></i></span>
-                                    <span class="nav-link-text">Orders</span>
-                                </div>
-                            </a>
-                            <div id="navOrders" class="collapse " data-bs-parent="#sideNavbar">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item ">
-                                        <a class="nav-link " href="order-list.php">
-                                            List
-                                        </a>
-                                    </li>
-                                    <!-- Nav item -->
-                                    <li class="nav-item ">
-                                        <a class="nav-link " href="order-single.php">
-                                            Single
-
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="vendor-grid.php">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-shop"></i></span>
-                                    <span class="nav-link-text">Sellers / Vendors</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="customers.php">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-people"></i></span>
-                                    <span class="nav-link-text">Customers</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="reviews.php">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-star"></i></span>
-                                    <span class="nav-link-text">Reviews</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item mt-6 mb-3">
-                            <span class="nav-label">Site Settings</span> <span class="badge bg-light-info text-dark-info">Coming Soon</span>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled" href="#!">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-newspaper"></i></span>
-                                    <span class="nav-link-text">Blog</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled" href="#">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-images"></i></span>
-                                    <span class="nav-link-text">Media</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled" href="#!">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-gear"></i></span>
-                                    <span class="nav-link-text">Store Settings</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item mt-6 mb-3">
-                            <span class="nav-label">Support</span> <span class="badge bg-light-info text-dark-info">Coming Soon</span>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled" href="#!">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-headphones"></i></span>
-                                    <span class="nav-link-text">Support Ticket</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled" href="#">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-question-circle"></i></span>
-                                    <span class="nav-link-text">Help Center</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled" href="#!">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-infinity"></i></span>
-                                    <span class="nav-link-text">How FreshCart Works</span>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="nav-item mt-6 mb-3">
-                            <span class="nav-label">Our Apps</span>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled" href="#!">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-apple"></i></span>
-                                    <span class="nav-link-text">Apple Store</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled" href="#!">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon"> <i class="bi bi-google-play"></i></span>
-                                    <span class="nav-link-text">Google Play Store</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li id="navMenuLevel" class="collapse " data-bs-parent="#sideNavbar">
-                            <ul class="nav flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link " href="#" data-bs-toggle="collapse" data-bs-target="#navMenuLevelSecond2" aria-expanded="false" aria-controls="navMenuLevelSecond2">
-                                        Two Level
-                                    </a>
-                                    <div id="navMenuLevelSecond2" class="collapse" data-bs-parent="#navMenuLevel">
-                                        <ul class="nav flex-column">
-                                            <li class="nav-item">
-                                                <a class="nav-link " href="#">NavItem 1</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link " href="#">NavItem 2</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link  collapsed  " href="#" data-bs-toggle="collapse" data-bs-target="#navMenuLevelThree2" aria-expanded="false" aria-controls="navMenuLevelThree2">
-                                        Three Level
-                                    </a>
-                                    <div id="navMenuLevelThree2" class="collapse " data-bs-parent="#navMenuLevel">
-                                        <ul class="nav flex-column">
-                                            <li class="nav-item">
-                                                <a class="nav-link  collapsed " href="#" data-bs-toggle="collapse" data-bs-target="#navMenuLevelThree3" aria-expanded="false" aria-controls="navMenuLevelThree3">
-                                                    NavItem 1
-                                                </a>
-                                                <div id="navMenuLevelThree3" class="collapse collapse " data-bs-parent="#navMenuLevelThree">
-                                                    <ul class="nav flex-column">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link " href="#">
-                                                                NavChild Item 1
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link " href="#">Nav
-                                                    Item 2</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                    </ul>
-                </div>
-            </div>
-
-        </nav>
+        <?php include 'inc/nav/nav2.php' ?>
 
 
         <!-- main -->
@@ -518,16 +51,20 @@
                                     <!-- form -->
                                     <div class="col-lg-4 col-md-6 col-12 mb-2 mb-lg-0">
                                         <form class="d-flex" role="search">
-                                            <input class="form-control" type="search" placeholder="Search Products" aria-label="Search">
+                                            <input class="form-control" type="search" id="_PRODUCT_SEARCH_INP"
+                                                placeholder="Search Products" aria-label="Search">
                                         </form>
                                     </div>
                                     <!-- select option -->
                                     <div class="col-lg-2 col-md-4 col-12">
-                                        <select class="form-select">
-                                            <option selected>Status</option>
-                                            <option value="1">Active</option>
-                                            <option value="2">Deactive</option>
-                                            <option value="3">Draft</option>
+                                        <select class="form-select " id="_filter_status">
+                                            <option <?php echo (isset($_GET["filter_status"]) && $_GET["filter_status"] == "0") ? "selected" : ""; ?> value="all">Status
+                                            </option>
+                                            <option <?php echo (isset($_GET["filter_status"]) && $_GET["filter_status"] == "1") ? "selected" : ""; ?> value="1">Active
+                                            </option>
+                                            <option <?php echo (isset($_GET["filter_status"]) && $_GET["filter_status"] == "0") ? "selected" : ""; ?> value="0">Deactive
+                                            </option>
+
                                         </select>
                                     </div>
                                 </div>
@@ -536,12 +73,14 @@
                             <div class="card-body p-0">
                                 <!-- table -->
                                 <div class="table-responsive">
-                                    <table class="table table-centered table-hover text-nowrap table-borderless mb-0 table-with-checkbox">
+                                    <table
+                                        class="table table-centered table-hover text-nowrap table-borderless mb-0 table-with-checkbox">
                                         <thead class="bg-light">
                                             <tr>
                                                 <th>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="checkAll">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="checkAll">
                                                         <label class="form-check-label" for="checkAll">
 
                                                         </label>
@@ -556,56 +95,72 @@
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="_product_tbody">
                                             <?php
-                                            include 'includes/config.php';
+                                            $cardsPerPage = 10;
+                                            $totalRecords = DatabaseManager::select("products", "count(P_Id) as cid")[0]["cid"];
+                                            $totalPages = ceil($totalRecords / $cardsPerPage); //paginaion loop limit &Workin
+                                            $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+                                            $offset = ($currentPage - 1) * $cardsPerPage;
+                                            
+                                            $responce = mysqli_query($connection, "SELECT `P_Id`,`P_Images`,`P_Title`,`Date`,`P_Status`,`P_RegularPrice` FROM `products` limit $offset,$cardsPerPage");
+                                             
 
-                                            $responce = mysqli_query($connection, "SELECT `P_Id`,`P_Images`,`P_Title`,`Date`,`P_Status`,`P_RegularPrice` FROM `products`");
                                             while ($row = mysqli_fetch_assoc($responce)) {
-                                                // echo "<pre>";
-                                                // print_r($row);
-                                                // echo "</pre>";
-                                                // used explode() to get only 1st image
 
-                                            ?>
+
+                                                ?>
                                                 <tr>
 
                                                     <td>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="" id="productOne">
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="productOne">
                                                             <label class="form-check-label" for="productOne">
 
                                                             </label>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a href="#!"> <img src="../assets/images/products/<?php echo (explode(" , ",$row["P_Images"])[0]) ?>" alt="" class="icon-shape icon-md"></a>
+                                                        <a href="#!"> <img
+                                                                src="../assets/images/products/<?php echo  $row["P_Images"] ?>"
+                                                                alt="" class="icon-shape icon-md"></a>
                                                     </td>
-                                                    <td><a href="#" class="text-reset"><?php echo $row["P_Title"] ?></a></td>
+                                                    <td><a href="#" class="text-reset">
+                                                            <?php echo $row["P_Title"] ?>
+                                                        </a></td>
                                                     <td>Snack & Munchies</td>
 
                                                     <td>
                                                         <?php
+
                                                         if ($row["P_Status"] == 1) {
                                                             echo '<span class="badge bg-light-primary text-dark-primary">Active</span>';
-                                                        } else {
+                                                        } else if ($row["P_Status"] == 0) {
                                                             echo '<span class="badge bg-light-danger text-dark-danger">Deactive</span>';
-                                                        }
-                                                        ?>
+                                                        } ?>
                                                     </td>
-                                                    <td>$<?php echo $row["P_RegularPrice"] ?></td>
+                                                    <td>$
+                                                        <?php echo $row["P_RegularPrice"] ?>
+                                                    </td>
                                                     <td>
                                                         <?php
                                                         echo date("j M Y", strtotime($row["Date"]));
-                                                        ?></td>
+                                                        ?>
+                                                    </td>
                                                     <td>
                                                         <div class="dropdown">
-                                                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <a href="#" class="text-reset" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
                                                                 <i class="feather-icon icon-more-vertical fs-5"></i>
                                                             </a>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="PhpWorkstation.php?DeleteProductOfId=<?php echo $row["P_Id"]; ?>"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                                                <li><a class="dropdown-item" href="add-product.php?EditProductOfId=<?php echo $row["P_Id"]; ?>"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
+                                                                <li><a class="dropdown-item"
+                                                                        href="phpworkshop/productmanage.php?DeleteProductOfId=<?php echo $row["P_Id"]; ?>"><i
+                                                                            class="bi bi-trash me-3"></i>Delete</a></li>
+                                                                <li><a class="dropdown-item"
+                                                                        href="add-product.php?EditProductOfId=<?php echo $row["P_Id"]; ?>"><i
+                                                                            class="bi bi-pencil-square me-3 "></i>Edit</a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -621,16 +176,76 @@
                                 </div>
                             </div>
                             <div class=" border-top d-md-flex justify-content-between align-items-center px-6 py-6">
-                                <span>Showing 1 to 8 of 12 entries</span>
-                                <nav class="mt-2 mt-md-0">
-                                    <ul class="pagination mb-0 ">
-                                        <li class="page-item disabled"><a class="page-link " href="#!">Previous</a></li>
-                                        <li class="page-item"><a class="page-link active" href="#!">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#!">Next</a></li>
-                                    </ul>
-                                </nav>
+                                <span>Showing <?php echo $offset." to ".$responce->num_rows." of ".$totalRecords." entries " ?></span>
+                               
+
+                                <?php
+
+
+                                $arry = DatabaseManager::select("products limit $offset, $cardsPerPage");
+                                ?>
+                                <?php if ($totalRecords > 10) { ?>
+                                    <nav class="mt-2 mt-md-0">
+
+                                        <ul class="pagination mb-0 ">
+                                            <?php
+
+
+
+                                            if ($currentPage > 1) {
+                                                echo '    <li class="page-item"><a class="page-link " href="products.php?page=' . ($currentPage - 1) . '">Previous</a></li>';
+                                            } else {
+                                                echo '<li class="page-item disabled"><a class="page-link " href="#!">Previous</a></li>';
+                                            }
+
+                                            if ($totalPages <= 5) {
+                                                // Display all available pages if there are 5 or fewer
+                                                for ($i = 1; $i <= $totalPages; $i++) {
+                                                    if ($i == $currentPage) {
+                                                        echo '<li class="page-item"><a class="page-link active" href="products.php?page=' . $i . '">' . $i . '</a></li>';
+                                                    } else {
+                                                        echo '<li class="page-item"><a class="page-link" href="products.php?page=' . $i . '">' . $i . '</a></li>';
+                                                    }
+                                                }
+                                            } else {
+                                                // Display the current page and two pages before and after it
+                                                $startPage = max(1, $currentPage - 2);
+                                                $endPage = min($totalPages, $currentPage + 2);
+
+                                                for ($i = $startPage; $i <= $endPage; $i++) {
+                                                    if ($i == $currentPage) {
+                                                        echo '<li class="page-item"><a class="page-link active" href="products.php?page=' . $i . '">' . $i . '</a></li>';
+                                                    } else {
+                                                        echo '<li class="page-item"><a class="page-link " href="products.php?page=' . $i . '">' . $i . '</a></li>';
+                                                    }
+                                                }
+                                            }
+
+                                            if ($currentPage < $totalPages) {
+                                                echo '    <li class="page-item"><a class="page-link " href="products.php?page=' . ($currentPage + 1) . '">Next</a></li>';
+                                            }
+
+                                            ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        </ul>
+                                    </nav>
+                                <?php } ?>
+
                             </div>
                         </div>
 
@@ -650,6 +265,96 @@
 
     <!-- Theme JS -->
     <script src="../assets/js/theme.min.js"></script>
+    <!-- product search -->
+    <script>
+        $(document).ready(() => {
+            //   let  searchinp[0];
+            // console.log(searchinp);
+            $('#_PRODUCT_SEARCH_INP').on("keyup", search)
+            $('#_filter_status').on("change", search)
+            function search() {
+                let searchValue = $('#_PRODUCT_SEARCH_INP').val();
+                let filter_status_S = $('#_filter_status').val();
+                if (filter_status_S == "all") {
+                    filter_status_S = ''
+                }
+                console.log(filter_status_S);
+                // console.log(searchValue);
+                $.ajax({
+                    url: 'ajax/searchManage.php',
+                    method: 'GET',
+                    data: {
+                        ProductSearch: searchValue,
+                        filter_status: filter_status_S
+                    },
+                    success: (e) => {
+                        let data = JSON.parse(e)
+                        console.log(data);
+                        html = ``;
+                        if (data.length != 0) {
+
+
+                            data.forEach(row => {
+                                html += `
+                                    <tr>
+
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="productOne">
+                                                    <label class="form-check-label" for="productOne">
+
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a href="#!"> <img src="../assets/images/products/${row['P_Images']}" alt="" class="icon-shape icon-md"></a>
+                                            </td>
+                                            <td><a href="#" class="text-reset">${row["P_Title"]}</a></td>
+                                            <td>Snack & Munchies</td>
+
+                                            <td>`;
+
+                                html += (row["P_Status"] == 1) ? '<span class="badge bg-light-primary text-dark-primary">Active</span>' :
+                                    (row["P_Status"] == 0) ? '<span class="badge bg-light-danger text-dark-danger">Deactive</span>' :
+                                        '';
+
+                                html += `
+                                            </td>
+                                            <td>Rs ${row["P_RegularPrice"]}</td>
+                                            <td>${row["Date"]}</td>
+
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="feather-icon icon-more-vertical fs-5"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="phpworkshop/productmanage.php?DeleteProductOfId=${row["P_Id"]}"><i class="bi bi-trash me-3"></i>Delete</a></li>
+                                                        <li><a class="dropdown-item" href="add-product.php?EditProductOfId=${row["P_Id"]}"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                    </tr>
+                                    
+                                    `;
+                            });
+                            $("#_product_tbody").html(html);
+                        } else {
+                            html = "<tr><td>product not found</td></tr>"
+                            $("#_product_tbody").html(html);
+                        }
+
+                    }, error: (e) => {
+                        console.error(e)
+                    }
+                })
+            }
+
+        })
+
+    </script>
+    <!-- product search end-->
 
 </body>
 
