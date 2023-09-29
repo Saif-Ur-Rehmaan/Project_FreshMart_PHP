@@ -1,3 +1,8 @@
+<?php
+
+use function PHPSTORM_META\type;
+
+ include "inc/config.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,9 +54,19 @@
                         <?php
                         if (isset($_GET['EditProductOfId'])) {
                             $EditId = $_GET['EditProductOfId'];
-                            include "inc/config.php";
+                            
+                            if (!is_numeric($EditId)) {
+                                    echo "<script>window.location.href='../pages/404error.php'</script>";
+                                die();
+                            }
+
                             $query = "SELECT * FROM `products` WHERE `P_Id`=$EditId";
-                            $row = mysqli_fetch_assoc(mysqli_query($connection, $query));
+                            if ( mysqli_query($connection, $query)->num_rows == 0) {
+                                    echo "<script>window.location.href='../pages/404error.php'</script>";
+                                die();
+                            }
+                                $row = mysqli_fetch_assoc(mysqli_query($connection, $query));
+
                             // echo "<pre>";
                             // print_r($row);
                             // echo "</pre>";
@@ -73,10 +88,18 @@
                                             <!-- input catagori -->
                                             <div class="mb-3 col-lg-6">
                                                 <label class="form-label">Product Category</label>
-                                                <select name="_Catagori" class="form-select">
+                                                <select name="_Catagory_id" class="form-select">
                                                     <option>Product Category</option>
                                                     <!-- value my Catagori id aai gi jo forien key h  -->
-                                                    <!-- <option value="2" <?php //$catId=0;if ($catId==$row['_Catagori']) { echo 'checked';} 
+                                                    <?php $cname = DatabaseManager::select("categories", 'C_name,C_id');
+                                                    $catid = $row["_Category_id"];
+                                                    foreach ($cname as $key => $value) {
+                                                        $a = $value["C_name"];
+                                                        $b = $value["C_id"];
+                                                        $c = ($catId == $row['_Catagory_id']) ? 'checked' : "";
+                                                        echo "<option $c  value='$b'>$a</option>";
+                                                    } ?>
+                                                    <!-- <option value="2" <?php //$catId=0;if ($catId==$row['_Catagory_id']) { echo 'checked';} 
                                                         ?>>DryFruit & Bakery</option> -->
 
                                                     <!-- php loop chly ga or categori ki table sy catagories aain gi -->
@@ -112,7 +135,7 @@
 
                                                         <div class="fallback d-flex align-items-center">
 
-                                                            <input name="file[]" type="file" id="choosefile" multiple>
+                                                            <input name="file" type="file" id="choosefile" multiple>
                                                             <style>
 
                                                             </style>
@@ -246,10 +269,18 @@
                                             <!-- input catagori -->
                                             <div class="mb-3 col-lg-6">
                                                 <label class="form-label">Product Category</label>
-                                                <select name="_Catagori" class="form-select">
+                                                <select name="_Catagory_id" class="form-select">
                                                     <option selected>Product Category</option>
+                                                    <?php $cname = DatabaseManager::select("categories", 'C_name,C_id');
+                                                    
+                                                    foreach ($cname as $key => $value) {
+                                                        $a = $value["C_name"];
+                                                        $b = $value["C_id"];
+                                                        echo "<option  value='$b'>$a</option>";
+                                                    } 
+                                                    ?>
                                                     <!-- value my Catagori id aai gi jo forien key h  -->
-                                                    <option value="2">DryFruit & Bakery</option>
+                                                    <!-- <option value="2">DryFruit & Bakery</option> -->
 
                                                     <!-- php loop chly ga or categori ki table sy catagories aain gi -->
                                                 </select>
@@ -280,7 +311,7 @@
                                                         class="d-flex justify-content-center border-dashed rounded-2 ">
 
                                                         <div class="fallback d-flex align-items-center">
-                                                            <input name="file[]" type="file" id="choosefile" multiple>
+                                                            <input name="file" type="file" id="choosefile" multiple>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -414,7 +445,7 @@
             const metaTitleInput = $('#metaTitle');
             const productSKUInput = $('#productSKU');
             const productCodeInput = $('#productCode');
-           
+
             function mixstrandnum(str) {
                 var string = "hi";
 
@@ -461,11 +492,11 @@
                 metaTitleInput.val(metaTitle);
                 productSKUInput.val(productSKU);
                 productCodeInput.val(productCode);
-                
+
             });
 
 
-             
+
         });
 
     </script>

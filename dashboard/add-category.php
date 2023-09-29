@@ -1,4 +1,7 @@
-<?php include "inc/config.php"; ?><!DOCTYPE html>
+<?php include "inc/config.php"; 
+$EditId=(isset($_GET["EditCategoryOfId"]))?$_GET["EditCategoryOfId"]:"";
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 
@@ -10,10 +13,10 @@
     <!-- main wrapper -->
 
     <?php include 'inc/nav/nav.php' ?>
-        <div class="main-wrapper">
-            <!-- navbar vertical -->
-            
-            <?php include 'inc/nav/nav2.php' ?>
+    <div class="main-wrapper">
+        <!-- navbar vertical -->
+
+        <?php include 'inc/nav/nav2.php' ?>
 
 
         <!-- main -->
@@ -49,17 +52,22 @@
 
                             <div class="card mb-6 shadow border-0">
                                 <!-- card body -->
-                                <div class="card-body p-6 ">
+                                <div class="card-body p-6">
                                     <h4 class="mb-5 h5">Category Image</h4>
                                     <div class="mb-4 d-flex">
                                         <div class="position-relative">
-                                            <img class="image  icon-shape icon-xxxl bg-light rounded-4" src="../assets/images/icons/bakery.svg" alt="Image">
+                                            <img class="image  icon-shape icon-xxxl bg-light rounded-4"
+                                                src="../assets/images/icons/<?php echo (isset($_GET["EditCategoryOfId"]))?DatabaseManager::select("categories","C_Logo as p","C_id=$EditId")[0]["p"] :""; ?>"
+                                                alt="image">
 
                                             <div class="file-upload position-absolute end-0 top-0 mt-n2 me-n1">
                                                 <input type="file" name="C_image" class="file-input ">
                                                 <span class="icon-shape icon-sm rounded-circle bg-white">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-pencil-fill text-muted" viewBox="0 0 16 16">
-                                                        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                        fill="currentColor" class="bi bi-pencil-fill text-muted"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
                                                     </svg>
                                                 </span>
                                             </div>
@@ -74,26 +82,37 @@
                                         <!-- input -->
                                         <div class="mb-3 col-lg-6">
                                             <label class="form-label">Category Name</label>
-                                            <input type="text" name="C_name" class="form-control" id="cat_inp" placeholder="Category Name" required>
+                                            <input type="text" name="C_name"
+                                                <?php echo (isset($_GET["EditCategoryOfId"]))?"value='".DatabaseManager::select("categories","C_name as p","C_id=$EditId")[0]["p"]."'" :"value=''"; ?>
+                                                class="form-control" id="cat_inp" placeholder="Category Name" required>
                                         </div>
                                         <!-- input -->
                                         <div class="mb-3 col-lg-6">
                                             <label class="form-label">Slug</label>
-                                            <input type="text" name="C_Slug" class="form-control" id="slug_inp" placeholder="Slug" required>
+                                            <input type="text" name="C_Slug"
+                                                <?php echo (isset($_GET["EditCategoryOfId"]))?"value='".DatabaseManager::select("categories","C_Slug as p","C_id=$EditId")[0]["p"]."'" :"value=''"; ?>
+                                                class="form-control" id="slug_inp" placeholder="Slug" required>
                                         </div>
                                         <!-- input -->
                                         <div class="mb-3 col-lg-6">
                                             <label class="form-label">Parent Category</label>
                                             <select class="form-select" name="C_ParentCategory">
-                                                <option selected>Parent Category Name</option>
+                                                <option>Parent Category Name</option>
                                                 <?php $categoriesName= DatabaseManager::select("categories","C_id,C_name");
+                                                    if(isset($_GET["EditCategoryOfId"])){
+                                                        $PC=DatabaseManager::select("categories","C_ParentCategory as p","C_id=$EditId")[0]["p"];
+                                                    }
                                                 foreach ($categoriesName as $key => $category) {
-                                                    echo "<option value='".$category["C_id"]."'>".$category["C_name"]."</option>";
+                                                    $a="";
+                                                    if(isset($_GET["EditCategoryOfId"])){
+                                                        $a=($PC==$category["C_id"])?"selected":"";
+                                                    };
+                                                    echo "<option $a  value='".$category["C_id"]."'>".$category["C_name"]."</option>";
                                                 }
-                                                ?> 
-                                                </select>
+                                                ?>
+                                            </select>
                                         </div>
-                                        
+
 
                                         <div>
 
@@ -102,42 +121,80 @@
                                         <div class="mb-3 col-lg-12 ">
                                             <label class="form-label">Descriptions</label>
 
-                                            <textarea class="py-8" name="C_Description"  style="width: inherit;" id="editor"></textarea>
+                                            <textarea class="py-8" placeholder="<?php
+                                             echo (isset($_GET["EditCategoryOfId"]))?DatabaseManager::select("categories","C_Description as p","C_id=$EditId")[0]["p"]:" ";
+                                            ?>" name="C_Description" style="width: inherit;" id="editor"></textarea>
+
                                         </div>
 
                                         <!-- input -->
                                         <div class="mb-3 col-lg-12 ">
-                                             <label class="form-label">Status</label><br>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="C_Status"
-                                                        id="inlineRadio1" value="1" checked>
-                                                    <label class="form-check-label" for="inlineRadio1">Active</label>
-                                                </div>
-                                                <!-- input -->
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="C_Status"
-                                                        id="inlineRadio2" value="0">
-                                                    <label class="form-check-label" for="inlineRadio2">Disabled</label>
-                                                </div>
-                                               
+                                            <label class="form-label">Status</label><br>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="C_Status"
+                                                    id="inlineRadio1" value="1" <?php
+                                                    //edit category work
+                                                     if (isset($_GET["EditCategoryOfId"])){
+                                                     $status=DatabaseManager::select("categories","C_Status as p","C_id=$EditId")[0]["p"];
+                                                        echo ($status=="1")?"checked":"";
+                                                     
+                                                     }else{echo "checked";};
+                                                    ?>>
+                                                <label class="form-check-label" for="inlineRadio1">Active</label>
+                                            </div>
+                                            <!-- input -->
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="C_Status"
+                                                    id="inlineRadio2" value="0" <?php
+                                                    //edit category work
+                                                     if (isset($_GET["EditCategoryOfId"])){
+                                                     $status=DatabaseManager::select("categories","C_Status as p","C_id=$EditId")[0]["p"];
+                                                        echo ($status=="0")?"checked":"";
+                                                     
+                                                     };
+                                                    ?>>
+                                                <label class="form-check-label" for="inlineRadio2">Disabled</label>
+                                            </div>
+
                                         </div>
                                         <div class="mb-3 col-lg-12 mt-5 ">
                                             <h4 class="mb-4 h5">Meta Data</h4>
                                             <!-- input -->
                                             <div class="mb-3">
                                                 <label class="form-label">Meta Title</label>
-                                                <input name="C_MetaTitle" type="text" class="form-control" placeholder="Title">
+                                                <input <?php echo (isset($_GET["EditCategoryOfId"]))?
+                                                
+                                                "value='".DatabaseManager::select("categories","C_MetaTitle as p","C_id=$EditId")[0]["p"]."'" 
+                                                
+                                                :"value=''"; ?> name="C_MetaTitle" type="text" class="form-control"
+                                                    placeholder="Title">
                                             </div>
 
                                             <!-- input -->
                                             <div class="mb-3">
                                                 <label class="form-label">Meta Description</label>
-                                                <textarea name="C_MetaDescription"  class="form-control" rows="3" placeholder="Meta Description"></textarea>
+                                                <textarea name="C_MetaDescription" class="form-control" rows="3"><?php
+                                             echo (isset($_GET["EditCategoryOfId"]))?DatabaseManager::select("categories","C_MetaDescription  as p","C_id=$EditId")[0]["p"]:"";
+                                            ?>
+
+                                                </textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
-                                            <input type="submit" class="btn btn-primary" value="Create Product" name="Create_Category" readonly>
+                                            <?php  
+                                            if(isset($_GET["EditCategoryOfId"])){
+                                                echo "<input type=\"submit\" class=\"btn btn-primary\" value=\"Edit Category \"
+                                                name=\"\" readonly>";
+                                                echo "<input type=\"hidden\" class=\"btn btn-primary\" value=\"$EditId \"
+                                                name=\"Edit_Category\" readonly>";
+                                            }else{
+                                                
+                                                echo '<input type="submit" class="btn btn-primary" value="Create  Category"
+                                                name="Create_Category" readonly>';
+                                            }
+                                            ?>
                                             
+
                                         </div>
                                     </div>
                                 </div>
@@ -168,27 +225,27 @@
 
     <script>
     $(document).ready(function() {
-      // Function to generate a slug from a category name
-      function generateSlug(categoryName) {
-        // Convert the category name to lowercase
-        const lowercaseName = categoryName.toLowerCase();
+        // Function to generate a slug from a category name
+        function generateSlug(categoryName) {
+            // Convert the category name to lowercase
+            const lowercaseName = categoryName.toLowerCase();
 
-        // Replace spaces with hyphens and remove special characters
-        const slug = lowercaseName
-          .replace(/\s+/g, '-') // Replace spaces with hyphens
-          .replace(/[^a-z0-9-]/g, '') // Remove special characters and non-alphanumeric characters
-          .replace(/-+/g, '-') // Replace consecutive hyphens with a single hyphen
+            // Replace spaces with hyphens and remove special characters
+            const slug = lowercaseName
+                .replace(/\s+/g, '-') // Replace spaces with hyphens
+                .replace(/[^a-z0-9-]/g, '') // Remove special characters and non-alphanumeric characters
+                .replace(/-+/g, '-') // Replace consecutive hyphens with a single hyphen
 
-        return slug;
-      }
+            return slug;
+        }
 
-      // Example usage when a button is clicked
-      $('#cat_inp').on("keyup",()=> {
-        const categoryName = $('#cat_inp').val();
-        const slug = generateSlug(categoryName);
-        console.log(slug);
-        $('#slug_inp').val(slug);
-      });
+        // Example usage when a button is clicked
+        $('#cat_inp').on("keyup", () => {
+            const categoryName = $('#cat_inp').val();
+            const slug = generateSlug(categoryName);
+            console.log(slug);
+            $('#slug_inp').val(slug);
+        });
     });
     </script>
 </body>

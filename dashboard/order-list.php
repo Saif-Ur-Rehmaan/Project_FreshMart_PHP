@@ -1,3 +1,4 @@
+<?php include "inc/config.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,13 +9,13 @@
 <body>
 
   <!-- main -->
-  
+
   <?php include 'inc/nav/nav.php' ?>
-        <div class="main-wrapper">
-            <!-- navbar vertical -->
-            
-            <?php include 'inc/nav/nav2.php' ?>
-    
+  <div class="main-wrapper">
+    <!-- navbar vertical -->
+
+    <?php include 'inc/nav/nav2.php' ?>
+
 
     <!-- main wrapper -->
     <main class="main-content-wrapper">
@@ -25,8 +26,8 @@
             <!-- page header -->
             <div>
               <h2>Order List</h2>
-                <!-- breacrumb -->
-                <nav aria-label="breadcrumb">
+              <!-- breacrumb -->
+              <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Order List</li>
@@ -46,13 +47,13 @@
                   <div class="col-md-4 col-12 mb-2 mb-md-0">
                     <!-- form -->
                     <form class="d-flex" role="search">
-                      <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                      <input class="form-control" type="search" id="_PRODUCT_SEARCH_INP" placeholder="Search" aria-label="Search">
 
                     </form>
                   </div>
                   <div class="col-lg-2 col-md-4 col-12">
                     <!-- select -->
-                    <select class="form-select">
+                    <select class="form-select" id="_filter_status">
                       <option selected>Status</option>
                       <option value="Success">Success</option>
                       <option value="Pending">Pending</option>
@@ -86,46 +87,101 @@
                         <th></th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
+                    <tbody id="_product_tbody">
+                      <?php
 
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="orderOne">
-                            <label class="form-check-label" for="orderOne">
+                      $orders = DatabaseManager::select("orders");
+                      foreach ($orders as $key => $value) {
+                        $P_ID = $value["_Product_Id"];
+                        $CLi_ID = $value["_Client_Id"];
+                        $ProductImage = DatabaseManager::select("products", "P_Images as p", "P_Id=$P_ID")[0]["p"];
+                        $OrderName = $value["Ord_Name"];
+                        $CustomerName = DatabaseManager::select("clients", "Cli_DisplayName as p", "Cli_Id=$CLi_ID")[0]["p"];
+                        $PaymentType = DatabaseManager::select("users", "Use_PaymentMethod as p", "_Client_Id=$CLi_ID")[0]["p"];
+                        $OrderDate = (new DateTime($value["Ord_Date"]))->format('j F Y (g:ia)');
+                        $Status = $value["Ord_Status"];
 
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-1.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">FC#1007</a></td>
-                        <td>Jennifer Sullivan</td>
+                        //amount abhi static h q k formula ni pta
+                       
+                        ?>
 
-                        <td>01 May 2023 (10:12 am)</td>
-                        <td>Paypal</td>
+                        <tr>
 
-                        <td>
-                          <span class="badge bg-light-primary text-dark-primary">Success</span>
-                        </td>
-                        <td>$12.99</td>
+                          <td>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="orderOne">
+                              <label class="form-check-label" for="orderOne">
 
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                            <a href="#!"> <img src="../assets/images/products/<?php echo $ProductImage; ?>" alt=""
+                                class="icon-shape icon-md"></a>
+                          </td>
+                          <td><a href="#" class="text-reset"><!--example :FC#1007-->
+                              <?php echo $OrderName; ?>
+                            </a></td>
+                          <td>
+                            <?php echo $CustomerName; ?>
+                          </td>
+
+                          <td>
+                            <?php echo $OrderDate; ?>
+                          </td>
+                          <td>
+                            <?php echo $PaymentType; ?>
+                          </td>
+
+                          <td>
+                            <?php
+                            /*
+                            0=pending,
+                            1=packeging,
+                            2=shipping,
+                            3=warehouse,
+                            4=delevering
+                            5=success*/
+                            switch ($Status) {
+                              case '0':
+                                echo '<span class="badge badge-warning text-dark bg-light-danger">Pending</span>';
+                                break;
+                              case '1':
+                                echo '<span class="badge badge-warning text-dark bg-warning">Packeging</span>';
+                                break;
+                              case '2':
+                                echo '<span class="badge badge-info text-light bg-dark">Shipping</span>';
+                                break;
+                              case '3':
+                                echo '<span class="badge badge-success text-dark bg-light-secondary">Warehouse</span>';
+                                break;
+                              case '4':
+                                echo '<span class="badge badge-primary text-dark bg-light-info">Delevering</span>';
+                                break;
+                              default:
+                                echo '<span class="badge badge-success text-light bg-success">Success</span>';
+
+                                break;
+                            }
+                            ; ?>
+                          </td>
+                          <td>$12.99</td>
+
+                          <td>
+                            <div class="dropdown">
+                              <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="feather-icon icon-more-vertical fs-5"></i>
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </td>
+                        </tr>
+                      <?php } ?>
+                      <!-- <tr>
 
                         <td>
                           <div class="form-check">
@@ -352,7 +408,7 @@
                             </ul>
                           </div>
                         </td>
-                      </tr>
+                      </tr> -->
                     </tbody>
                   </table>
                 </div>
@@ -381,15 +437,113 @@
 
 
   <!-- Libs JS -->
-<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
 
-<!-- Theme JS -->
-<script src="../assets/js/theme.min.js"></script>
+  <!-- Theme JS -->
+  <script src="../assets/js/theme.min.js"></script>
+
+  <script>
+    $(document).ready(() => {
+      //   let  searchinp[0];
+      // console.log(searchinp);
+      $('#_PRODUCT_SEARCH_INP').on("keyup", search)
+      $('#_filter_status').on("change", search)
+      function search() {
+        let searchValue = $('#_PRODUCT_SEARCH_INP').val();
+        let filter_status_S = $('#_filter_status').val();
+        if (filter_status_S == "all") {
+          filter_status_S = ''
+        }
+        console.log(filter_status_S);
+        // console.log(searchValue);
+        $.ajax({
+          url: 'ajax/searchManage.php',
+          method: 'GET',
+          data: {
+            OrderSearch: searchValue,
+            filter_status: filter_status_S
+          },
+          success: (e) => {
+            let data = JSON.parse(e)
+            console.log(data);
+            html = ``;
+            if (data.length != 0) {
+
+
+              data.forEach(row => {
+
+                html += `
+                                    <tr>
+
+                                            
+                                    <td>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="orderOne">
+                                        <label class="form-check-label" for="orderOne">
+
+                                        </label>
+                                      </div>
+                                    </td>
+                                            <td>
+                                              <a href="#!"> <img src="../assets/images/products/${row["C_Logo"]}" alt=""
+                                                  class="icon-shape icon-sm"></a>
+                                            </td>
+                                            
+                                            <td><a href="#" class="text-reset">${row["C_name"]}</a></td>
+
+                <td>${row["ProductCount"]}</td>
+
+
+
+
+                <td>`;
+
+                html += (row["C_Status"] == 1) ? '<span class="badge bg-light-primary text-dark-primary">Published</span>' : '<span class="badge bg-light-danger text-dark-danger">Unpublished</span>';
+
+                html += `
+                                            </td> 
+
+                                            <td>
+                                              <div class="dropdown">
+                                                <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                                                  <i class="feather-icon icon-more-vertical fs-5"></i>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                  <li><a class="dropdown-item"
+                                                      href="phpworkshop/categorymanage.php?DeleteCategoryOfId=${row["C_id"]}"><i
+                                                        class="bi bi-trash me-3"></i>Delete</a></li>
+                                                  <li><a class="dropdown-item"
+                                                      href="add-category.php?EditCategoryOfId=${row["C_id"]}"><i
+                                                        class="bi bi-pencil-square me-3 "></i>Edit</a>
+                                                  </li>
+                                                </ul>
+                                              </div>
+                                            </td>
+                                    </tr>
+                                    
+                                    `;
+              });
+              $("#_product_tbody").html(html);
+            } else {
+              html = "<tr><td>product not found</td></tr>"
+              $("#_product_tbody").html(html);
+            }
+
+          }, error: (e) => {
+            console.error(e)
+          }
+        })
+      }
+
+    })
+
+  </script>
 
 </body>
 
 
 <!-- Mirrored from freshcart.codescandy.com/dashboard/order-list.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Mar 2023 10:11:11 GMT -->
+
 </html>

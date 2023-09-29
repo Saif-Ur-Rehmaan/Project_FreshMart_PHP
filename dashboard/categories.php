@@ -143,7 +143,7 @@
                                     href="phpworkshop/categorymanage.php?DeleteCategoryOfId=<?php echo $row["C_id"] ?>"><i
                                       class="bi bi-trash me-3"></i>Delete</a></li>
                                 <li><a class="dropdown-item"
-                                    href="add-category.php??EditCategoryOfId=<?php echo $row["C_id"]?>"><i
+                                    href="add-category.php?EditCategoryOfId=<?php echo $row["C_id"]?>"><i
                                       class="bi bi-pencil-square me-3 "></i>Edit</a>
                                 </li>
                               </ul>

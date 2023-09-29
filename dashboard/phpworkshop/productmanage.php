@@ -1,9 +1,10 @@
 <!-- add product work start -->
 <?php
+include "../inc/config.php";
 $connection = mysqli_connect('localhost', 'root', '', 'freshcart');
 if (isset($_POST["Add_Product"])) {
     $P_Title = $_POST["P_Title"];
-    $_Catagori = $_POST["_Catagori"];
+    $_Catagory_id = $_POST["_Catagory_id"];
     $P_Weight = $_POST["P_Weight"];
     $P_Units = $_POST["P_Units"];
     $P_Description = $_POST["P_Description"];
@@ -25,18 +26,19 @@ if (isset($_POST["Add_Product"])) {
 
     $images = $_FILES["file"]; //array
 
-    $P_Images = $_FILES['file']['name'][0];
-    $from = $_FILES['file']['tmp_name'][0];
+    $P_Images = time().$_FILES['file']['name'];
+    $from = $_FILES['file']['tmp_name'];
+    $name=$P_Images;
+    $to = '../../assets/images/products/' .$name;
     
-
  
-            
-    $query = "INSERT INTO `products` (`P_Title`,`_Catagori`, `P_Weight`, `P_Units`, `P_Images`, `P_Description`, `P_InStock`, `P_Code`, `P_SKU`, `P_Status`, `P_RegularPrice`, `P_SalePrice`, `P_MetaTitle`, `P_MetaDescription`)
-   VALUES ('$P_Title','$_Catagori', '$P_Weight', '$P_Units', '$P_Images', '$P_Description', '$P_InStock', '$P_Code', '$P_SKU', '$P_Status', '$P_RegularPrice', '$P_SalePrice', '$P_MetaTitle', '$P_MetaDescription')";
+    
+    $query = "INSERT INTO `products` (`P_Title`,`_Category_id`, `P_Weight`, `P_Units`, `P_Images`, `P_Description`, `P_InStock`, `P_Code`, `P_SKU`, `P_Status`, `P_RegularPrice`, `P_SalePrice`, `P_MetaTitle`, `P_MetaDescription`)
+   VALUES ('$P_Title','$_Catagory_id', '$P_Weight', '$P_Units', '$P_Images', '$P_Description', '$P_InStock', '$P_Code', '$P_SKU', '$P_Status', '$P_RegularPrice', '$P_SalePrice', '$P_MetaTitle', '$P_MetaDescription')";
 
     $connection = mysqli_connect('localhost', 'root', '', 'freshcart');
     if (mysqli_query($connection, $query)) {
-        if (move_uploaded_file($form, $to)) {
+        if (move_uploaded_file($from, $to)) {
         } else {
             echo "not done";
         };
@@ -53,7 +55,17 @@ if (isset($_POST["Add_Product"])) {
 
 if (isset($_GET["DeleteProductOfId"])) {
     $ID = $_GET["DeleteProductOfId"];
-
+    $filename = "../../assets/images/products/".DatabaseManager::select("products","P_Images as cl","P_Id=$ID")[0]["cl"]; // Specify the path to the file
+    
+    if (file_exists($filename)) {
+        if (unlink($filename)) {
+            echo "File 'i.png' has been deleted.";
+        } else {
+            echo "Unable to delete the file.";
+        }
+    } else {
+        echo "File 'i.png' does not exist.";
+    }
     if (mysqli_query($connection, "DELETE FROM `products` WHERE `P_Id` = $ID")) {
         header('location: ../products.php');
     }
@@ -74,10 +86,10 @@ if (isset($_POST["Edit_Product"])) {
     print_r($_POST);
     print_r($_FILES);
     echo "</pre>";
-
-
+    
+    
     $P_Title = $_POST["P_Title"];
-    $_Catagori = $_POST["_Catagori"];
+    $_Catagory_id = $_POST["_Catagory_id"];
     $P_Weight = $_POST["P_Weight"];
     $P_Units = $_POST["P_Units"];
     $P_Description = $_POST["P_Description"];
@@ -98,16 +110,29 @@ if (isset($_POST["Edit_Product"])) {
     $P_MetaDescription = $_POST["P_MetaDescription"];
 
     $images = $_FILES["file"]; //array
-
-    $P_Images = $_FILES['file']['name'][0];
-    $from = $_FILES['file']['tmp_name'][0];
-    $to = '../assets/images/products/' . $name;
+    
+    $P_Images =time().$_FILES['file']['name'];
+    $from = $_FILES['file']['tmp_name'];
+    $name=$P_Images;
+    $to = '../../assets/images/products/' .$name;
      
 
 
 
 
   if($P_Images!=null){
+    $filename = "../../assets/images/products/".DatabaseManager::select("products","P_Images as cl","P_Id=$Edit_Product_id")[0]["cl"]; // Specify the path to the file
+    
+    if (file_exists($filename)) {
+        if (unlink($filename)) {
+            echo "File 'i.png' has been deleted.";
+        } else {
+            echo "Unable to delete the file.";
+        }
+    } else {
+        echo "File 'i.png' does not exist.";
+    }
+
     $editQuery = "UPDATE `products` SET `P_Title` = '$P_Title', `P_Weight` = '$P_Weight', `P_Units` = '$P_Units', `P_Images` = '$P_Images', `P_Description` = '$P_Description',`P_Status`='$P_Status',`P_InStock`='$P_InStock',`Date`=CURRENT_TIMESTAMP() , `P_Code` = '$P_Code', `P_SKU` = '$P_SKU', `P_RegularPrice` = '$P_RegularPrice', `P_SalePrice` = '$P_SalePrice', `P_MetaTitle` = '$P_MetaTitle', `P_MetaDescription` = '$P_MetaDescription' WHERE `products`.`P_Id` = $Edit_Product_id
     ";
     // echo $editQuery;
