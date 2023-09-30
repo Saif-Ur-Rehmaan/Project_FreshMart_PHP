@@ -1,3 +1,4 @@
+<?php include "inc/config.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,73 +9,86 @@
 <body>
 
 
-<?php include 'inc/nav/nav.php' ?>
-        <div class="main-wrapper">
-            <!-- navbar vertical -->
-            
-            <?php include 'inc/nav/nav2.php' ?>
+  <?php include 'inc/nav/nav.php' ?>
+  <div class="main-wrapper">
+    <!-- navbar vertical -->
 
-      <main class="main-content-wrapper">
-        <div class="container">
-          <div class="row mb-8">
-            <div class="col-md-12">
-              <div class="d-md-flex justify-content-between align-items-center">
-                <div>
-                  <h2>Customers</h2>
-                    <!-- breacrumb -->
-                    <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0">
-                      <li class="breadcrumb-item"><a href="#" class="text-inherit">Dashboard</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Customers</li>
-                    </ol>
-                  </nav>
-                </div>
-                <div>
-                  <a href="#!" class="btn btn-primary">Add New Customer</a>
-                </div>
+    <?php include 'inc/nav/nav2.php' ?>
+
+    <main class="main-content-wrapper">
+      <div class="container">
+        <div class="row mb-8">
+          <div class="col-md-12">
+            <div class="d-md-flex justify-content-between align-items-center">
+              <div>
+                <h2>Customers</h2>
+                <!-- breacrumb -->
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#" class="text-inherit">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Customers</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <a href="#!" class="btn btn-primary">Add New Customer</a>
               </div>
             </div>
           </div>
-          <div class="row ">
-            <div class="col-xl-12 col-12 mb-5">
-              <div class="card h-100 card-lg">
+        </div>
+        <div class="row ">
+          <div class="col-xl-12 col-12 mb-5">
+            <div class="card h-100 card-lg">
 
-                <div class="p-6">
-                  <div class="row justify-content-between">
-                    <div class="col-md-4 col-12">
-                      <form class="d-flex" role="search">
-                        <input class="form-control" type="search" placeholder="Search Customers" aria-label="Search">
+              <div class="p-6">
+                <div class="row justify-content-between">
+                  <div class="col-md-4 col-12">
+                    <form class="d-flex" role="search">
+                      <input class="form-control" type="search" id="_PRODUCT_SEARCH_INP" placeholder="Search Customers"
+                        aria-label="Search">
 
-                      </form>
-                    </div>
-
+                    </form>
                   </div>
+
                 </div>
-                <div class="card-body p-0 ">
+              </div>
+              <div class="card-body p-0 ">
 
-                  <div class="table-responsive">
-                    <table
-                      class="table table-centered table-hover table-borderless mb-0 table-with-checkbox text-nowrap">
-                      <thead class="bg-light">
-                        <tr>
-                          <th>
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="checkAll">
-                              <label class="form-check-label" for="checkAll">
+                <div class="table-responsive">
+                  <table class="table table-centered table-hover table-borderless mb-0 table-with-checkbox text-nowrap">
+                    <thead class="bg-light">
 
-                              </label>
-                            </div>
-                          </th>
-                          <th>Name</th>
-                          <th>Email</th>
-                          <th>Purchase Date</th>
-                          <th>Phone</th>
-                          <th>Spent</th>
+                      <tr>
+                        <th>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="checkAll">
+                            <label class="form-check-label" for="checkAll">
 
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
+                            </label>
+                          </div>
+                        </th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Registration Date</th>
+                        <th>Phone</th>
+                        <th>Spent</th>
+
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody id="_product_tbody">
+                      <?php
+                      $cardsPerPage = 10;
+                      $totalRecords = DatabaseManager::select("customersview", "count(_Client_id) as cid")[0]["cid"];
+                      $totalPages = ceil($totalRecords / $cardsPerPage); //paginaion loop limit &Workin
+                      $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+                      $offset = ($currentPage - 1) * $cardsPerPage;
+
+                      $responce = mysqli_query($connection, "SELECT * FROM `customersview` limit $offset,$cardsPerPage");
+
+
+                      while ($value = mysqli_fetch_assoc($responce)) {
+                        ?>
                         <tr>
 
                           <td>
@@ -91,18 +105,33 @@
                               <img src="../assets/images/avatar/avatar-1.jpg" alt=""
                                 class="avatar avatar-xs rounded-circle">
                               <div class="ms-2">
-                                <a href="#" class="text-inherit">Bonnie Howe</a>
+                                <a href="#" class="text-inherit">
+                                  <?php echo $value["CustomerName"]; ?>
+                                </a>
                               </div>
                             </div>
                           </td>
-                          <td>bonniehowe@gmail.com</td>
+                          <td>
+                            <?php echo $value["Mail"]; ?>
+                          </td>
 
                           <td>
-                            17 May, 2023 at 3:18pm
+                            <?php $dbDate = $value["RegisterDate"];
+
+                            // Convert the database date to a timestamp
+                            $timestamp = strtotime($dbDate);
+
+                            // Format the timestamp as desired
+                            $formattedDate = date("d F, Y \a\\t h:ia", $timestamp);
+
+                            echo $formattedDate; ?>
                           </td>
-                          <td>-</td>
                           <td>
-                            $49.00
+                            <?php echo $value["ContactNo"]; ?>
+                          </td>
+                          <td>
+                            $
+                            <?php echo $value["spend"]; ?>
                           </td>
 
                           <td>
@@ -118,476 +147,216 @@
                             </div>
                           </td>
                         </tr>
+                      <?php } ?>
 
-                        <tr>
+                    </tbody>
+                  </table>
 
-                          <td class="pe-0">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="customerTwo">
-                              <label class="form-check-label" for="customerTwo">
-
-                              </label>
-                            </div>
-                          </td>
-
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/avatar/avatar-2.jpg" alt=""
-                                class="avatar avatar-xs rounded-circle">
-                              <div class="ms-2">
-                                <a href="#" class="text-inherit">Judy Nelson</a>
-                              </div>
-                            </div>
-                          </td>
-                          <td>judynelson@gmail.com</td>
-
-                          <td>
-                            27 April, 2023 at 2:47pm
-                          </td>
-                          <td>435-239-6436</td>
-                          <td>
-                            $490.00
-                          </td>
-
-                          <td>
-                            <div class="dropdown">
-                              <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="feather-icon icon-more-vertical fs-5"></i>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                </li>
-                              </ul>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-
-                          <td class="pe-0">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="customerThree">
-                              <label class="form-check-label" for="customerThree">
-
-                              </label>
-                            </div>
-                          </td>
-
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/avatar/avatar-3.jpg" alt=""
-                                class="avatar avatar-xs rounded-circle">
-                              <div class="ms-2">
-                                <a href="#" class="text-inherit">John Mattox</a>
-                              </div>
-                            </div>
-                          </td>
-                          <td>johnmattox@gmail.com</td>
-
-                          <td>
-                            27 April, 2023 at 2:47pm
-                          </td>
-                          <td>347-424-9526</td>
-                          <td>
-                            $29.00
-                          </td>
-
-                          <td>
-                            <div class="dropdown">
-                              <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="feather-icon icon-more-vertical fs-5"></i>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                </li>
-                              </ul>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-
-                          <td class="pe-0">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="customerFour">
-                              <label class="form-check-label" for="customerFour">
-
-                              </label>
-                            </div>
-                          </td>
-
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/avatar/avatar-4.jpg" alt=""
-                                class="avatar avatar-xs rounded-circle">
-                              <div class="ms-2">
-                                <a href="#" class="text-inherit">Wayne Rossman</a>
-                              </div>
-                            </div>
-                          </td>
-                          <td>waynerossman@gmail.com</td>
-
-                          <td>
-                            27 April, 2023 at 2:47pm
-                          </td>
-                          <td>-</td>
-                          <td>
-                            $39.00
-                          </td>
-
-                          <td>
-                            <div class="dropdown">
-                              <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="feather-icon icon-more-vertical fs-5"></i>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                </li>
-                              </ul>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-
-                          <td class="pe-0">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="customerFive">
-                              <label class="form-check-label" for="customerFive">
-
-                              </label>
-                            </div>
-                          </td>
-
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/avatar/avatar-5.jpg" alt=""
-                                class="avatar avatar-xs rounded-circle">
-                              <div class="ms-2">
-                                <a href="#" class="text-inherit">Rhonda Pinson</a>
-                              </div>
-                            </div>
-                          </td>
-                          <td>rhondapinson@gmail.com</td>
-
-                          <td>
-                            18 March, 2023 at 2:47pm
-                          </td>
-                          <td>304-471-8451</td>
-                          <td>
-                            $213.00
-                          </td>
-
-                          <td>
-                            <div class="dropdown">
-                              <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="feather-icon icon-more-vertical fs-5"></i>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                </li>
-                              </ul>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-
-                          <td class="pe-0">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="customerSix">
-                              <label class="form-check-label" for="customerSix">
-
-                              </label>
-                            </div>
-                          </td>
-
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/avatar/avatar-6.jpg" alt=""
-                                class="avatar avatar-xs rounded-circle">
-                              <div class="ms-2">
-                                <a href="#" class="text-inherit">John Mattox</a>
-                              </div>
-                            </div>
-                          </td>
-                          <td>johnmattox@gmail.com</td>
-
-                          <td>
-                            18 March, 2023 at 2:47pm
-                          </td>
-                          <td>410-636-2682</td>
-                          <td>
-                            $490.00
-                          </td>
-
-                          <td>
-                            <div class="dropdown">
-                              <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="feather-icon icon-more-vertical fs-5"></i>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                </li>
-                              </ul>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-
-                          <td class="pe-0">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="customerSeven">
-                              <label class="form-check-label" for="customerSeven">
-
-                              </label>
-                            </div>
-                          </td>
-
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/avatar/avatar-7.jpg" alt=""
-                                class="avatar avatar-xs rounded-circle">
-                              <div class="ms-2">
-                                <a href="#" class="text-inherit">Wayne Rossman</a>
-                              </div>
-                            </div>
-                          </td>
-                          <td>waynerossman@gmail.com</td>
-
-                          <td>
-                            18 March, 2023 at 2:47pm
-                          </td>
-                          <td>845-294-6681</td>
-                          <td>
-                            $39.00
-                          </td>
-
-                          <td>
-                            <div class="dropdown">
-                              <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="feather-icon icon-more-vertical fs-5"></i>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                </li>
-                              </ul>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-
-                          <td class="pe-0">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="customerEight">
-                              <label class="form-check-label" for="customerEight">
-
-                              </label>
-                            </div>
-                          </td>
-
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/avatar/avatar-8.jpg" alt=""
-                                class="avatar avatar-xs rounded-circle">
-                              <div class="ms-2">
-                                <a href="#" class="text-inherit">Richard Shelton</a>
-                              </div>
-                            </div>
-                          </td>
-                          <td>richarddhelton@jourrapide.com</td>
-
-                          <td>
-                            12 March, 2023 at 9:47am
-                          </td>
-                          <td>313-887-8495</td>
-                          <td>
-                            $19.00
-                          </td>
-
-                          <td>
-                            <div class="dropdown">
-                              <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="feather-icon icon-more-vertical fs-5"></i>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                </li>
-                              </ul>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-
-                          <td class="pe-0">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="customerNine">
-                              <label class="form-check-label" for="customerNine">
-
-                              </label>
-                            </div>
-                          </td>
-
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/avatar/avatar-9.jpg" alt=""
-                                class="avatar avatar-xs rounded-circle">
-                              <div class="ms-2">
-                                <a href="#" class="text-inherit">Stephanie Morales</a>
-                              </div>
-                            </div>
-                          </td>
-                          <td>stephaniemorales@gmail.com</td>
-
-                          <td>
-                            22 Feb, 2023 at 9:47pm
-                          </td>
-                          <td>812-682-1588</td>
-                          <td>
-                            $250.00
-                          </td>
-
-                          <td>
-                            <div class="dropdown">
-                              <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="feather-icon icon-more-vertical fs-5"></i>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                </li>
-                              </ul>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-
-                          <td class="pe-0">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="customerTen">
-                              <label class="form-check-label" for="customerTen">
-
-                              </label>
-                            </div>
-                          </td>
-
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/avatar/avatar-10.jpg" alt=""
-                                class="avatar avatar-xs rounded-circle">
-                              <div class="ms-2">
-                                <a href="#" class="text-inherit">Stephanie Morales</a>
-                              </div>
-                            </div>
-                          </td>
-                          <td>stephaniemorales@gmail.com</td>
-
-                          <td>
-                            22 Feb, 2023 at 9:47pm
-                          </td>
-                          <td>812-682-1588</td>
-                          <td>
-                            $250.00
-                          </td>
-
-                          <td>
-                            <div class="dropdown">
-                              <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="feather-icon icon-more-vertical fs-5"></i>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                </li>
-                              </ul>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-
-                          <td class="pe-0">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="customerEleven">
-                              <label class="form-check-label" for="customerEleven">
-
-                              </label>
-                            </div>
-                          </td>
-
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/avatar/avatar-11.jpg" alt=""
-                                class="avatar avatar-xs rounded-circle">
-                              <div class="ms-2">
-                                <a href="#" class="text-inherit">Pasquale Kidd</a>
-                              </div>
-                            </div>
-                          </td>
-                          <td>pasqualekidd@rhyta.com</td>
-
-                          <td>
-                            22 Feb, 2023 at 9:47pm
-                          </td>
-                          <td>336-396-0658</td>
-                          <td>
-                            $159.00
-                          </td>
-
-                          <td>
-                            <div class="dropdown ">
-                              <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="feather-icon icon-more-vertical fs-5"></i>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                </li>
-                              </ul>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-
-                  </div>
-
-                  <div class="border-top d-md-flex justify-content-between align-items-center p-6">
-                    <span>Showing 1 to 8 of 12 entries</span>
-                    <nav class="mt-2 mt-md-0">
-                      <ul class="pagination mb-0 ">
-                        <li class="page-item disabled"><a class="page-link " href="#!">Previous</a></li>
-                        <li class="page-item"><a class="page-link active" href="#!">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">Next</a></li>
-                      </ul>
-                    </nav>
-                  </div>
                 </div>
 
+                <div class="border-top d-md-flex justify-content-between align-items-center p-6">
+                <span>Showing
+                  <?php echo $offset . " to " . $responce->num_rows . " of " . $totalRecords . " entries " ?>
+                </span>
+
+
+                <?php
+                
+
+                $arry = DatabaseManager::select("Customersview   limit $offset, $cardsPerPage");
+                ?>
+                <?php if ($totalRecords > 10) { ?>
+                  <nav class="mt-2 mt-md-0">
+
+                    <ul class="pagination mb-0 ">
+                      <?php
+
+
+
+                      if ($currentPage > 1) {
+                        echo '    <li class="page-item"><a class="page-link " href="vendor-list.php?page=' . ($currentPage - 1) . '">Previous</a></li>';
+                      } else {
+                        echo '<li class="page-item disabled"><a class="page-link " href="#!">Previous</a></li>';
+                      }
+
+                      if ($totalPages <= 5) {
+                        // Display all available pages if there are 5 or fewer
+                        for ($i = 1; $i <= $totalPages; $i++) {
+                          if ($i == $currentPage) {
+                            echo '<li class="page-item"><a class="page-link active" href="vendor-list.php?page=' . $i . '">' . $i . '</a></li>';
+                          } else {
+                            echo '<li class="page-item"><a class="page-link" href="vendor-list.php?page=' . $i . '">' . $i . '</a></li>';
+                          }
+                        }
+                      } else {
+                        // Display the current page and two pages before and after it
+                        $startPage = max(1, $currentPage - 2);
+                        $endPage = min($totalPages, $currentPage + 2);
+
+                        for ($i = $startPage; $i <= $endPage; $i++) {
+                          if ($i == $currentPage) {
+                            echo '<li class="page-item"><a class="page-link active" href="vendor-list.php?page=' . $i . '">' . $i . '</a></li>';
+                          } else {
+                            echo '<li class="page-item"><a class="page-link " href="vendor-list.php?page=' . $i . '">' . $i . '</a></li>';
+                          }
+                        }
+                      }
+
+                      if ($currentPage < $totalPages) {
+                        echo '    <li class="page-item"><a class="page-link " href="vendor-list.php?page=' . ($currentPage + 1) . '">Next</a></li>';
+                      }
+
+                      ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </ul>
+                  </nav>
+                <?php } ?>
+                </div>
               </div>
 
             </div>
-          </div>
-          </div>
-      </main>
 
-    </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </div>
 
 
   <!-- Libs JS -->
-<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
 
-<!-- Theme JS -->
-<script src="../assets/js/theme.min.js"></script>
+  <!-- Theme JS -->
+  <script src="../assets/js/theme.min.js"></script>
+  <script>
+    $(document).ready(() => {
+      $('#_PRODUCT_SEARCH_INP').on("keyup", search)
 
+      function search() {
+        let searchValue = $('#_PRODUCT_SEARCH_INP').val();
+
+
+
+        // console.log(searchValue);
+        $.ajax({
+          url: 'ajax/searchManage.php',
+          method: 'GET',
+          data: {
+            CustomerSearch: searchValue
+          },
+          success: (e) => {
+            let data = JSON.parse(e) 
+            html = ``;
+            if (data.length != 0) {
+
+              // Assuming row.RegisterDate contains a valid date string
+              data.forEach(row => {
+                const rawDate = new Date(row.RegisterDate);
+
+                const options = {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true,
+                };
+
+                const formattedDate = `${rawDate.toLocaleDateString("en-US", options)} `;
+
+
+                html += `  <tr>
+                            <td>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="customerOne">
+                                <label class="form-check-label" for="customerOne">
+
+                                </label>
+                              </div>
+                            </td>
+
+                            <td>
+                              <div class="d-flex align-items-center">
+                                <img src="../assets/images/avatar/avatar-1.jpg" alt=""
+                                  class="avatar avatar-xs rounded-circle">
+                                <div class="ms-2">
+                                  <a href="#" class="text-inherit">
+                                    ${row.CustomerName}
+                                  </a>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              ${row.Mail}
+                            </td>
+
+                            <td>
+                              ${formattedDate}
+                            </td>
+                            <td>${row.ContactNo}</td>
+                            <td>
+                              $${row.spend}
+                            </td>
+
+                            <td>
+                              <div class="dropdown">
+                                <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                                  <i class="feather-icon icon-more-vertical fs-5"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
+                                  <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                            </tr>`
+
+
+
+
+
+
+
+
+
+              });
+              $("#_product_tbody").html(html);
+            } else {
+              html = "<tr><td>product not found</td></tr>"
+              $("#_product_tbody").html(html);
+            }
+
+          }, error: (e) => {
+            console.error(e)
+          }
+        })
+      }
+
+    })
+
+  </script>
 </body>
 
 
 <!-- Mirrored from freshcart.codescandy.com/dashboard/customers.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Mar 2023 10:11:13 GMT -->
+
 </html>

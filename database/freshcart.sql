@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2023 at 10:08 PM
+-- Generation Time: Oct 01, 2023 at 12:36 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -79,6 +79,21 @@ INSERT INTO `clients` (`Cli_Id`, `Cli_Role`, `Cli_DisplayName`, `Cli_Mail`, `Cli
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `customersview`
+-- (See below for the actual view)
+--
+CREATE TABLE `customersview` (
+`_Client_id` int(11)
+,`CustomerName` varchar(255)
+,`Mail` varchar(255)
+,`RegisterDate` date
+,`ContactNo` varchar(255)
+,`spend` double
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orders`
 --
 
@@ -98,7 +113,7 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`Ord_Id`, `_Client_Id`, `_Product_Id`, `Ord_Quantity`, `Ord_Date`, `Ord_Status`, `Ord_Name`) VALUES
 (5, 2, 54, '2', '2005-12-12', 0, 'FC#1007'),
-(6, 2, 57, '1', '2005-12-20', 5, 'FC#1009');
+(6, 2, 57, '3', '2005-12-20', 5, 'FC#1009');
 
 -- --------------------------------------------------------
 
@@ -119,8 +134,9 @@ CREATE TABLE `products` (
   `P_Code` varchar(255) NOT NULL,
   `P_SKU` varchar(255) NOT NULL,
   `P_Status` int(11) NOT NULL,
+  `P_ActualPrice` varchar(255) NOT NULL,
   `P_RegularPrice` varchar(255) NOT NULL,
-  `P_SalePrice` varchar(255) NOT NULL,
+  `P_SalePrice` varchar(255) NOT NULL DEFAULT '0',
   `P_MetaTitle` varchar(255) NOT NULL,
   `P_MetaDescription` text NOT NULL,
   `Date` timestamp NOT NULL DEFAULT current_timestamp()
@@ -130,19 +146,40 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`P_Id`, `P_Title`, `_Category_id`, `_Client_id`, `P_Weight`, `P_Units`, `P_Images`, `P_Description`, `P_InStock`, `P_Code`, `P_SKU`, `P_Status`, `P_RegularPrice`, `P_SalePrice`, `P_MetaTitle`, `P_MetaDescription`, `Date`) VALUES
-(54, 'buiscit', 2, 1, '10g', '30', 'product-single-img-4.jpg ', '', 1, 'buis124', 'SBS_-ANMOL', 1, '15', '5', 'sa', 'as', '2023-09-24 07:42:09'),
-(57, 'Napolitanke Ljesnjak', 2, 1, '200g', '20', 'product-single-img-1.jpg ', 'hi', 1, 'napolitankeljesnjak845', 'NAPOL845KELJ', 1, '25', '35', 'title', 'lorem ipsem', '2023-06-08 10:43:02'),
-(58, 'popcorn', 2, 1, '250g,500g,1000g,', '10', 'product-img-1.jpg ', '', 1, '123a', 'POP-SHEL', 1, '2', '', '', '', '2023-09-24 10:54:59'),
-(65, 'Product 2', 0, 1, '0.7', '5', 'product2.jpg', 'Description for Product 2', 1, 'P002', 'SKU002', 1, '29.99', '24.99', 'Meta Title 2', 'Meta Description 2', '2023-09-24 14:25:50'),
-(66, 'Product 3', 0, 1, '0.6', '20', 'product3.jpg', 'Description for Product 3', 1, 'P003', 'SKU003', 1, '12.99', '9.99', 'Meta Title 3', 'Meta Description 3', '2023-09-24 14:25:50'),
-(67, 'Product 4', 0, 1, '0.8', '15', 'product4.jpg', 'Description for Product 4', 1, 'P004', 'SKU004', 1, '39.99', '34.99', 'Meta Title 4', 'Meta Description 4', '2023-09-24 14:25:50'),
-(68, 'Product 5', 0, 1, '0.9', '10', 'product5.jpg', 'Description for Product 5', 1, 'P005', 'SKU005', 0, '22.99', '19.99', 'Meta Title 5', 'Meta Description 5', '2023-09-24 14:25:50'),
-(69, 'Product 6', 0, 1, '0.4', '25', 'product6.jpg', 'Description for Product 6', 1, 'P006', 'SKU006', 1, '15.99', '12.99', 'Meta Title 6', 'Meta Description 6', '2023-09-24 14:25:50'),
-(70, 'Product 7', 0, 1, '0.7', '8', 'product7.jpg', 'Description for Product 7', 1, 'P007', 'SKU007', 0, '32.99', '27.99', 'Meta Title 7', 'Meta Description 7', '2023-09-24 14:25:50'),
-(71, 'Product 8', 0, 1, '0.6', '12', 'product8.jpg', 'Description for Product 8', 1, 'P008', 'SKU008', 0, '27.99', '22.99', 'Meta Title 8', 'Meta Description 8', '2023-09-24 14:25:50'),
-(72, 'Product 9', 0, 1, '0.3', '30', 'product9.jpg', 'Description for Product 9', 1, 'P009', 'SKU009', 1, '18.99', '14.99', 'Meta Title 9', 'Meta Description 9', '2023-09-24 14:25:50'),
-(73, 'Product 10', 0, 1, '0.8', '18', 'product10.jpg', 'Description for Product 10', 1, 'P010', 'SKU010', 0, '37.99', '32.99', 'Meta Title 10', 'Meta Description 10', '2023-09-24 14:25:50');
+INSERT INTO `products` (`P_Id`, `P_Title`, `_Category_id`, `_Client_id`, `P_Weight`, `P_Units`, `P_Images`, `P_Description`, `P_InStock`, `P_Code`, `P_SKU`, `P_Status`, `P_ActualPrice`, `P_RegularPrice`, `P_SalePrice`, `P_MetaTitle`, `P_MetaDescription`, `Date`) VALUES
+(54, 'buiscit', 2, 1, '10g', '30', 'product-single-img-4.jpg ', '', 1, 'buis124', 'SBS_-ANMOL', 1, '5', '15', '5', 'sa', 'as', '2023-09-24 07:42:09'),
+(57, 'Napolitanke Ljesnjak', 2, 1, '200g', '20', 'product-single-img-1.jpg ', 'hi', 1, 'napolitankeljesnjak845', 'NAPOL845KELJ', 1, '5', '25', '35', 'title', 'lorem ipsem', '2023-06-08 10:43:02'),
+(58, 'popcorn', 2, 1, '250g,500g,1000g,', '10', 'product-img-1.jpg ', '', 1, '123a', 'POP-SHEL', 1, '5', '2', '0', '', '', '2023-09-24 10:54:59'),
+(65, 'Product 2', 0, 1, '0.7', '5', 'product2.jpg', 'Description for Product 2', 1, 'P002', 'SKU002', 1, '5', '29.99', '24.99', 'Meta Title 2', 'Meta Description 2', '2023-09-24 14:25:50'),
+(66, 'Product 3', 0, 1, '0.6', '20', 'product3.jpg', 'Description for Product 3', 1, 'P003', 'SKU003', 1, '5', '12.99', '9.99', 'Meta Title 3', 'Meta Description 3', '2023-09-24 14:25:50'),
+(67, 'Product 4', 0, 1, '0.8', '15', 'product4.jpg', 'Description for Product 4', 1, 'P004', 'SKU004', 1, '5', '39.99', '34.99', 'Meta Title 4', 'Meta Description 4', '2023-09-24 14:25:50'),
+(68, 'Product 5', 0, 1, '0.9', '10', 'product5.jpg', 'Description for Product 5', 1, 'P005', 'SKU005', 0, '5', '22.99', '19.99', 'Meta Title 5', 'Meta Description 5', '2023-09-24 14:25:50'),
+(69, 'Product 6', 0, 1, '0.4', '25', 'product6.jpg', 'Description for Product 6', 1, 'P006', 'SKU006', 1, '5', '15.99', '12.99', 'Meta Title 6', 'Meta Description 6', '2023-09-24 14:25:50'),
+(70, 'Product 7', 0, 1, '0.7', '8', 'product7.jpg', 'Description for Product 7', 1, 'P007', 'SKU007', 0, '5', '32.99', '27.99', 'Meta Title 7', 'Meta Description 7', '2023-09-24 14:25:50'),
+(71, 'Product 8', 0, 1, '0.6', '12', 'product8.jpg', 'Description for Product 8', 1, 'P008', 'SKU008', 0, '5', '27.99', '22.99', 'Meta Title 8', 'Meta Description 8', '2023-09-24 14:25:50'),
+(72, 'Product 9', 0, 1, '0.3', '30', 'product9.jpg', 'Description for Product 9', 1, 'P009', 'SKU009', 1, '5', '18.99', '14.99', 'Meta Title 9', 'Meta Description 9', '2023-09-24 14:25:50'),
+(73, 'Product 10', 0, 1, '0.8', '18', 'product10.jpg', 'Description for Product 10', 1, 'P010', 'SKU010', 0, '5', '37.99', '32.99', 'Meta Title 10', 'Meta Description 10', '2023-09-24 14:25:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews_products`
+--
+
+CREATE TABLE `reviews_products` (
+  `Rev_Id` int(11) NOT NULL,
+  `_Client_Id` int(11) NOT NULL,
+  `_Product_id` int(11) NOT NULL,
+  `Rev_Star` int(11) NOT NULL,
+  `Rev_Comment` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reviews_products`
+--
+
+INSERT INTO `reviews_products` (`Rev_Id`, `_Client_Id`, `_Product_id`, `Rev_Star`, `Rev_Comment`) VALUES
+(1, 2, 58, 5, 'best popcorn ever tasted');
 
 -- --------------------------------------------------------
 
@@ -187,6 +224,24 @@ CREATE TABLE `searchcatview` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `searchorderview`
+-- (See below for the actual view)
+--
+CREATE TABLE `searchorderview` (
+`_Product_Id` int(11)
+,`_Client_Id` int(11)
+,`Ord_Name` varchar(255)
+,`Ord_Status` int(11)
+,`Ord_Date` date
+,`P_Images` text
+,`Cli_DisplayName` varchar(255)
+,`Use_PaymentMethod` varchar(255)
+,`Totalamount` double
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sellers`
 --
 
@@ -196,15 +251,16 @@ CREATE TABLE `sellers` (
   `Sel_StoreName` varchar(255) NOT NULL,
   `Sel_Store_Address` varchar(255) NOT NULL,
   `Sel_ContactNo` varchar(255) NOT NULL,
-  `Sel_Image` varchar(255) NOT NULL DEFAULT 'Seller.jpg'
+  `Sel_Image` varchar(255) NOT NULL DEFAULT 'Seller.jpg',
+  `Sel_RegistrationDate` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `sellers`
 --
 
-INSERT INTO `sellers` (`Sel_Id`, `_Client_Id`, `Sel_StoreName`, `Sel_Store_Address`, `Sel_ContactNo`, `Sel_Image`) VALUES
-(1, 1, 'Fresh Mart', 'abc street , karachi ,pakistan', '', '');
+INSERT INTO `sellers` (`Sel_Id`, `_Client_Id`, `Sel_StoreName`, `Sel_Store_Address`, `Sel_ContactNo`, `Sel_Image`, `Sel_RegistrationDate`) VALUES
+(1, 1, 'E-Grocery Super Market', 'abc street , karachi ,pakistan', '123456879', 'stores-logo-1.svg', '2023-10-01');
 
 -- --------------------------------------------------------
 
@@ -218,15 +274,41 @@ CREATE TABLE `users` (
   `Use_ContactNo` varchar(255) NOT NULL,
   `Use_Address` varchar(255) NOT NULL,
   `Use_image` varchar(255) NOT NULL DEFAULT 'UserDefault.jpg',
-  `Use_PaymentMethod` varchar(255) NOT NULL
+  `Use_PaymentMethod` varchar(255) NOT NULL,
+  `Use_RegistrationDate` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`Use_Id`, `_Client_Id`, `Use_ContactNo`, `Use_Address`, `Use_image`, `Use_PaymentMethod`) VALUES
-(1, 2, '03365584244', 'abc street ,lahore,pakistan', 'UserDefault.jpg', 'PayPal');
+INSERT INTO `users` (`Use_Id`, `_Client_Id`, `Use_ContactNo`, `Use_Address`, `Use_image`, `Use_PaymentMethod`, `Use_RegistrationDate`) VALUES
+(1, 2, '03365584244', 'abc street ,lahore,pakistan', 'UserDefault.jpg', 'PayPal', '2023-10-01');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vendorsorsellers`
+-- (See below for the actual view)
+--
+CREATE TABLE `vendorsorsellers` (
+`TotalStoreSell` double
+,`Mail` varchar(255)
+,`Sel_StoreName` varchar(255)
+,`Sel_Id` int(11)
+,`Earning` double
+,`Sel_ContactNo` varchar(255)
+,`Sel_Image` varchar(255)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `customersview`
+--
+DROP TABLE IF EXISTS `customersview`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `customersview`  AS SELECT `users`.`_Client_Id` AS `_Client_id`, (select `clients`.`Cli_DisplayName` from `clients` where `clients`.`Cli_Id` = `users`.`_Client_Id`) AS `CustomerName`, (select `clients`.`Cli_Mail` from `clients` where `clients`.`Cli_Id` = `users`.`_Client_Id`) AS `Mail`, `users`.`Use_RegistrationDate` AS `RegisterDate`, `users`.`Use_ContactNo` AS `ContactNo`, (select case when `products`.`P_SalePrice` <> '' and `products`.`P_SalePrice` <> 0 then `products`.`P_SalePrice` else `products`.`P_RegularPrice` end from `products` where `products`.`P_Id` = (select `orders`.`_Product_Id` from `orders` where `orders`.`_Client_Id` = `orders`.`_Client_Id` and `orders`.`Ord_Status` = 5)) * (select `orders`.`Ord_Quantity` from `orders` where `orders`.`Ord_Id` = (select `orders`.`Ord_Id` from `orders` where `orders`.`_Client_Id` = `orders`.`_Client_Id` and `orders`.`Ord_Status` = 5)) AS `spend` FROM `users``users`  ;
 
 -- --------------------------------------------------------
 
@@ -236,6 +318,24 @@ INSERT INTO `users` (`Use_Id`, `_Client_Id`, `Use_ContactNo`, `Use_Address`, `Us
 DROP TABLE IF EXISTS `searchcatview`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `searchcatview`  AS SELECT `c`.`C_id` AS `C_id`, `c`.`C_name` AS `C_name`, `c`.`C_Logo` AS `C_Logo`, `c`.`C_Status` AS `C_Status`, `c`.`C_Description` AS `C_Description`, `c`.`C_MetaTitle` AS `C_MetaTitle`, `c`.`C_MetaDescription` AS `C_MetaDescription`, `c`.`C_Slug` AS `C_Slug`, `c`.`C_ParentCategory` AS `C_ParentCategory`, `c`.`C_Date` AS `C_Date`, coalesce(`pc`.`ProductCount`,0) AS `ProductCount` FROM (`categories` `c` left join (select `products`.`_Category_id` AS `_Category_id`,count(`products`.`P_Id`) AS `ProductCount` from `products` group by `products`.`_Category_id`) `pc` on(`c`.`C_id` = `pc`.`_Category_id`))  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `searchorderview`
+--
+DROP TABLE IF EXISTS `searchorderview`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `searchorderview`  AS SELECT `o`.`_Product_Id` AS `_Product_Id`, `o`.`_Client_Id` AS `_Client_Id`, `o`.`Ord_Name` AS `Ord_Name`, `o`.`Ord_Status` AS `Ord_Status`, `o`.`Ord_Date` AS `Ord_Date`, `p`.`P_Images` AS `P_Images`, `c`.`Cli_DisplayName` AS `Cli_DisplayName`, `u`.`Use_PaymentMethod` AS `Use_PaymentMethod`, (select case when `products`.`P_SalePrice` is not null and `products`.`P_SalePrice` <> '' then `products`.`P_SalePrice` else `products`.`P_RegularPrice` end from `products` where `products`.`P_Id` = `o`.`_Product_Id`) * (select `orders`.`Ord_Quantity` from `orders` where `orders`.`Ord_Id` = `o`.`Ord_Id`) AS `Totalamount` FROM (((`orders` `o` join `products` `p` on(`p`.`P_Id` = `o`.`_Product_Id`)) join `clients` `c` on(`c`.`Cli_Id` = `o`.`_Client_Id`)) join `users` `u` on(`u`.`_Client_Id` = `o`.`_Client_Id`))  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vendorsorsellers`
+--
+DROP TABLE IF EXISTS `vendorsorsellers`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vendorsorsellers`  AS SELECT (select sum(`searchorderview`.`Totalamount`) from `searchorderview` where `searchorderview`.`_Client_Id` = `searchorderview`.`_Client_Id` and `searchorderview`.`Ord_Status` = 5) AS `TotalStoreSell`, (select `clients`.`Cli_Mail` from `clients` where `clients`.`Cli_Id` = `sellers`.`_Client_Id`) AS `Mail`, (select `sellers`.`Sel_StoreName` from `sellers` where `sellers`.`_Client_Id` = `sellers`.`_Client_Id`) AS `Sel_StoreName`, (select `sellers`.`Sel_Id` from `sellers` where `sellers`.`_Client_Id` = `sellers`.`_Client_Id`) AS `Sel_Id`, (select sum(`searchorderview`.`Totalamount`) from `searchorderview` where `searchorderview`.`_Client_Id` = `searchorderview`.`_Client_Id` and `searchorderview`.`Ord_Status` = 5) - (select (select `products`.`P_ActualPrice` from `products` where `products`.`P_Id` = (select `orders`.`_Product_Id` from `orders` where `orders`.`Ord_Status` = 5)) * (select `orders`.`Ord_Quantity` from `orders` where `orders`.`Ord_Id` = (select `orders`.`Ord_Id` from `orders` where `orders`.`Ord_Status` = 5))) AS `Earning`, `sellers`.`Sel_ContactNo` AS `Sel_ContactNo`, `sellers`.`Sel_Image` AS `Sel_Image` FROM `sellers``sellers`  ;
 
 --
 -- Indexes for dumped tables
@@ -269,6 +369,14 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`P_Id`),
   ADD KEY `FK_Cat` (`_Category_id`),
   ADD KEY `FK_Client_id` (`_Client_id`);
+
+--
+-- Indexes for table `reviews_products`
+--
+ALTER TABLE `reviews_products`
+  ADD PRIMARY KEY (`Rev_Id`),
+  ADD KEY `clientid` (`_Client_Id`),
+  ADD KEY `productid` (`_Product_id`);
 
 --
 -- Indexes for table `roles`
@@ -319,6 +427,12 @@ ALTER TABLE `products`
   MODIFY `P_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
+-- AUTO_INCREMENT for table `reviews_products`
+--
+ALTER TABLE `reviews_products`
+  MODIFY `Rev_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
@@ -359,6 +473,13 @@ ALTER TABLE `orders`
 ALTER TABLE `products`
   ADD CONSTRAINT `FK_Cat` FOREIGN KEY (`_Category_id`) REFERENCES `categories` (`C_id`),
   ADD CONSTRAINT `FK_Client_id` FOREIGN KEY (`_Client_id`) REFERENCES `clients` (`Cli_Id`);
+
+--
+-- Constraints for table `reviews_products`
+--
+ALTER TABLE `reviews_products`
+  ADD CONSTRAINT `clientid` FOREIGN KEY (`_Client_Id`) REFERENCES `clients` (`Cli_Id`),
+  ADD CONSTRAINT `productid` FOREIGN KEY (`_Product_id`) REFERENCES `products` (`P_Id`);
 
 --
 -- Constraints for table `sellers`

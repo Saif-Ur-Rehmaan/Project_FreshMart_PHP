@@ -57,7 +57,7 @@
                   <!-- select option -->
                   <div class="col-xl-2 col-md-4 col-12">
                     <select class="form-select" id="_filter_status">
-                      <option selected value="all">Status</option>
+                      <option selected value="all">All</option>
                       <option value="1">Published</option>
                       <option value="0">Unpublished</option>
                     </select>

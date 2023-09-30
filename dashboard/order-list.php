@@ -47,17 +47,21 @@
                   <div class="col-md-4 col-12 mb-2 mb-md-0">
                     <!-- form -->
                     <form class="d-flex" role="search">
-                      <input class="form-control" type="search" id="_PRODUCT_SEARCH_INP" placeholder="Search" aria-label="Search">
+                      <input class="form-control" type="search" id="_PRODUCT_SEARCH_INP" placeholder="Search"
+                        aria-label="Search">
 
                     </form>
                   </div>
                   <div class="col-lg-2 col-md-4 col-12">
                     <!-- select -->
                     <select class="form-select" id="_filter_status">
-                      <option selected>Status</option>
-                      <option value="Success">Success</option>
-                      <option value="Pending">Pending</option>
-                      <option value="Cancel">Cancel</option>
+                      <option selected value="all">All</option>
+                      <option value="0">Pending</option>
+                      <option value="1">Packeging</option>
+                      <option value="2">Shipping</option>
+                      <option value="3">Warehouse</option>
+                      <option value="4">Delivering</option>
+                      <option value="5">Success</option>
                     </select>
                   </div>
                 </div>
@@ -83,26 +87,36 @@
                         <th>Date & TIme</th>
                         <th>Payment</th>
                         <th>Status</th>
-                        <th>Amount</th>
+                        <th>Total Amount</th>
                         <th></th>
                       </tr>
                     </thead>
                     <tbody id="_product_tbody">
                       <?php
 
-                      $orders = DatabaseManager::select("orders");
-                      foreach ($orders as $key => $value) {
+                      $cardsPerPage = 10;
+                      $totalRecords = DatabaseManager::select("searchorderview", "count(_Product_Id) as cid")[0]["cid"];
+                      $totalPages = ceil($totalRecords / $cardsPerPage); //paginaion loop limit &Workin
+                      $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+                      $offset = ($currentPage - 1) * $cardsPerPage;
+
+                      $responce = mysqli_query($connection, "SELECT * FROM `searchorderview` limit $offset,$cardsPerPage");
+
+
+                      while ($value = mysqli_fetch_assoc($responce)) {
+
                         $P_ID = $value["_Product_Id"];
                         $CLi_ID = $value["_Client_Id"];
-                        $ProductImage = DatabaseManager::select("products", "P_Images as p", "P_Id=$P_ID")[0]["p"];
+                        $ProductImage = $value["P_Images"];
                         $OrderName = $value["Ord_Name"];
-                        $CustomerName = DatabaseManager::select("clients", "Cli_DisplayName as p", "Cli_Id=$CLi_ID")[0]["p"];
-                        $PaymentType = DatabaseManager::select("users", "Use_PaymentMethod as p", "_Client_Id=$CLi_ID")[0]["p"];
+                        $CustomerName = $value["Cli_DisplayName"];
+                        $PaymentType = $value["Use_PaymentMethod"];
                         $OrderDate = (new DateTime($value["Ord_Date"]))->format('j F Y (g:ia)');
                         $Status = $value["Ord_Status"];
+                        $TotalAmount = $value["Totalamount"];
 
                         //amount abhi static h q k formula ni pta
-                       
+                      
                         ?>
 
                         <tr>
@@ -165,7 +179,9 @@
                             }
                             ; ?>
                           </td>
-                          <td>$12.99</td>
+                          <td>$
+                            <?php echo $TotalAmount ?>
+                          </td>
 
                           <td>
                             <div class="dropdown">
@@ -181,249 +197,83 @@
                           </td>
                         </tr>
                       <?php } ?>
-                      <!-- <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="orderTwo">
-                            <label class="form-check-label" for="orderTwo">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-2.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">FC#1006</a></td>
-                        <td>Willie Hanson</td>
-
-                        <td>20 April 2023 (9:20 am)</td>
-                        <td>COD</td>
-
-                        <td>
-                          <span class="badge bg-light-primary text-dark-primary">Success</span>
-                        </td>
-                        <td>$8.19</td>
-
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="orderThree">
-                            <label class="form-check-label" for="orderThree">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-3.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">FC#1005</a></td>
-                        <td>Dori Stewart </td>
-
-                        <td>11 March 2023 (7:12 pm)</td>
-                        <td>Paypal</td>
-
-                        <td>
-                          <span class="badge bg-light-warning text-dark-warning">Pending</span>
-                        </td>
-                        <td>$8.19</td>
-
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="orderFour">
-                            <label class="form-check-label" for="orderFour">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-4.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">FC#1004</a></td>
-                        <td>Ezekiel Rogerson </td>
-
-                        <td>09 March 2023 (6:23 pm)</td>
-                        <td>Stripe</td>
-
-                        <td>
-                          <span class="badge bg-light-primary text-dark-primary">Success</span>
-                        </td>
-                        <td>$23.11</td>
-
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="orderFive">
-                            <label class="form-check-label" for="orderFive">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-5.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">FC#1003</a></td>
-                        <td>Maria Roux </td>
-
-                        <td>18 Feb 2022 (12:20 pm)</td>
-                        <td>COD</td>
-
-                        <td>
-                          <span class="badge bg-light-primary text-dark-primary">Success</span>
-                        </td>
-                        <td>$2.00</td>
-
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="orderSix">
-                            <label class="form-check-label" for="orderSix">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-6.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">FC#1002</a></td>
-                        <td>Robert Donald</td>
-
-                        <td>12 Feb 2022 (4:56 pm)</td>
-                        <td>Paypal</td>
-
-                        <td>
-                          <span class="badge bg-light-danger text-dark-danger">Cancel</span>
-                        </td>
-                        <td>$56.00</td>
-
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="orderSeven">
-                            <label class="form-check-label" for="orderSeven">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-7.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">FC#1001</a></td>
-                        <td>Diann Watson</td>
-
-                        <td>22 Jan 2023 (1:20 pm)</td>
-                        <td>Paypal</td>
-
-                        <td>
-                          <span class="badge bg-light-primary text-dark-primary">Success</span>
-                        </td>
-                        <td>$23.00</td>
-
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr> -->
+              
                     </tbody>
                   </table>
                 </div>
               </div>
               <div class="border-top d-md-flex justify-content-between align-items-center p-6">
-                <span>Showing 1 to 8 of 12 entries</span>
-                <nav class="mt-2 mt-md-0">
-                  <ul class="pagination mb-0 ">
-                    <li class="page-item disabled"><a class="page-link " href="#!">Previous</a></li>
-                    <li class="page-item"><a class="page-link active" href="#!">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">Next</a></li>
-                  </ul>
-                </nav>
+                <span>Showing
+                  <?php echo $offset . " to " . $responce->num_rows . " of " . $totalRecords . " entries " ?>
+                </span>
+
+
+                <?php
+                
+
+                $arry = DatabaseManager::select("products limit $offset, $cardsPerPage");
+                ?>
+                <?php if ($totalRecords > 10) { ?>
+                  <nav class="mt-2 mt-md-0">
+
+                    <ul class="pagination mb-0 ">
+                      <?php
+
+
+
+                      if ($currentPage > 1) {
+                        echo '    <li class="page-item"><a class="page-link " href="order-list.php?page=' . ($currentPage - 1) . '">Previous</a></li>';
+                      } else {
+                        echo '<li class="page-item disabled"><a class="page-link " href="#!">Previous</a></li>';
+                      }
+
+                      if ($totalPages <= 5) {
+                        // Display all available pages if there are 5 or fewer
+                        for ($i = 1; $i <= $totalPages; $i++) {
+                          if ($i == $currentPage) {
+                            echo '<li class="page-item"><a class="page-link active" href="order-list.php?page=' . $i . '">' . $i . '</a></li>';
+                          } else {
+                            echo '<li class="page-item"><a class="page-link" href="order-list.php?page=' . $i . '">' . $i . '</a></li>';
+                          }
+                        }
+                      } else {
+                        // Display the current page and two pages before and after it
+                        $startPage = max(1, $currentPage - 2);
+                        $endPage = min($totalPages, $currentPage + 2);
+
+                        for ($i = $startPage; $i <= $endPage; $i++) {
+                          if ($i == $currentPage) {
+                            echo '<li class="page-item"><a class="page-link active" href="order-list.php?page=' . $i . '">' . $i . '</a></li>';
+                          } else {
+                            echo '<li class="page-item"><a class="page-link " href="order-list.php?page=' . $i . '">' . $i . '</a></li>';
+                          }
+                        }
+                      }
+
+                      if ($currentPage < $totalPages) {
+                        echo '    <li class="page-item"><a class="page-link " href="order-list.php?page=' . ($currentPage + 1) . '">Next</a></li>';
+                      }
+
+                      ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </ul>
+                  </nav>
+                <?php } ?>
               </div>
             </div>
 
@@ -467,7 +317,6 @@
           },
           success: (e) => {
             let data = JSON.parse(e)
-            console.log(data);
             html = ``;
             if (data.length != 0) {
 
@@ -477,51 +326,76 @@
                 html += `
                                     <tr>
 
-                                            
-                                    <td>
-                                      <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="orderOne">
-                                        <label class="form-check-label" for="orderOne">
+                                     
+                          <td>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="orderOne">
+                              <label class="form-check-label" for="orderOne">
 
-                                        </label>
-                                      </div>
-                                    </td>
-                                            <td>
-                                              <a href="#!"> <img src="../assets/images/products/${row["C_Logo"]}" alt=""
-                                                  class="icon-shape icon-sm"></a>
-                                            </td>
-                                            
-                                            <td><a href="#" class="text-reset">${row["C_name"]}</a></td>
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                            <a href="#!"> <img src="../assets/images/products/${row.P_Images}" alt=""
+                                class="icon-shape icon-md"></a>
+                          </td>
+                          <td><a href="#" class="text-reset"><!--example :FC#1007-->
+                              ${row.Ord_Name}
+                            </a></td>
+                          <td>
+                            ${row.Cli_DisplayName}
+                          </td>
 
-                <td>${row["ProductCount"]}</td>
-
+                          <td>
+                            ${row.Ord_Date}
+                          </td>
+                          <td>
+                            ${row.Use_PaymentMethod}
+                          </td>
 
 
 
                 <td>`;
 
-                html += (row["C_Status"] == 1) ? '<span class="badge bg-light-primary text-dark-primary">Published</span>' : '<span class="badge bg-light-danger text-dark-danger">Unpublished</span>';
+                switch (row.Ord_Status) {
+                  case '0':
+                    html += '<span class="badge badge-warning text-dark bg-light-danger">Pending</span>';
+                    break;
+                  case '1':
+                    html += '<span class="badge badge-warning text-dark bg-warning">Packeging</span>';
+                    break;
+                  case '2':
+                    html += '<span class="badge badge-info text-light bg-dark">Shipping</span>';
+                    break;
+                  case '3':
+                    html += '<span class="badge badge-success text-dark bg-light-secondary">Warehouse</span>';
+                    break;
+                  case '4':
+                    html += '<span class="badge badge-primary text-dark bg-light-info">Delevering</span>';
+                    break;
+                  default:
+                    html += '<span class="badge badge-success text-light bg-success">Success</span>';
+
+                    break;
+                }
 
                 html += `
-                                            </td> 
+                </td>
+                          <td>$${row.Totalamount}</td>
 
-                                            <td>
-                                              <div class="dropdown">
-                                                <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                                  <i class="feather-icon icon-more-vertical fs-5"></i>
-                                                </a>
-                                                <ul class="dropdown-menu">
-                                                  <li><a class="dropdown-item"
-                                                      href="phpworkshop/categorymanage.php?DeleteCategoryOfId=${row["C_id"]}"><i
-                                                        class="bi bi-trash me-3"></i>Delete</a></li>
-                                                  <li><a class="dropdown-item"
-                                                      href="add-category.php?EditCategoryOfId=${row["C_id"]}"><i
-                                                        class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                                  </li>
-                                                </ul>
-                                              </div>
-                                            </td>
-                                    </tr>
+                          <td>
+                            <div class="dropdown">
+                              <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="feather-icon icon-more-vertical fs-5"></i>
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </td>
+                        </tr>
                                     
                                     `;
               });
