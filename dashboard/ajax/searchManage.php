@@ -48,5 +48,13 @@ if (isset($_GET['CustomerSearch'])) {
     ");
     echo json_encode($data, 1);
 }
+if (isset($_GET['ReviewSearch'])) {
+    $searchquery = $_GET['ReviewSearch'];
+    
+    $filter_status = $_GET['filter_status'];
+    $data = DatabaseManager::select("ReviewsOfCustomersView", "*", "
+    (CustomerName like '%$searchquery%' OR ProductName like '%$searchquery%') AND RatingStar like '%$filter_status%'");
+    echo json_encode($data, 1);
+}
 
 ?>

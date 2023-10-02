@@ -134,7 +134,7 @@
                             <?php echo $value["spend"]; ?>
                           </td>
 
-                          <td>
+                          <td hidden>
                             <div class="dropdown">
                               <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="feather-icon icon-more-vertical fs-5"></i>
@@ -174,7 +174,7 @@
 
 
                       if ($currentPage > 1) {
-                        echo '    <li class="page-item"><a class="page-link " href="vendor-list.php?page=' . ($currentPage - 1) . '">Previous</a></li>';
+                        echo '    <li class="page-item"><a class="page-link " href="customers.php?page=' . ($currentPage - 1) . '">Previous</a></li>';
                       } else {
                         echo '<li class="page-item disabled"><a class="page-link " href="#!">Previous</a></li>';
                       }
@@ -183,9 +183,9 @@
                         // Display all available pages if there are 5 or fewer
                         for ($i = 1; $i <= $totalPages; $i++) {
                           if ($i == $currentPage) {
-                            echo '<li class="page-item"><a class="page-link active" href="vendor-list.php?page=' . $i . '">' . $i . '</a></li>';
+                            echo '<li class="page-item"><a class="page-link active" href="customers.php?page=' . $i . '">' . $i . '</a></li>';
                           } else {
-                            echo '<li class="page-item"><a class="page-link" href="vendor-list.php?page=' . $i . '">' . $i . '</a></li>';
+                            echo '<li class="page-item"><a class="page-link" href="customers.php?page=' . $i . '">' . $i . '</a></li>';
                           }
                         }
                       } else {
@@ -195,15 +195,15 @@
 
                         for ($i = $startPage; $i <= $endPage; $i++) {
                           if ($i == $currentPage) {
-                            echo '<li class="page-item"><a class="page-link active" href="vendor-list.php?page=' . $i . '">' . $i . '</a></li>';
+                            echo '<li class="page-item"><a class="page-link active" href="customers.php?page=' . $i . '">' . $i . '</a></li>';
                           } else {
-                            echo '<li class="page-item"><a class="page-link " href="vendor-list.php?page=' . $i . '">' . $i . '</a></li>';
+                            echo '<li class="page-item"><a class="page-link " href="customers.php?page=' . $i . '">' . $i . '</a></li>';
                           }
                         }
                       }
 
                       if ($currentPage < $totalPages) {
-                        echo '    <li class="page-item"><a class="page-link " href="vendor-list.php?page=' . ($currentPage + 1) . '">Next</a></li>';
+                        echo '    <li class="page-item"><a class="page-link " href="customers.php?page=' . ($currentPage + 1) . '">Next</a></li>';
                       }
 
                       ?>

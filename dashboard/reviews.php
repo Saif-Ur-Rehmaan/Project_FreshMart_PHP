@@ -1,3 +1,4 @@
+<?php include "inc/config.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,12 +10,12 @@
 
 
 
-<?php include 'inc/nav/nav.php' ?>
-        <div class="main-wrapper">
-            <!-- navbar vertical -->
-            
-            <?php include 'inc/nav/nav2.php' ?>
-    
+  <?php include 'inc/nav/nav.php' ?>
+  <div class="main-wrapper">
+    <!-- navbar vertical -->
+
+    <?php include 'inc/nav/nav2.php' ?>
+
 
     <!-- main -->
     <main class="main-content-wrapper">
@@ -45,13 +46,14 @@
                   <div class="col-md-4 col-12 mb-2 mb-md-0">
                     <!-- form -->
                     <form class="d-flex" role="search">
-                      <input class="form-control" type="search" placeholder="Search Reviews" aria-label="Search">
+                      <input class="form-control" id="_PRODUCT_SEARCH_INP" type="search" placeholder="Search Reviews"
+                        aria-label="Search">
                     </form>
                   </div>
                   <div class="col-lg-2 col-md-4 col-12">
                     <!-- main -->
-                    <select class="form-select">
-                      <option selected>Select Rating</option>
+                    <select class="form-select" id="_filter_status">
+                      <option selected value="all">All Rating</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
@@ -83,443 +85,190 @@
                         <th></th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
+                    <tbody id="_product_tbody">
+                      <?php
+                      $cardsPerPage = 10;
+                      $totalRecords = DatabaseManager::select("ReviewsOfCustomersView", "count(_Client_Id) as cid")[0]["cid"];
+                      $totalPages = ceil($totalRecords / $cardsPerPage); //paginaion loop limit &Workin
+                      $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+                      $offset = ($currentPage - 1) * $cardsPerPage;
 
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="reviewOne">
-                            <label class="form-check-label" for="reviewOne">
+                      $responce = mysqli_query($connection, "SELECT * FROM `ReviewsOfCustomersView` limit $offset,$cardsPerPage");
 
-                            </label>
-                          </div>
-                        </td>
 
-                        <td><a href="#" class="text-reset">Haldiram's Sev Bhujia</a></td>
-                        <td>Barry McKenzie</td>
+                      while ($value = mysqli_fetch_assoc($responce)) {
 
-                        <td>
-                          <span class="text-truncate">Nice & fresh oranges with value for money..</span>
-                        </td>
-                        <td>
-                          <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
-                          </div>
-                        </td>
-                        <td>
-                          23 Nov,2022
-                        </td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
+                        ?>
+                        <tr>
 
-                        <td class="pe-0">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="reviewTwo">
-                            <label class="form-check-label" for="reviewTwo">
+                          <td>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="reviewOne">
+                              <label class="form-check-label" for="reviewOne">
 
-                            </label>
-                          </div>
-                        </td>
+                              </label>
+                            </div>
+                          </td>
 
-                        <td><a href="#" class="text-reset">NutriChoice Digestive</a></td>
-                        <td>Dale Jenkins</td>
+                          <td><a href="#" class="text-reset">
+                              <?php echo $value["ProductName"] ?>
+                            </a></td>
+                          <td>
+                            <?php echo $value["CustomerName"] ?>
+                          </td>
 
-                        <td>
-                          <span class="text-truncate">Nice product 👌 quality 👌...</span>
-                        </td>
-                        <td>
-                          <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
-                          </div>
-                        </td>
-                        <td>
-                          23 Nov,2022
-                        </td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
+                          <td>
+                            <span class="text-truncate">
+                              <?php echo $value["CustomerComment"] ?>
+                            </span>
+                          </td>
+                          <td>
+                            <div>
+                              <?php
+                              switch ($value["RatingStar"]) {
+                                case '1':
+                                  echo '<span><i class="bi bi-star-fill text-warning"></i></span>';
+                                  for ($i = 0; $i < 5; $i++) {
+                                    echo '<span><i class="bi bi-star-fill text-light"></i></span>';
+                                  }
+                                  ;
+                                  break;
 
-                        <td class="pe-0">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkAllThree">
-                            <label class="form-check-label" for="checkAllThree">
+                                case '2':
+                                  for ($i = 0; $i < 2; $i++) {
+                                    echo '<span><i class="bi bi-star-fill text-warning"></i></span>';
+                                  }
+                                  ;
+                                  for ($i = 0; $i < 3; $i++) {
+                                    echo '<span><i class="bi bi-star-fill text-light"></i></span>';
+                                  }
+                                  ;
+                                  break;
 
-                            </label>
-                          </div>
-                        </td>
+                                case '3':
+                                  for ($i = 0; $i < 3; $i++) {
+                                    echo '<span><i class="bi bi-star-fill text-warning"></i></span>';
+                                  }
+                                  ;
+                                  for ($i = 0; $i < 2; $i++) {
+                                    echo '<span><i class="bi bi-star-fill text-light"></i></span>';
+                                  }
+                                  ;
+                                  break;
+                                case '4':
+                                  for ($i = 0; $i < 4; $i++) {
+                                    echo '<span><i class="bi bi-star-fill text-warning"></i></span>';
+                                  }
+                                  ;
+                                  echo '<span><i class="bi bi-star-fill text-light"></i></span>';
+                                  break;
 
-                        <td><a href="#" class="text-reset">Cadbury 5 Star Chocolate</a></td>
-                        <td>Michael Phillips</td>
+                                default:
+                                  for ($i = 0; $i < 5; $i++) {
+                                    echo '<span><i class="bi bi-star-fill text-warning"></i></span>';
+                                  }
+                                  ;
+                                  break;
+                              }
+                              ?>
 
-                        <td>
-                          <span class="text-truncate">Good quality product delivered...</span>
-                        </td>
-                        <td>
-                          <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                          </div>
-                        </td>
-                        <td>
-                          23 Nov,2022
-                        </td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
 
-                        <td class="pe-0">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="reviewFour">
-                            <label class="form-check-label" for="reviewFour">
-
-                            </label>
-                          </div>
-                        </td>
-
-                        <td><a href="#" class="text-reset">Onion Flavour Potato</a></td>
-                        <td>James Parker</td>
-
-                        <td>
-                          <span class="text-truncate">Excellent Quality by an Indian company..</span>
-                        </td>
-                        <td>
-                          <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                          </div>
-                        </td>
-                        <td>
-                          23 Nov,2022
-                        </td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td class="pe-0">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="reviewFive">
-                            <label class="form-check-label" for="reviewFive">
-
-                            </label>
-                          </div>
-                        </td>
-
-                        <td><a href="#" class="text-reset">Salted Instant Popcorn</a></td>
-                        <td>William Hansen</td>
-
-                        <td>
-                          <span class="text-truncate">Very expensive. Cheaper at local stores...</span>
-                        </td>
-                        <td>
-                          <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
-                          </div>
-                        </td>
-                        <td>
-                          23 Nov,2022
-                        </td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td class="pe-0">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="reviewSix">
-                            <label class="form-check-label" for="reviewSix">
-
-                            </label>
-                          </div>
-                        </td>
-
-                        <td><a href="#" class="text-reset">Blueberry Greek Yogurt</a></td>
-                        <td>Helen Speller</td>
-
-                        <td>
-                          <span class="text-truncate">Etiam in felis eget eros dictum</span>
-                        </td>
-                        <td>
-                          <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                          </div>
-                        </td>
-                        <td>
-                          23 Nov,2022
-                        </td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td class="pe-0">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="reviewSeven">
-                            <label class="form-check-label" for="reviewSeven">
-
-                            </label>
-                          </div>
-                        </td>
-
-                        <td><a href="#" class="text-reset">Britannia Cheese Slices</a></td>
-                        <td>Larry Anderson</td>
-
-                        <td>
-                          <span class="text-truncate">is good but had to wait for a late delivery.</span>
-                        </td>
-                        <td>
-                          <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
-                          </div>
-                        </td>
-                        <td>
-                          23 Nov,2022
-                        </td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td class="pe-0">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="reviewEight">
-                            <label class="form-check-label" for="reviewEight">
-
-                            </label>
-                          </div>
-                        </td>
-
-                        <td><a href="#" class="text-reset">Kellogg's Original Cereals</a></td>
-                        <td>William McCulloch</td>
-
-                        <td>
-                          <span class="text-truncate">Very expensive. Cheaper at local stores</span>
-                        </td>
-                        <td>
-                          <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                          </div>
-                        </td>
-                        <td>
-                          23 Nov,2022
-                        </td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td class="pe-0">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="reviewNine">
-                            <label class="form-check-label" for="reviewNine">
-
-                            </label>
-                          </div>
-                        </td>
-
-                        <td><a href="#" class="text-reset">Slurrp Millet Chocolate</a></td>
-                        <td>Louise Brown</td>
-
-                        <td>
-                          <span class="text-truncate">My toddler loved the flavor and enjoys...</span>
-                        </td>
-                        <td>
-                          <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
-                          </div>
-                        </td>
-                        <td>
-                          23 Nov,2022
-                        </td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td class="pe-0">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="reviewTen">
-                            <label class="form-check-label" for="reviewTen">
-
-                            </label>
-                          </div>
-                        </td>
-
-                        <td><a href="#" class="text-reset">Amul Butter - 500 g</a></td>
-                        <td>John Meyer</td>
-
-                        <td>
-                          <span class="text-truncate">Good Product but packaging needs...</span>
-                        </td>
-                        <td>
-                          <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
-                          </div>
-                        </td>
-                        <td>
-                          23 Nov,2022
-                        </td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
+                            </div>
+                          </td>
+                          <td>
+                            <?php echo $value["DateOfReview"] ?>
+                          </td>
+                          <td hidden>
+                            <div class="dropdown disabled ">
+                              <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="feather-icon icon-more-vertical fs-5"></i>
+                              </a>
+                              <ul class="dropdown-menu" style="z-index: 100;">
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </td>
+                        </tr>
+                      <?php } ?>
                     </tbody>
                   </table>
 
                 </div>
 
                 <div class="border-top d-md-flex justify-content-between align-items-center p-6">
-                  <span>Showing 1 to 8 of 12 entries</span>
-                  <nav class="mt-2 mt-md-0">
-                    <ul class="pagination mb-0 ">
-                      <li class="page-item disabled"><a class="page-link " href="#!">Previous</a></li>
-                      <li class="page-item"><a class="page-link active" href="#!">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#!">Next</a></li>
-                    </ul>
-                  </nav>
+                  <span>Showing
+                    <?php echo $offset . " to " . $responce->num_rows . " of " . $totalRecords . " entries " ?>
+                  </span>
+
+
+                  <?php
+
+
+                  $arry = DatabaseManager::select("ReviewsOfCustomersView   limit $offset, $cardsPerPage");
+                  ?>
+                  <?php if ($totalRecords > 10) { ?>
+                    <nav class="mt-2 mt-md-0">
+
+                      <ul class="pagination mb-0 ">
+                        <?php
+
+
+
+                        if ($currentPage > 1) {
+                          echo '    <li class="page-item"><a class="page-link " href="reviews.php?page=' . ($currentPage - 1) . '">Previous</a></li>';
+                        } else {
+                          echo '<li class="page-item disabled"><a class="page-link " href="#!">Previous</a></li>';
+                        }
+
+                        if ($totalPages <= 5) {
+                          // Display all available pages if there are 5 or fewer
+                          for ($i = 1; $i <= $totalPages; $i++) {
+                            if ($i == $currentPage) {
+                              echo '<li class="page-item"><a class="page-link active" href="reviews.php?page=' . $i . '">' . $i . '</a></li>';
+                            } else {
+                              echo '<li class="page-item"><a class="page-link" href="reviews.php?page=' . $i . '">' . $i . '</a></li>';
+                            }
+                          }
+                        } else {
+                          // Display the current page and two pages before and after it
+                          $startPage = max(1, $currentPage - 2);
+                          $endPage = min($totalPages, $currentPage + 2);
+
+                          for ($i = $startPage; $i <= $endPage; $i++) {
+                            if ($i == $currentPage) {
+                              echo '<li class="page-item"><a class="page-link active" href="reviews.php?page=' . $i . '">' . $i . '</a></li>';
+                            } else {
+                              echo '<li class="page-item"><a class="page-link " href="reviews.php?page=' . $i . '">' . $i . '</a></li>';
+                            }
+                          }
+                        }
+
+                        if ($currentPage < $totalPages) {
+                          echo '    <li class="page-item"><a class="page-link " href="reviews.php?page=' . ($currentPage + 1) . '">Next</a></li>';
+                        }
+
+                        ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      </ul>
+                    </nav>
+                  <?php } ?>
                 </div>
               </div>
 
@@ -534,15 +283,172 @@
 
 
   <!-- Libs JS -->
-<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
 
-<!-- Theme JS -->
-<script src="../assets/js/theme.min.js"></script>
+  <!-- Theme JS -->
+  <script src="../assets/js/theme.min.js"></script>
+  <script>
+    $(document).ready(() => {
+      $('#_PRODUCT_SEARCH_INP').on("keyup", search)
+      $('#_filter_status').on("change", search)
 
+      function search() {
+        let searchValue = $('#_PRODUCT_SEARCH_INP').val();
+        let filter_status_S = $('#_filter_status').val();
+        
+        if (filter_status_S == "all") {
+          filter_status_S = ''
+        }
+
+
+        // console.log(searchValue);
+        $.ajax({
+          url: 'ajax/searchManage.php',
+          method: 'GET',
+          data: {
+            ReviewSearch: searchValue,
+            filter_status: filter_status_S
+          },
+          success: (e) => {
+            let data = JSON.parse(e)
+            html = ``;
+            if (data.length != 0) {
+
+              // Assuming row.RegisterDate contains a valid date string
+              data.forEach(row => {
+                const rawDate = new Date(row.RegisterDate);
+
+                const options = {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true,
+                };
+
+                const formattedDate = `${rawDate.toLocaleDateString("en-US", options)} `;
+
+                html = ` <tr>
+
+                            <td>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="reviewOne">
+                                <label class="form-check-label" for="reviewOne">
+
+                                </label>
+                              </div>
+                            </td>
+
+                            <td><a href="#" class="text-reset">
+                                ${row["ProductName"]}
+                              </a></td>
+                            <td>
+                              ${row["CustomerName"]}
+                            </td>
+
+                            <td>
+                              <span class="text-truncate">
+                                ${row["CustomerComment"]}
+                              </span>
+                            </td>
+                            <td>
+                              <div>`;
+
+                switch (row["RatingStar"]) {
+                  case '1':
+                    html += '<span><i class="bi bi-star-fill text-warning"></i></span>';
+                    for ($i = 0; $i < 5; $i++) {
+                      html += '<span><i class="bi bi-star-fill text-light"></i></span>';
+                    }
+                    ;
+                    break;
+
+                  case '2':
+                    for ($i = 0; $i < 2; $i++) {
+                      html += '<span><i class="bi bi-star-fill text-warning"></i></span>';
+                    }
+                    ;
+                    for ($i = 0; $i < 3; $i++) {
+                      html += '<span><i class="bi bi-star-fill text-light"></i></span>';
+                    }
+                    ;
+                    break;
+
+                  case '3':
+                    for ($i = 0; $i < 3; $i++) {
+                      html += '<span><i class="bi bi-star-fill text-warning"></i></span>';
+                    }
+                    ;
+                    for ($i = 0; $i < 2; $i++) {
+                      html += '<span><i class="bi bi-star-fill text-light"></i></span>';
+                    }
+                    ;
+                    break;
+                  case '4':
+                    for ($i = 0; $i < 4; $i++) {
+                      html += '<span><i class="bi bi-star-fill text-warning"></i></span>';
+                    }
+                    ;
+                    html += '<span><i class="bi bi-star-fill text-light"></i></span>';
+                    break;
+
+                  default:
+                    for ($i = 0; $i < 5; $i++) {
+                      html += '<span><i class="bi bi-star-fill text-warning"></i></span>';
+                    }
+                    ;
+                    break;
+                }
+
+
+
+                html += `</div>
+                            </td>
+                            <td>
+                                ${row["DateOfReview"]}
+                            </td>
+                            <td hidden>
+                              <div class="dropdown disabled "   >
+                                <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                                  <i class="feather-icon icon-more-vertical fs-5"></i>
+                                </a>
+                                <ul class="dropdown-menu" style="z-index: 100;">
+                                  <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
+                                  <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                            </tr>`;
+
+
+
+
+
+
+
+              });
+              $("#_product_tbody").html(html);
+            } else {
+              html = "<tr><td>product not found</td></tr>"
+              $("#_product_tbody").html(html);
+            }
+
+          }, error: (e) => {
+            console.error(e)
+          }
+        })
+      }
+
+    })
+
+  </script>
 </body>
 
 
 <!-- Mirrored from freshcart.codescandy.com/dashboard/reviews.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Mar 2023 10:11:13 GMT -->
+
 </html>

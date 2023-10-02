@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2023 at 12:36 AM
+-- Generation Time: Oct 02, 2023 at 11:08 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -104,16 +104,17 @@ CREATE TABLE `orders` (
   `Ord_Quantity` varchar(255) NOT NULL,
   `Ord_Date` date NOT NULL DEFAULT current_timestamp(),
   `Ord_Status` int(11) NOT NULL DEFAULT 0 COMMENT '0=pending,1=packeging,2=shipping,3=warehouse,4=delevering,5=success\r\n',
-  `Ord_Name` varchar(255) NOT NULL COMMENT 'timestamp k sath unique aaigi'
+  `Ord_Name` varchar(255) NOT NULL COMMENT 'timestamp k sath unique aaigi',
+  `Ord_UnitPrice` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`Ord_Id`, `_Client_Id`, `_Product_Id`, `Ord_Quantity`, `Ord_Date`, `Ord_Status`, `Ord_Name`) VALUES
-(5, 2, 54, '2', '2005-12-12', 0, 'FC#1007'),
-(6, 2, 57, '3', '2005-12-20', 5, 'FC#1009');
+INSERT INTO `orders` (`Ord_Id`, `_Client_Id`, `_Product_Id`, `Ord_Quantity`, `Ord_Date`, `Ord_Status`, `Ord_Name`, `Ord_UnitPrice`) VALUES
+(5, 2, 54, '2', '2022-10-01', 5, 'FC#1007', '15'),
+(6, 2, 57, '3', '2023-09-25', 5, 'FC#1009', '35');
 
 -- --------------------------------------------------------
 
@@ -134,9 +135,9 @@ CREATE TABLE `products` (
   `P_Code` varchar(255) NOT NULL,
   `P_SKU` varchar(255) NOT NULL,
   `P_Status` int(11) NOT NULL,
-  `P_ActualPrice` varchar(255) NOT NULL,
-  `P_RegularPrice` varchar(255) NOT NULL,
-  `P_SalePrice` varchar(255) NOT NULL DEFAULT '0',
+  `P_ActualPrice` int(11) NOT NULL DEFAULT 0,
+  `P_RegularPrice` int(11) NOT NULL DEFAULT 0,
+  `P_SalePrice` int(11) NOT NULL DEFAULT 0,
   `P_MetaTitle` varchar(255) NOT NULL,
   `P_MetaDescription` text NOT NULL,
   `Date` timestamp NOT NULL DEFAULT current_timestamp()
@@ -147,18 +148,34 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`P_Id`, `P_Title`, `_Category_id`, `_Client_id`, `P_Weight`, `P_Units`, `P_Images`, `P_Description`, `P_InStock`, `P_Code`, `P_SKU`, `P_Status`, `P_ActualPrice`, `P_RegularPrice`, `P_SalePrice`, `P_MetaTitle`, `P_MetaDescription`, `Date`) VALUES
-(54, 'buiscit', 2, 1, '10g', '30', 'product-single-img-4.jpg ', '', 1, 'buis124', 'SBS_-ANMOL', 1, '5', '15', '5', 'sa', 'as', '2023-09-24 07:42:09'),
-(57, 'Napolitanke Ljesnjak', 2, 1, '200g', '20', 'product-single-img-1.jpg ', 'hi', 1, 'napolitankeljesnjak845', 'NAPOL845KELJ', 1, '5', '25', '35', 'title', 'lorem ipsem', '2023-06-08 10:43:02'),
-(58, 'popcorn', 2, 1, '250g,500g,1000g,', '10', 'product-img-1.jpg ', '', 1, '123a', 'POP-SHEL', 1, '5', '2', '0', '', '', '2023-09-24 10:54:59'),
-(65, 'Product 2', 0, 1, '0.7', '5', 'product2.jpg', 'Description for Product 2', 1, 'P002', 'SKU002', 1, '5', '29.99', '24.99', 'Meta Title 2', 'Meta Description 2', '2023-09-24 14:25:50'),
-(66, 'Product 3', 0, 1, '0.6', '20', 'product3.jpg', 'Description for Product 3', 1, 'P003', 'SKU003', 1, '5', '12.99', '9.99', 'Meta Title 3', 'Meta Description 3', '2023-09-24 14:25:50'),
-(67, 'Product 4', 0, 1, '0.8', '15', 'product4.jpg', 'Description for Product 4', 1, 'P004', 'SKU004', 1, '5', '39.99', '34.99', 'Meta Title 4', 'Meta Description 4', '2023-09-24 14:25:50'),
-(68, 'Product 5', 0, 1, '0.9', '10', 'product5.jpg', 'Description for Product 5', 1, 'P005', 'SKU005', 0, '5', '22.99', '19.99', 'Meta Title 5', 'Meta Description 5', '2023-09-24 14:25:50'),
-(69, 'Product 6', 0, 1, '0.4', '25', 'product6.jpg', 'Description for Product 6', 1, 'P006', 'SKU006', 1, '5', '15.99', '12.99', 'Meta Title 6', 'Meta Description 6', '2023-09-24 14:25:50'),
-(70, 'Product 7', 0, 1, '0.7', '8', 'product7.jpg', 'Description for Product 7', 1, 'P007', 'SKU007', 0, '5', '32.99', '27.99', 'Meta Title 7', 'Meta Description 7', '2023-09-24 14:25:50'),
-(71, 'Product 8', 0, 1, '0.6', '12', 'product8.jpg', 'Description for Product 8', 1, 'P008', 'SKU008', 0, '5', '27.99', '22.99', 'Meta Title 8', 'Meta Description 8', '2023-09-24 14:25:50'),
-(72, 'Product 9', 0, 1, '0.3', '30', 'product9.jpg', 'Description for Product 9', 1, 'P009', 'SKU009', 1, '5', '18.99', '14.99', 'Meta Title 9', 'Meta Description 9', '2023-09-24 14:25:50'),
-(73, 'Product 10', 0, 1, '0.8', '18', 'product10.jpg', 'Description for Product 10', 1, 'P010', 'SKU010', 0, '5', '37.99', '32.99', 'Meta Title 10', 'Meta Description 10', '2023-09-24 14:25:50');
+(54, 'buiscit', 2, 1, '10g', '30', 'product-single-img-4.jpg ', '', 1, 'buis124', 'SBS_-ANMOL', 1, 5, 15, 0, 'sa', 'as', '2023-09-24 07:42:09'),
+(57, 'Napolitanke Ljesnjak', 2, 1, '200g', '20', 'product-single-img-1.jpg ', 'hi', 1, 'napolitankeljesnjak845', 'NAPOL845KELJ', 1, 5, 45, 35, 'title', 'lorem ipsem', '2023-06-08 10:43:02'),
+(58, 'popcorn', 2, 1, '250g,500g,1000g,', '10', 'product-img-1.jpg ', '', 1, '123a', 'POP-SHEL', 1, 5, 2, 0, '', '', '2023-09-24 10:54:59'),
+(65, 'Product 2', 0, 1, '0.7', '5', 'product2.jpg', 'Description for Product 2', 1, 'P002', 'SKU002', 1, 5, 29, 24, 'Meta Title 2', 'Meta Description 2', '2023-09-24 14:25:50'),
+(66, 'Product 3', 0, 1, '0.6', '20', 'product3.jpg', 'Description for Product 3', 1, 'P003', 'SKU003', 1, 5, 12, 9, 'Meta Title 3', 'Meta Description 3', '2023-09-24 14:25:50'),
+(67, 'Product 4', 0, 1, '0.8', '15', 'product4.jpg', 'Description for Product 4', 1, 'P004', 'SKU004', 1, 5, 39, 34, 'Meta Title 4', 'Meta Description 4', '2023-09-24 14:25:50'),
+(68, 'Product 5', 0, 1, '0.9', '10', 'product5.jpg', 'Description for Product 5', 1, 'P005', 'SKU005', 0, 5, 22, 19, 'Meta Title 5', 'Meta Description 5', '2023-09-24 14:25:50'),
+(69, 'Product 6', 0, 1, '0.4', '25', 'product6.jpg', 'Description for Product 6', 1, 'P006', 'SKU006', 1, 5, 15, 12, 'Meta Title 6', 'Meta Description 6', '2023-09-24 14:25:50'),
+(70, 'Product 7', 0, 1, '0.7', '8', 'product7.jpg', 'Description for Product 7', 1, 'P007', 'SKU007', 0, 5, 32, 27, 'Meta Title 7', 'Meta Description 7', '2023-09-24 14:25:50'),
+(71, 'Product 8', 0, 1, '0.6', '12', 'product8.jpg', 'Description for Product 8', 1, 'P008', 'SKU008', 0, 5, 27, 22, 'Meta Title 8', 'Meta Description 8', '2023-09-24 14:25:50'),
+(72, 'Product 9', 0, 1, '0.3', '30', 'product9.jpg', 'Description for Product 9', 1, 'P009', 'SKU009', 1, 5, 18, 14, 'Meta Title 9', 'Meta Description 9', '2023-09-24 14:25:50'),
+(73, 'Product 10', 0, 1, '0.8', '18', 'product10.jpg', 'Description for Product 10', 1, 'P010', 'SKU010', 0, 5, 37, 32, 'Meta Title 10', 'Meta Description 10', '2023-09-24 14:25:50');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `reviewsofcustomersview`
+-- (See below for the actual view)
+--
+CREATE TABLE `reviewsofcustomersview` (
+`_Client_Id` int(11)
+,`_Product_id` int(11)
+,`ProductName` varchar(255)
+,`CustomerName` varchar(255)
+,`CustomerComment` varchar(255)
+,`RatingStar` int(11)
+,`DateOfReview` date
+);
 
 -- --------------------------------------------------------
 
@@ -171,15 +188,16 @@ CREATE TABLE `reviews_products` (
   `_Client_Id` int(11) NOT NULL,
   `_Product_id` int(11) NOT NULL,
   `Rev_Star` int(11) NOT NULL,
-  `Rev_Comment` varchar(255) NOT NULL
+  `Rev_Comment` varchar(255) NOT NULL,
+  `Rev_Date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `reviews_products`
 --
 
-INSERT INTO `reviews_products` (`Rev_Id`, `_Client_Id`, `_Product_id`, `Rev_Star`, `Rev_Comment`) VALUES
-(1, 2, 58, 5, 'best popcorn ever tasted');
+INSERT INTO `reviews_products` (`Rev_Id`, `_Client_Id`, `_Product_id`, `Rev_Star`, `Rev_Comment`, `Rev_Date`) VALUES
+(1, 2, 58, 5, 'Nice & fresh oranges with value for money..', '2023-10-02');
 
 -- --------------------------------------------------------
 
@@ -309,6 +327,15 @@ CREATE TABLE `vendorsorsellers` (
 DROP TABLE IF EXISTS `customersview`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `customersview`  AS SELECT `users`.`_Client_Id` AS `_Client_id`, (select `clients`.`Cli_DisplayName` from `clients` where `clients`.`Cli_Id` = `users`.`_Client_Id`) AS `CustomerName`, (select `clients`.`Cli_Mail` from `clients` where `clients`.`Cli_Id` = `users`.`_Client_Id`) AS `Mail`, `users`.`Use_RegistrationDate` AS `RegisterDate`, `users`.`Use_ContactNo` AS `ContactNo`, (select case when `products`.`P_SalePrice` <> '' and `products`.`P_SalePrice` <> 0 then `products`.`P_SalePrice` else `products`.`P_RegularPrice` end from `products` where `products`.`P_Id` = (select `orders`.`_Product_Id` from `orders` where `orders`.`_Client_Id` = `orders`.`_Client_Id` and `orders`.`Ord_Status` = 5)) * (select `orders`.`Ord_Quantity` from `orders` where `orders`.`Ord_Id` = (select `orders`.`Ord_Id` from `orders` where `orders`.`_Client_Id` = `orders`.`_Client_Id` and `orders`.`Ord_Status` = 5)) AS `spend` FROM `users``users`  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `reviewsofcustomersview`
+--
+DROP TABLE IF EXISTS `reviewsofcustomersview`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `reviewsofcustomersview`  AS SELECT `reviews_products`.`_Client_Id` AS `_Client_Id`, `reviews_products`.`_Product_id` AS `_Product_id`, (select `products`.`P_Title` from `products` where `products`.`P_Id` = `reviews_products`.`_Product_id`) AS `ProductName`, (select `clients`.`Cli_DisplayName` from `clients` where `clients`.`Cli_Id` = `reviews_products`.`_Client_Id`) AS `CustomerName`, `reviews_products`.`Rev_Comment` AS `CustomerComment`, `reviews_products`.`Rev_Star` AS `RatingStar`, `reviews_products`.`Rev_Date` AS `DateOfReview` FROM `reviews_products``reviews_products`  ;
 
 -- --------------------------------------------------------
 

@@ -1,8 +1,8 @@
-
+<?php include "inc/config.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
- 
+
 <?php include "inc/head/head1.php"; ?>
 
 <body>
@@ -11,11 +11,11 @@
         <?php include 'inc/nav/nav.php' ?>
         <div class="main-wrapper">
             <!-- navbar vertical -->
-            
-            <?php include 'inc/nav/nav2.php' ?>
-            
 
-           
+            <?php include 'inc/nav/nav2.php' ?>
+
+
+
 
 
             <!-- main wrapper -->
@@ -25,13 +25,14 @@
                     <div class="row mb-8">
                         <div class="col-md-12">
                             <!-- card -->
-                            <div class="card bg-light border-0 rounded-4" style="background-image: url(../assets/images/slider/slider-image-1.jpg); background-repeat: no-repeat; background-size: cover; background-position: right;">
+                            <div class="card bg-light border-0 rounded-4"
+                                style="background-image: url(../assets/images/slider/slider-image-1.jpg); background-repeat: no-repeat; background-size: cover; background-position: right;">
                                 <div class="card-body p-lg-12">
                                     <h1>Welcome back! FreshCart
                                     </h1>
                                     <p>FreshCart is simple & clean design for developer and
                                         designer.</p>
-                                    <a href="#" class="btn btn-primary">
+                                    <a href="products.php" class="btn btn-primary">
                                         Create Product
                                     </a>
                                 </div>
@@ -57,7 +58,24 @@
                                     </div>
                                     <!-- project number -->
                                     <div class="lh-1">
-                                        <h1 class=" mb-2 fw-bold fs-2">$93,438.78</h1>
+                                        <h1 class=" mb-2 fw-bold fs-2">
+                                            <?php
+                                            $query = " SELECT 
+                                            sum((
+                                                SELECT CASE
+                                                    WHEN products.P_SalePrice <> '' OR products.P_SalePrice = 0 THEN products.P_RegularPrice
+                                                    ELSE products.P_SalePrice
+                                                END
+                                                FROM products
+                                                WHERE products.P_Id = orders._Product_Id
+                                            ) * orders.Ord_Quantity) AS totalamountOfLastThirtyDays, 
+                                            SUM((orders.Ord_UnitPrice * orders.Ord_Quantity) - (
+                                                (SELECT products.P_ActualPrice FROM products WHERE products.P_Id = orders._Product_Id) * orders.Ord_Quantity
+                                            )) AS EarningOfLastThirtyDays from orders WHERE orders.Ord_Date >= DATE_SUB(NOW(), INTERVAL 30 DAY)";
+                                            $Data = DatabaseManager::fetch_Assoc($query);
+                                            echo "$" . $Data["EarningOfLastThirtyDays"];
+                                            ?>
+                                        </h1>
                                         <span>Monthly revenue</span>
                                     </div>
                                 </div>
@@ -71,16 +89,31 @@
                                     <!-- heading -->
                                     <div class="d-flex justify-content-between align-items-center mb-6">
                                         <div>
-                                            <h4 class="mb-0 fs-5">Orders</h4>
+                                            <h4 class="mb-0 fs-5">Orders (Current)</h4>
                                         </div>
-                                        <div class="icon-shape icon-md bg-light-warning text-dark-warning rounded-circle">
+                                        <div
+                                            class="icon-shape icon-md bg-light-warning text-dark-warning rounded-circle">
                                             <i class="bi bi-cart fs-5"></i>
                                         </div>
                                     </div>
                                     <!-- project number -->
                                     <div class="lh-1">
-                                        <h1 class=" mb-2 fw-bold fs-2">42,339</h1>
-                                        <span><span class="text-dark me-1">35+</span>New Sales</span>
+                                        <h1 class=" mb-2 fw-bold fs-2">
+                                            <?php
+                                            echo DatabaseManager::select("orders", "COUNT(Ord_Id) as ordercount", "Ord_Status=5")[0]["ordercount"]
+                                                ?>
+                                        </h1>
+                                        <span><span class="text-dark me-1">
+                                                <?php
+                                                $res = DatabaseManager::query("SELECT count(Ord_Id) as co from orders  where orders.Ord_Status=5 AND orders.Ord_Date >= DATE_SUB(NOW(), INTERVAL 7 DAY)");
+                                                $data = mysqli_fetch_assoc($res);
+                                                $salesCount = $data["co"];
+                                                if ($salesCount > 30) {
+                                                    echo '30+ </span>New Sales</span>';
+                                                } else {
+                                                    echo $salesCount . '</span>New Sales</span>';
+                                                }
+                                                ?>
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +126,7 @@
                                     <!-- heading -->
                                     <div class="d-flex justify-content-between align-items-center mb-6">
                                         <div>
-                                            <h4 class="mb-0 fs-5">Customer</h4>
+                                            <h4 class="mb-0 fs-5">Total Customers</h4>
                                         </div>
                                         <div class="icon-shape icon-md bg-light-info text-dark-info rounded-circle">
                                             <i class="bi bi-people fs-5"></i>
@@ -101,8 +134,29 @@
                                     </div>
                                     <!-- project number -->
                                     <div class="lh-1">
-                                        <h1 class=" mb-2 fw-bold fs-2">39,354</h1>
-                                        <span><span class="text-dark me-1">30+</span>new in 2 days</span>
+                                        <h1 class=" mb-2 fw-bold fs-2">
+                                            <?php echo DatabaseManager::select("users", "Count(Use_Id) as uc")[0]["uc"] ?>
+                                        </h1>
+                                        <span><span class="text-dark me-1">
+                                                <?php
+                                                $a = DatabaseManager::query("SELECT COUNT(*) AS NewCustomers
+                                        FROM (
+                                            SELECT users.Use_Id
+                                            FROM users
+                                            WHERE users.Use_RegistrationDate > DATE_SUB(NOW(), INTERVAL 7 DAY)
+                                        ) AS new_customer_subquery;
+                                        ");
+                                                $b = mysqli_fetch_assoc($a);
+                                                $customercount = $b["NewCustomers"];
+                                                if ($customercount > 1000) {
+                                                    echo "$customercount +";
+                                                } else {
+                                                    echo $customercount;
+
+                                                }
+
+                                                ?>
+                                            </span>new in 7 days</span>
                                     </div>
                                 </div>
                             </div>
@@ -119,16 +173,82 @@
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             <h3 class="mb-1 fs-5">Revenue </h3>
-                                            <small>(+63%) than last year)</small>
+                                            <small>(
+                                                <?php
+                                        $lastyearrevinue = "SELECT
+                                        YEAR(Ord_Date) AS Year,
+                                        SUM(Ord_Quantity * Ord_UnitPrice) AS Revenue
+                                        FROM orders
+                                        WHERE YEAR(Ord_Date) = YEAR(NOW()) - 1 AND Ord_Status=5
+                                        GROUP BY Year;
+                                    ";
+                                    
+                                    $todayyearrevinue = "SELECT
+                                        YEAR(Ord_Date) AS Year,
+                                        SUM(Ord_Quantity * Ord_UnitPrice) AS Revenue
+                                        FROM orders
+                                        WHERE YEAR(Ord_Date) = YEAR(NOW()) AND Ord_Status=5
+                                        GROUP BY Year;
+                                    ";
+                                    
+                                    $a = DatabaseManager::query($lastyearrevinue);
+                                    $b = DatabaseManager::query($todayyearrevinue);
+                                    
+                                    $LYR = 0;
+                                    $TYR = 0;
+                                    
+                                    if ($a->num_rows != 0) {
+                                        $LYR = mysqli_fetch_assoc($a)["Revenue"];
+                                    }
+                                    
+                                    if ($b->num_rows != 0) {
+                                        $TYR = mysqli_fetch_assoc($b)["Revenue"];
+                                    }
+                                    
+                                    if ($LYR != 0 && $TYR != 0) {
+                                        $percentageChange = (($TYR - $LYR) / abs($LYR)) * 100;
+                                        $changeSign = ($percentageChange >= 0) ? '+' : '-';
+                                        $percentageChangeFormatted = $changeSign . abs($percentageChange) . '%';
+                                        echo $percentageChangeFormatted;
+                                    } else {
+                                        echo "No data available for comparison.";
+                                    }
+                                    
+                                                // echo $revInPer . "%";
+
+                                                ?>) than last year)
+                                            </small>
                                         </div>
                                         <div>
+
+
+                                            <?php
+                                            //for 2023
+                                            // $GetYearRevinue = "SELECT
+                                            //                 YEAR(OrderDate) AS Year,
+                                            //                 SUM(Ord_Quantity * Ord_UnitPrice) AS Revenue
+                                            //             FROM orders
+                                            //             WHERE YEAR(OrderDate) =2023
+                                            //             GROUP BY Year;
+                                            //             ";
+                                            ?>
+
+
                                             <!-- select option -->
                                             <select class="form-select ">
-                                                <option selected>2019</option>
-                                                <option value="2023">2020</option>
-                                                <option value="2024">2021</option>
-                                                <option value="2025">2022</option>
-                                                <option value="2025">2023</option>
+                                                <?php
+
+                                                $GetYears = "SELECT DISTINCT
+                                                                YEAR(Ord_Date) AS Y
+                                                                FROM orders";
+                                                $res = DatabaseManager::query($GetYears);
+                                                while ($year = mysqli_fetch_assoc($res)) {
+                                                    $year = $year["Y"];
+                                                    echo "<option value='$year' >$year</option>";
+                                                }
+                                                ?>
+
+
                                             </select>
                                         </div>
 
@@ -149,19 +269,27 @@
                                     <div class="mt-4">
                                         <!-- list -->
                                         <ul class="list-unstyled mb-0">
-                                            <li class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-circle-fill text-primary" viewBox="0 0 16 16">
+                                            <li class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="8"
+                                                    height="8" fill="currentColor"
+                                                    class="bi bi-circle-fill text-primary" viewBox="0 0 16 16">
                                                     <circle cx="8" cy="8" r="8" />
                                                 </svg> <span class="ms-1"><span class="text-dark">Shippings
                                                         $32.98</span> (2%)</span></li>
-                                            <li class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-circle-fill text-warning" viewBox="0 0 16 16">
+                                            <li class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="8"
+                                                    height="8" fill="currentColor"
+                                                    class="bi bi-circle-fill text-warning" viewBox="0 0 16 16">
                                                     <circle cx="8" cy="8" r="8" />
                                                 </svg> <span class="ms-1"><span class="text-dark">Refunds $11</span>
                                                     (11%)</span></li>
-                                            <li class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-circle-fill text-danger" viewBox="0 0 16 16">
+                                            <li class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="8"
+                                                    height="8" fill="currentColor" class="bi bi-circle-fill text-danger"
+                                                    viewBox="0 0 16 16">
                                                     <circle cx="8" cy="8" r="8" />
                                                 </svg> <span class="ms-1"><span class="text-dark">Order $14.87</span>
                                                     (1%)</span></li>
-                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-circle-fill text-info" viewBox="0 0 16 16">
+                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"
+                                                    fill="currentColor" class="bi bi-circle-fill text-info"
+                                                    viewBox="0 0 16 16">
                                                     <circle cx="8" cy="8" r="8" />
                                                 </svg> <span class="ms-1"><span class="text-dark">Income 3,271</span>
                                                     (86%)</span></li>
@@ -190,7 +318,9 @@
                                             <div>
                                                 <!-- progressbar -->
                                                 <div class="progress bg-light-primary" style="height: 6px;">
-                                                    <div class="progress-bar bg-primary" role="progressbar" aria-label="Example 1px high" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-primary" role="progressbar"
+                                                        aria-label="Example 1px high" style="width: 25%;"
+                                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -203,7 +333,9 @@
                                             <div>
                                                 <!-- progressbar -->
                                                 <div class="progress bg-info-soft" style="height: 6px;">
-                                                    <div class="progress-bar bg-info" role="progressbar" aria-label="Example 1px high" style="width: 88%;" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-info" role="progressbar"
+                                                        aria-label="Example 1px high" style="width: 88%;"
+                                                        aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -216,7 +348,9 @@
                                             <div>
                                                 <!-- progressbar -->
                                                 <div class="progress bg-light-danger" style="height: 6px;">
-                                                    <div class="progress-bar bg-danger" role="progressbar" aria-label="Example 1px high" style="width: 45%;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-danger" role="progressbar"
+                                                        aria-label="Example 1px high" style="width: 45%;"
+                                                        aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -234,8 +368,11 @@
                                         <div class="d-flex align-items-center">
                                             <div>
                                                 <!-- svg -->
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bell text-warning" viewBox="0 0 16 16">
-                                                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                    fill="currentColor" class="bi bi-bell text-warning"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
                                                 </svg>
                                             </div>
                                             <!-- text -->
@@ -258,8 +395,11 @@
                                         <div class="d-flex align-items-center">
                                             <!-- svg -->
                                             <div>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-lightbulb text-success" viewBox="0 0 16 16">
-                                                    <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                    fill="currentColor" class="bi bi-lightbulb text-success"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z" />
                                                 </svg>
                                             </div>
                                             <!-- text -->
@@ -307,7 +447,8 @@
                                                     <td>28 March 2023</td>
                                                     <td>$18.00</td>
                                                     <td>
-                                                        <span class="badge bg-light-primary text-dark-primary">Shipped</span>
+                                                        <span
+                                                            class="badge bg-light-primary text-dark-primary">Shipped</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -317,7 +458,8 @@
                                                     <td>24 March 2023</td>
                                                     <td>$24.00</td>
                                                     <td>
-                                                        <span class="badge bg-light-warning text-dark-warning">Pending</span>
+                                                        <span
+                                                            class="badge bg-light-warning text-dark-warning">Pending</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -327,7 +469,8 @@
                                                     <td>8 Feb 2023</td>
                                                     <td>$9.00</td>
                                                     <td>
-                                                        <span class="badge bg-light-danger text-dark-danger">Cancel</span>
+                                                        <span
+                                                            class="badge bg-light-danger text-dark-danger">Cancel</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -337,7 +480,8 @@
                                                     <td>20 Jan 2023</td>
                                                     <td>$12.00</td>
                                                     <td>
-                                                        <span class="badge bg-light-warning text-dark-warning">Pending</span>
+                                                        <span
+                                                            class="badge bg-light-warning text-dark-warning">Pending</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -347,7 +491,8 @@
                                                     <td>14 Jan 2023</td>
                                                     <td>$8.00</td>
                                                     <td>
-                                                        <span class="badge bg-light-info text-dark-info">Processing</span>
+                                                        <span
+                                                            class="badge bg-light-info text-dark-info">Processing</span>
                                                     </td>
                                                 </tr>
                                             </tbody>
