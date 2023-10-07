@@ -50,7 +50,9 @@
                                     <!-- heading -->
                                     <div class="d-flex justify-content-between align-items-center mb-6">
                                         <div>
-                                            <h4 class="mb-0 fs-5">Earnings</h4>
+                                            <h4 class="mb-0 fs-5">Earnings
+                                                <!-- amount we Earned after order succeeded   -->
+                                            </h4>
                                         </div>
                                         <div class="icon-shape icon-md bg-light-danger text-dark-danger rounded-circle">
                                             <i class="bi bi-currency-dollar fs-5"></i>
@@ -61,17 +63,10 @@
                                         <h1 class=" mb-2 fw-bold fs-2">
                                             <?php
                                             $query = " SELECT 
-                                            sum((
-                                                SELECT CASE
-                                                    WHEN products.P_SalePrice <> '' OR products.P_SalePrice = 0 THEN products.P_RegularPrice
-                                                    ELSE products.P_SalePrice
-                                                END
-                                                FROM products
-                                                WHERE products.P_Id = orders._Product_Id
-                                            ) * orders.Ord_Quantity) AS totalamountOfLastThirtyDays, 
+                                            sum(orders.Ord_UnitPrice * orders.Ord_Quantity) AS totalamountOfLastThirtyDays, 
                                             SUM((orders.Ord_UnitPrice * orders.Ord_Quantity) - (
                                                 (SELECT products.P_ActualPrice FROM products WHERE products.P_Id = orders._Product_Id) * orders.Ord_Quantity
-                                            )) AS EarningOfLastThirtyDays from orders WHERE orders.Ord_Date >= DATE_SUB(NOW(), INTERVAL 30 DAY)";
+                                            )) AS EarningOfLastThirtyDays from orders WHERE orders.Ord_Date >= DATE_SUB(NOW(), INTERVAL 30 DAY) AND orders.Ord_Status!=6";
                                             $Data = DatabaseManager::fetch_Assoc($query);
                                             echo "$" . $Data["EarningOfLastThirtyDays"];
                                             ?>
@@ -175,47 +170,93 @@
                                             <h3 class="mb-1 fs-5">Revenue </h3>
                                             <small>(
                                                 <?php
-                                        $lastyearrevinue = "SELECT
+                                                if (isset($_GET["filter-year"])) {
+                                                    $filterCurrentYearAs = $_GET["filter-year"];
+
+                                                    $lastyearrevinue = "SELECT
+                                                YEAR(Ord_Date) AS Year,
+                                                SUM(Ord_Quantity * Ord_UnitPrice) AS Revenue
+                                                FROM orders
+                                                WHERE YEAR(Ord_Date) = $filterCurrentYearAs - 1 AND Ord_Status=5
+                                                GROUP BY Year;
+                                            ";
+
+                                                    $todayyearrevinue = "SELECT
+                                                YEAR(Ord_Date) AS Year,
+                                                SUM(Ord_Quantity * Ord_UnitPrice) AS Revenue
+                                                FROM orders
+                                                WHERE YEAR(Ord_Date) = $filterCurrentYearAs AND Ord_Status=5
+                                                GROUP BY Year;
+                                            ";
+
+                                                    $a = DatabaseManager::query($lastyearrevinue);
+                                                    $b = DatabaseManager::query($todayyearrevinue);
+
+                                                    $LYR = 0;
+                                                    $TYR = 0;
+
+                                                    if ($a->num_rows != 0) {
+                                                        $LYR = mysqli_fetch_assoc($a)["Revenue"];
+                                                    }
+
+                                                    if ($b->num_rows != 0) {
+                                                        $TYR = mysqli_fetch_assoc($b)["Revenue"];
+                                                    }
+
+                                                    if ($LYR != 0 && $TYR != 0) {
+                                                        $percentageChange = (($TYR - $LYR) / abs($LYR)) * 100;
+                                                        $changeSign = ($percentageChange >= 0) ? '+' : '-';
+                                                        $percentageChangeFormatted = $changeSign . abs($percentageChange) . '%';
+                                                        echo $percentageChangeFormatted;
+                                                    } else {
+                                                        echo "No data available for the year " . ($filterCurrentYearAs - 1) . " for comparison.";
+                                                    }
+
+                                                } else {
+
+                                                    $lastyearrevinue = "SELECT
                                         YEAR(Ord_Date) AS Year,
                                         SUM(Ord_Quantity * Ord_UnitPrice) AS Revenue
                                         FROM orders
                                         WHERE YEAR(Ord_Date) = YEAR(NOW()) - 1 AND Ord_Status=5
                                         GROUP BY Year;
                                     ";
-                                    
-                                    $todayyearrevinue = "SELECT
+
+                                                    $todayyearrevinue = "SELECT
                                         YEAR(Ord_Date) AS Year,
                                         SUM(Ord_Quantity * Ord_UnitPrice) AS Revenue
                                         FROM orders
                                         WHERE YEAR(Ord_Date) = YEAR(NOW()) AND Ord_Status=5
                                         GROUP BY Year;
                                     ";
-                                    
-                                    $a = DatabaseManager::query($lastyearrevinue);
-                                    $b = DatabaseManager::query($todayyearrevinue);
-                                    
-                                    $LYR = 0;
-                                    $TYR = 0;
-                                    
-                                    if ($a->num_rows != 0) {
-                                        $LYR = mysqli_fetch_assoc($a)["Revenue"];
-                                    }
-                                    
-                                    if ($b->num_rows != 0) {
-                                        $TYR = mysqli_fetch_assoc($b)["Revenue"];
-                                    }
-                                    
-                                    if ($LYR != 0 && $TYR != 0) {
-                                        $percentageChange = (($TYR - $LYR) / abs($LYR)) * 100;
-                                        $changeSign = ($percentageChange >= 0) ? '+' : '-';
-                                        $percentageChangeFormatted = $changeSign . abs($percentageChange) . '%';
-                                        echo $percentageChangeFormatted;
-                                    } else {
-                                        echo "No data available for comparison.";
-                                    }
-                                    
-                                                // echo $revInPer . "%";
 
+                                                    $a = DatabaseManager::query($lastyearrevinue);
+                                                    $b = DatabaseManager::query($todayyearrevinue);
+
+                                                    $LYR = 0;
+                                                    $TYR = 0;
+
+                                                    if ($a->num_rows != 0) {
+                                                        $LYR = mysqli_fetch_assoc($a)["Revenue"];
+                                                    }
+
+                                                    if ($b->num_rows != 0) {
+                                                        $TYR = mysqli_fetch_assoc($b)["Revenue"];
+                                                    }
+
+                                                    if ($LYR != 0 && $TYR != 0) {
+                                                        $percentageChange = (($TYR - $LYR) / abs($LYR)) * 100;
+                                                        $changeSign = ($percentageChange >= 0) ? '+' : '-';
+                                                        $percentageChangeFormatted = $changeSign . abs($percentageChange) . '%';
+                                                        echo $percentageChangeFormatted;
+                                                    } else {
+                                                        echo "No data available for comparison.";
+                                                    }
+                                                }
+
+
+                                                // echo $revInPer . "%";
+                                                
                                                 ?>) than last year)
                                             </small>
                                         </div>
@@ -235,18 +276,35 @@
 
 
                                             <!-- select option -->
-                                            <select class="form-select ">
+                                            <select class="form-select filter-year-rev ">
                                                 <?php
-
                                                 $GetYears = "SELECT DISTINCT
                                                                 YEAR(Ord_Date) AS Y
-                                                                FROM orders";
+                                                                FROM orders
+                                                                ORDER BY YEAR(Ord_Date) DESC";
                                                 $res = DatabaseManager::query($GetYears);
+                                                $i = 0;
+                                                $selectedYear = isset($_GET["filter-year"]) ? $_GET["filter-year"] : null; // Get the selected year from the URL
                                                 while ($year = mysqli_fetch_assoc($res)) {
                                                     $year = $year["Y"];
-                                                    echo "<option value='$year' >$year</option>";
+                                                    $selected = ($selectedYear !== null && $selectedYear == $year) ? "selected" : ""; // Check if this year should be selected
+                                                    echo "<option $selected value='$year'>$year</option>";
+                                                    $i++;
                                                 }
                                                 ?>
+
+                                                <script>
+                                                    let a = document.getElementsByClassName("filter-year-rev");
+                                                    console.log("aoihcsuia");
+                                                    for (let index = 0; index < a.length; index++) {
+                                                        const element = a[index];
+                                                        element.addEventListener("change", (el) => {
+                                                            let clickede = el.target.value;
+                                                            window.location.href = "index.php?filter-year=" + clickede;
+                                                            console.log(clickede);
+                                                        })
+                                                    }
+                                                </script>
 
 
                                             </select>
@@ -269,31 +327,63 @@
                                     <div class="mt-4">
                                         <!-- list -->
                                         <ul class="list-unstyled mb-0">
-                                            <li class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="8"
-                                                    height="8" fill="currentColor"
-                                                    class="bi bi-circle-fill text-primary" viewBox="0 0 16 16">
-                                                    <circle cx="8" cy="8" r="8" />
-                                                </svg> <span class="ms-1"><span class="text-dark">Shippings
-                                                        $32.98</span> (2%)</span></li>
-                                            <li class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="8"
-                                                    height="8" fill="currentColor"
-                                                    class="bi bi-circle-fill text-warning" viewBox="0 0 16 16">
-                                                    <circle cx="8" cy="8" r="8" />
-                                                </svg> <span class="ms-1"><span class="text-dark">Refunds $11</span>
-                                                    (11%)</span></li>
-                                            <li class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="8"
-                                                    height="8" fill="currentColor" class="bi bi-circle-fill text-danger"
-                                                    viewBox="0 0 16 16">
-                                                    <circle cx="8" cy="8" r="8" />
-                                                </svg> <span class="ms-1"><span class="text-dark">Order $14.87</span>
-                                                    (1%)</span></li>
-                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"
-                                                    fill="currentColor" class="bi bi-circle-fill text-info"
-                                                    viewBox="0 0 16 16">
-                                                    <circle cx="8" cy="8" r="8" />
-                                                </svg> <span class="ms-1"><span class="text-dark">Income 3,271</span>
-                                                    (86%)</span></li>
+                                            <!-- 
+    shipping->total amount that will be given or gaved to shipping company,
+    refund->total amount which we will be given or gaved to customers who cancelled order,
+    Order->total amount which we will get ,
+    Income->total revinue maked in all years
+-->
+                                            <?php
+                                            // Fetch data from the database (replace with your database query)
+                                            $query = " SELECT 
+                                            sum(orders.Ord_UnitPrice * orders.Ord_Quantity) AS Totalamount, 
+                                            SUM((orders.Ord_UnitPrice * orders.Ord_Quantity) - (
+                                                (SELECT products.P_ActualPrice FROM products WHERE products.P_Id = orders._Product_Id) * orders.Ord_Quantity
+                                            )) AS TotalEarning from orders where orders.Ord_Status!=6";
+
+                                            $TotalRevinue = (DatabaseManager::fetch_Assoc($query))["TotalEarning"];
+
+                                            // SROI=Shippings+Refunds+Order+Revenue
+                                            $SROI = [
+                                                ["name" => "Shippings", "amount" => (DatabaseManager::query("SELECT * from orders where orders.Ord_Status!=6")->num_rows != 0) ? DatabaseManager::select("orders", "SUM(Ord_ShippingPrice) as sp", "Ord_Status!=6")[0]["sp"] : 0],
+                                                ["name" => "Refunds", "amount" => (DatabaseManager::query("SELECT * from orders where orders.Ord_Status=6")->num_rows != 0) ? DatabaseManager::select("orders", "SUM(Ord_Quantity * Ord_UnitPrice) as ref", "Ord_Status=6")[0]["ref"] : 0],
+                                                ["name" => "Order", "amount" => (DatabaseManager::query("SELECT * from orders where orders.Ord_Status!=6")->num_rows != 0) ? DatabaseManager::select("orders", "SUM(Ord_Quantity * Ord_UnitPrice) as oa", "Ord_Status!=6")[0]["oa"] : 0],
+                                                ["name" => "Revenue", "amount" => $TotalRevinue]
+                                            ];
+                                            $totalAmount = DatabaseManager::select("orders", "sum(Ord_Quantity * Ord_UnitPrice) as ta")[0]["ta"];
+                                            foreach ($SROI as $item) {
+                                                $name = $item["name"];
+                                                $amount = $item["amount"];
+
+                                                // Calculate percentage (if needed)
+                                                $percentage = number_format(($amount / $totalAmount) * 100, 2);
+
+                                                // Set the color based on the condition (you can modify this as needed)
+                                                $colorClass = "";
+                                                if ($name === "Shippings") {
+                                                    $colorClass = "text-primary";
+                                                } elseif ($name === "Refunds") {
+                                                    $colorClass = "text-warning";
+                                                } elseif ($name === "Order") {
+                                                    $colorClass = "text-danger";
+                                                } elseif ($name === "Income") {
+                                                    $colorClass = "text-info";
+                                                }
+
+                                                // Output the list item
+                                                echo '<li class="mb-2">';
+                                                echo '<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-circle-fill ' . $colorClass . '" viewBox="0 0 16 16">';
+                                                echo '<circle cx="8" cy="8" r="8" />';
+                                                echo '</svg>';
+                                                echo '<span class="ms-1">';
+                                                echo '<span class="text-dark">' . $name . ' $' . number_format($amount, 2) . '</span>';
+                                                echo ' (' . $percentage . '%)';
+                                                echo '</span>';
+                                                echo '</li>';
+                                            }
+                                            ?>
                                         </ul>
+
                                     </div>
                                 </div>
                             </div>
@@ -515,7 +605,300 @@
     <!-- Theme JS -->
     <script src="../assets/js/theme.min.js"></script>
     <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="../assets/js/vendors/chart.js"></script>
+    <!-- chart script start-->
+    <script defr>
+        $(document).ready(() => {
+
+            const theme = {
+                primary: "var(--fc-primary)",
+                secondary: "var(--fc-secondary)",
+                success: "var(--fc-success)",
+                info: "var(--fc-info)",
+                warning: "var(--fc-warning)",
+                danger: "var(--fc-danger)",
+                dark: "var(--fc-dark)",
+                light: "var(--fc-light)",
+                white: "var(--fc-white)",
+                gray100: "var(--fc-gray-100)",
+                gray200: "var(--fc-gray-200)",
+                gray300: "var(--fc-gray-300)",
+                gray400: "var(--fc-gray-400)",
+                gray500: "var(--fc-gray-500)",
+                gray600: "var(--fc-gray-600)",
+                gray700: "var(--fc-gray-700)",
+                gray800: "var(--fc-gray-800)",
+                gray900: "var(--fc-gray-900)",
+                black: "var(--fc-black)",
+                transparent: "transparent",
+            };
+            (window.theme = theme),
+                (function () {
+                    var e;
+                    $("#revenueChart").length && ((e = {
+                        series: [{
+                            name: "Total Income",
+                            data: [<?php
+                            $currentMonth = date("m");
+                            $arr = [];
+                            for ($i = 0; $i < $currentMonth; $i++) {
+                                if (isset($_GET["filter-year"])) {
+                                    $yearas = $_GET["filter-year"];
+                                    $query = "SELECT 
+                                                                    SUM((orders.Ord_UnitPrice * orders.Ord_Quantity) - (
+                                                                        (SELECT products.P_ActualPrice FROM products WHERE products.P_Id = orders._Product_Id) * orders.Ord_Quantity
+                                                                    )) AS EarningOfmonth
+                                                                FROM orders
+                                                                WHERE
+                                                                    YEAR(orders.Ord_Date) = $yearas
+                                                                    AND MONTH(orders.Ord_Date) = $i
+                                                                AND orders.Ord_Status != 6";
+                                } else {
+                                    $query = "SELECT 
+                                                                    SUM((orders.Ord_UnitPrice * orders.Ord_Quantity) - (
+                                                                        (SELECT products.P_ActualPrice FROM products WHERE products.P_Id = orders._Product_Id) * orders.Ord_Quantity
+                                                                    )) AS EarningOfmonth
+                                                                FROM orders
+                                                                WHERE
+                                                                    YEAR(orders.Ord_Date) = YEAR(CURDATE())
+                                                                    AND MONTH(orders.Ord_Date) = $i
+                                                                AND orders.Ord_Status != 6";
+
+                                }
+
+                                $req = DatabaseManager::query($query);
+                                if ($req->num_rows != 0) {
+                                    if ($currentMonth - 1 == $i) {
+                                        $data = mysqli_fetch_assoc($req)["EarningOfmonth"];
+                                        echo $data;
+                                    } else {
+                                        echo "0,";
+
+                                    }
+                                } else {
+                                    echo "0";
+                                }
+                            }
+
+                            ?>]
+
+
+
+                        },
+                        {
+                            name: "Total Expence",
+                            data: [<?php
+                            $currentMonth = date("m");
+                            $arr = [];
+                            for ($i = 0; $i < $currentMonth; $i++) {
+                                if (isset($_GET["filter-year"])) {
+                                    $yearas = $_GET["filter-year"];
+                                    $query = "SELECT SUM(Ord_UnitPrice * Ord_Quantity) AS TotalExpense
+                                            FROM orders
+                                            WHERE YEAR(Ord_Date) = $yearas AND MONTH(Ord_Date) = $i
+                                            AND Ord_Status != 6";
+                                } else {
+
+                                    $query = "SELECT SUM(Ord_UnitPrice * Ord_Quantity) AS TotalExpense
+                                            FROM orders
+                                            WHERE YEAR(Ord_Date) = YEAR(CURDATE()) AND MONTH(Ord_Date) = $i
+                                            AND Ord_Status != 6";
+                                }
+                                $req = DatabaseManager::query($query);
+                                if($req->num_rows!=0){
+                                    if ($currentMonth - 1 == $i) {
+                                        $data = mysqli_fetch_assoc($req)["TotalExpense"];
+                                        echo $data;
+                                    } else {
+                                        echo "0,";
+    
+                                    }
+
+                                }else{
+                                    echo "0";
+                                }
+                            }
+                            ?>]
+                        },
+                        ],
+                        labels: ["Jan", "Feb", "March", "April", "May", "Jun", "Jul", "Aug", "Sep",
+                            "Oct", "Nov", "Dec"
+                        ],
+                        chart: {
+                            height: 350,
+                            type: "area",
+                            toolbar: {
+                                show: !1
+                            }
+                        },
+                        dataLabels: {
+                            enabled: !1
+                        },
+                        markers: {
+                            size: 5,
+                            hover: {
+                                size: 6,
+                                sizeOffset: 3
+                            }
+                        },
+                        colors: ["#0aad0a", "#ffc107"],
+                        stroke: {
+                            curve: "smooth",
+                            width: 2
+                        },
+                        grid: {
+                            borderColor: window.theme.gray300
+                        },
+                        xaxis: {
+                            labels: {
+                                show: !0,
+                                align: "right",
+                                minWidth: 0,
+                                maxWidth: 160,
+                                style: {
+                                    fontSize: "12px",
+                                    fontWeight: 400,
+                                    colors: [window.theme.gray600],
+                                    fontFamily: '"Inter", "sans-serif"'
+                                }
+                            },
+                            axisBorder: {
+                                show: !0,
+                                color: window.theme.gray300,
+                                height: 1,
+                                width: "100%",
+                                offsetX: 0,
+                                offsetY: 0
+                            },
+                            axisTicks: {
+                                show: !0,
+                                borderType: "solid",
+                                color: window.theme.gray300,
+                                height: 6,
+                                offsetX: 0,
+                                offsetY: 0
+                            },
+                        },
+                        legend: {
+                            position: "top",
+                            fontWeight: 600,
+                            color: window.theme.gray600,
+                            markers: {
+                                width: 8,
+                                height: 8,
+                                strokeWidth: 0,
+                                strokeColor: "#fff",
+                                fillColors: void 0,
+                                radius: 12,
+                                customHTML: void 0,
+                                onClick: void 0,
+                                offsetX: 0,
+                                offsetY: 0
+                            },
+                            labels: {
+                                colors: window.theme.gray600,
+                                useSeriesColors: !1
+                            },
+                        },
+                        yaxis: {
+                            labels: {
+                                formatter: function (e) {
+
+                                    return "$"+e;
+                                },
+                                show: !0,
+                                align: "right",
+                                minWidth: 0,
+                                maxWidth: 160,
+                                style: {
+                                    fontSize: "12px",
+                                    fontWeight: 400,
+                                    colors: window.theme.gray600,
+                                    fontFamily: '"Inter", "sans-serif"'
+                                },
+                            },
+                        },
+                    }),
+                        new ApexCharts(document.querySelector("#revenueChart"), e).render()),
+                        $("#totalSale").length &&
+                        ((e = {
+                            series: [<?php echo $SROI[0]["amount"] . "," . $SROI[1]["amount"] . "," . $SROI[2]["amount"] . "," . $SROI[3]["amount"] ?>],
+                            labels: ["Shippings", "Refunds", "Order", "Revenue"],
+                            colors: ["#0aad0a", "#ffc107", "#db3030", "#016bf8"],
+                            chart: {
+                                type: "donut",
+                                height: 280
+                            },
+                            legend: {
+                                show: !1
+                            },
+                            dataLabels: {
+                                enabled: !1
+                            },
+                            plotOptions: {
+                                pie: {
+                                    donut: {
+                                        size: "85%",
+                                        background: "transparent",
+                                        labels: {
+                                            show: !0,
+                                            name: {
+                                                show: !0,
+                                                fontSize: "22px",
+                                                fontFamily: '"Inter", "sans-serif"',
+                                                fontWeight: 600,
+                                                colors: [window.theme.gray600],
+                                                offsetY: -10,
+                                                formatter: function (e) {
+                                                    return e;
+                                                },
+                                            },
+                                            value: {
+                                                show: !0,
+                                                fontSize: "24px",
+                                                fontFamily: '"Inter", "sans-serif"',
+                                                fontWeight: 800,
+                                                colors: window.theme.gray800,
+                                                offsetY: 8,
+                                                formatter: function (e) {
+                                                    return e;
+                                                },
+                                            },
+                                            total: {
+                                                show: !0,
+                                                showAlways: !1,
+                                                label: "Total Metrics",
+                                                fontSize: "16px",
+                                                fontFamily: '"Inter", "sans-serif"',
+                                                fontWeight: 400,
+                                                colors: window.theme.gray400,
+                                                formatter: function (e) {
+                                                    return "$" + e.globals.seriesTotals.reduce((e, r) => e +
+                                                        r, 0);
+                                                },
+                                            },
+                                        },
+                                    },
+                                },
+                            },
+                            stroke: {
+                                width: 0
+                            },
+                            responsive: [{
+                                breakpoint: 1400,
+                                options: {
+                                    chart: {
+                                        type: "donut",
+                                        width: 290,
+                                        height: 330
+                                    }
+                                }
+                            }],
+                        }),
+                            new ApexCharts(document.querySelector("#totalSale"), e).render());
+                })();
+        })
+    </script>
+    <!-- chart script end-->
 
 </body>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2023 at 11:08 PM
+-- Generation Time: Oct 07, 2023 at 10:10 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -103,18 +103,19 @@ CREATE TABLE `orders` (
   `_Product_Id` int(11) NOT NULL,
   `Ord_Quantity` varchar(255) NOT NULL,
   `Ord_Date` date NOT NULL DEFAULT current_timestamp(),
-  `Ord_Status` int(11) NOT NULL DEFAULT 0 COMMENT '0=pending,1=packeging,2=shipping,3=warehouse,4=delevering,5=success\r\n',
+  `Ord_Status` int(11) NOT NULL DEFAULT 0 COMMENT '0=pending,1=packeging,2=shipping,3=warehouse,4=delevering,5=success,6=Canceled\r\n',
   `Ord_Name` varchar(255) NOT NULL COMMENT 'timestamp k sath unique aaigi',
-  `Ord_UnitPrice` varchar(255) DEFAULT NULL
+  `Ord_UnitPrice` varchar(255) DEFAULT NULL,
+  `Ord_ShippingPrice` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`Ord_Id`, `_Client_Id`, `_Product_Id`, `Ord_Quantity`, `Ord_Date`, `Ord_Status`, `Ord_Name`, `Ord_UnitPrice`) VALUES
-(5, 2, 54, '2', '2022-10-01', 5, 'FC#1007', '15'),
-(6, 2, 57, '3', '2023-09-25', 5, 'FC#1009', '35');
+INSERT INTO `orders` (`Ord_Id`, `_Client_Id`, `_Product_Id`, `Ord_Quantity`, `Ord_Date`, `Ord_Status`, `Ord_Name`, `Ord_UnitPrice`, `Ord_ShippingPrice`) VALUES
+(5, 2, 54, '2', '2022-10-01', 5, 'FC#1007', '15', 10),
+(6, 2, 57, '3', '2023-09-25', 5, 'FC#1009', '35', 15);
 
 -- --------------------------------------------------------
 
