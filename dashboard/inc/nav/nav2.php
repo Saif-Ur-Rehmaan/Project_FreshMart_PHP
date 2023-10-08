@@ -2,7 +2,7 @@
                 <div class="navbar-vertical">
                     <div class="px-4 py-5">
                         <a href="../index.php" class="navbar-brand">
-                            <img src="../assets/images/logo/freshcart-logo.svg" alt="">
+                            <img src="../assets/images/freshcart-logo.svg" alt="">
                         </a>
                     </div>
                     <div class="navbar-vertical-content flex-grow-1" data-simplebar="">

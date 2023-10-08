@@ -102,7 +102,7 @@
 
                           <td>
                             <div class="d-flex align-items-center">
-                              <img src="../assets/images/avatar/avatar-1.jpg" alt=""
+                              <img src="../assets/images/avatar-1.jpg" alt=""
                                 class="avatar avatar-xs rounded-circle">
                               <div class="ms-2">
                                 <a href="#" class="text-inherit">
@@ -240,12 +240,12 @@
 
 
   <!-- Libs JS -->
-  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+   <?php include "../inc/LibsJs.php"?>
+  
+  
 
   <!-- Theme JS -->
-  <script src="../assets/js/theme.min.js"></script>
+   <script src="../assets/js/theme.min.js"></script>
   <script>
     $(document).ready(() => {
       $('#_PRODUCT_SEARCH_INP').on("keyup", search)
@@ -295,7 +295,7 @@
 
                             <td>
                               <div class="d-flex align-items-center">
-                                <img src="../assets/images/avatar/avatar-1.jpg" alt=""
+                                <img src="../assets/images/avatar-1.jpg" alt=""
                                   class="avatar avatar-xs rounded-circle">
                                 <div class="ms-2">
                                   <a href="#" class="text-inherit">

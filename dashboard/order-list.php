@@ -130,7 +130,7 @@
                             </div>
                           </td>
                           <td>
-                            <a href="#!"> <img src="../assets/images/products/<?php echo $ProductImage; ?>" alt=""
+                            <a href="#!"> <img src="../assets/images/<?php echo $ProductImage; ?>" alt=""
                                 class="icon-shape icon-md"></a>
                           </td>
                           <td><a href="#" class="text-reset"><!--example :FC#1007-->
@@ -172,6 +172,9 @@
                               case '4':
                                 echo '<span class="badge badge-primary text-dark bg-light-info">Delevering</span>';
                                 break;
+                              case '6':
+                                echo '<span class="badge badge-primary text-light bg-danger">Canceled</span>';
+                                break;
                               default:
                                 echo '<span class="badge badge-success text-light bg-success">Success</span>';
 
@@ -197,7 +200,7 @@
                           </td>
                         </tr>
                       <?php } ?>
-              
+
                     </tbody>
                   </table>
                 </div>
@@ -209,7 +212,7 @@
 
 
                 <?php
-                
+
 
                 $arry = DatabaseManager::select("products limit $offset, $cardsPerPage");
                 ?>
@@ -287,12 +290,12 @@
 
 
   <!-- Libs JS -->
-  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+   <?php include "../inc/LibsJs.php"?>
+  
+  
 
   <!-- Theme JS -->
-  <script src="../assets/js/theme.min.js"></script>
+   <script src="../assets/js/theme.min.js"></script>
 
   <script>
     $(document).ready(() => {
@@ -336,7 +339,7 @@
                             </div>
                           </td>
                           <td>
-                            <a href="#!"> <img src="../assets/images/products/${row.P_Images}" alt=""
+                            <a href="#!"> <img src="../assets/images/${row.P_Images}" alt=""
                                 class="icon-shape icon-md"></a>
                           </td>
                           <td><a href="#" class="text-reset"><!--example :FC#1007-->
@@ -372,6 +375,9 @@
                     break;
                   case '4':
                     html += '<span class="badge badge-primary text-dark bg-light-info">Delevering</span>';
+                    break;
+                  case '6':
+                    html += '<span class="badge badge-primary text-light bg-danger">Canceled</span>';
                     break;
                   default:
                     html += '<span class="badge badge-success text-light bg-success">Success</span>';

@@ -49,7 +49,7 @@
                                     <li class="list-group-item px-5 py-4 list-group-item-action active">
                                         <a href="#!" class="text-muted">
                                             <div class="d-flex">
-                                                <img src="../assets/images/avatar/avatar-1.jpg" alt="" class="avatar avatar-md rounded-circle ">
+                                                <img src="../assets/images/avatar-1.jpg" alt="" class="avatar avatar-md rounded-circle ">
                                                 <div class="ms-4">
                                                     <p class="mb-1">
                                                         <span class="text-dark">Your order is placed</span> waiting for shipping
@@ -68,7 +68,7 @@
                                     <li class="list-group-item  px-5 py-4 list-group-item-action">
                                         <a href="#!" class="text-muted">
                                             <div class="d-flex">
-                                                <img src="../assets/images/avatar/avatar-5.jpg" alt="" class="avatar avatar-md rounded-circle ">
+                                                <img src="../assets/images/avatar-5.jpg" alt="" class="avatar avatar-md rounded-circle ">
                                                 <div class="ms-4">
                                                     <p class="mb-1">
                                                         <span class="text-dark">Jitu Chauhan </span> answered to your pending order list with notes
@@ -87,7 +87,7 @@
                                     <li class="list-group-item px-5 py-4 list-group-item-action">
                                         <a href="#!" class="text-muted">
                                             <div class="d-flex">
-                                                <img src="../assets/images/avatar/avatar-2.jpg" alt="" class="avatar avatar-md rounded-circle ">
+                                                <img src="../assets/images/avatar-2.jpg" alt="" class="avatar avatar-md rounded-circle ">
                                                 <div class="ms-4">
                                                     <p class="mb-1">
                                                         <span class="text-dark">You have new messages</span> 2 unread messages
@@ -116,7 +116,7 @@
                     </li>
                     <li class="dropdown ms-4">
                         <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="../assets/images/avatar/avatar-1.jpg" alt="" class="avatar avatar-md rounded-circle">
+                            <img src="../assets/images/avatar-1.jpg" alt="" class="avatar avatar-md rounded-circle">
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end p-0">

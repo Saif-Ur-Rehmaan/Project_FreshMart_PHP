@@ -23,7 +23,7 @@
 </script>
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico">
 
 
 <!-- Libs CSS -->
@@ -45,7 +45,7 @@
   <nav class="navbar navbar-light py-2">
     <div class="container justify-content-center justify-content-lg-between">
       <a class="navbar-brand" href="../index.php">
-        <img src="../assets/images/logo/freshcart-logo.svg" alt="" class="d-inline-block align-text-top">
+        <img src="../assets/images/freshcart-logo.svg" alt="" class="d-inline-block align-text-top">
       </a>
       <span class="navbar-text">
         Already have an account? <a href="signin.php">Sign in</a>
@@ -65,7 +65,7 @@
       <div class="row justify-content-center align-items-center">
         <div class="col-12 col-md-6 col-lg-4 order-lg-1 order-2">
           <!-- img -->
-          <img src="../assets/images/svg-graphics/signup-g.svg" alt="" class="img-fluid">
+          <img src="../assets/images/signup-g.svg" alt="" class="img-fluid">
         </div>
         <!-- col -->
         <div class="col-12 col-md-6 offset-lg-1 col-lg-4 order-lg-2 order-1">
@@ -212,19 +212,19 @@
           <ul class="list-inline mb-0">
             <li class="list-inline-item text-dark">Payment Partners</li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/amazonpay.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/amazonpay.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/american-express.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/american-express.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/mastercard.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/mastercard.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/paypal.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/paypal.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/visa.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/visa.svg" alt=""></a>
             </li>
           </ul>
         </div>
@@ -232,10 +232,10 @@
           <ul class="list-inline mb-0 text-lg-end text-center">
             <li class="list-inline-item mb-2 mb-md-0 text-dark">Get deliveries with FreshCart</li>
             <li class="list-inline-item ms-4">
-              <a href="#!"> <img src="../assets/images/appbutton/appstore-btn.svg" alt=""
+              <a href="#!"> <img src="../assets/images/appstore-btn.svg" alt=""
                   style="width: 140px;"></a></li>
             <li class="list-inline-item">
-              <a href="#!"> <img src="../assets/images/appbutton/googleplay-btn.svg" alt=""
+              <a href="#!"> <img src="../assets/images/googleplay-btn.svg" alt=""
                   style="width: 140px;"></a></li>
           </ul>
         </div>
@@ -275,12 +275,12 @@
 </footer>
   <!-- Javascript-->
   <!-- Libs JS -->
-<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script src="../assets/js/theme.min.js"></script>
+
+
 
 <!-- Theme JS -->
-<script src="../assets/js/theme.min.js"></script>
+ <script src="../assets/js/theme.min.js"></script>
   <script src="../assets/js/vendors/password.js"></script>
 
 

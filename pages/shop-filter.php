@@ -25,7 +25,7 @@
 </script>
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico">
 
 
 <!-- Libs CSS -->
@@ -123,12 +123,12 @@
         <div class="row w-100 align-items-center gx-lg-2 gx-0">
           <div class="col-xxl-2 col-lg-3">
             <a class="navbar-brand d-none d-lg-block" href="../index.php">
-              <img src="../assets/images/logo/freshcart-logo.svg" alt="eCommerce HTML Template">
+              <img src="../assets/images/freshcart-logo.svg" alt="eCommerce HTML Template">
 
             </a>
             <div class="d-flex justify-content-between w-100 d-lg-none">
               <a class="navbar-brand" href="../index.php">
-                <img src="../assets/images/logo/freshcart-logo.svg" alt="eCommerce HTML Template">
+                <img src="../assets/images/freshcart-logo.svg" alt="eCommerce HTML Template">
 
               </a>
 
@@ -294,7 +294,7 @@
       </div>
       <div class="offcanvas offcanvas-start p-4 p-lg-0" id="navbar-default">
         <div class="d-flex justify-content-between align-items-center mb-2 d-block d-lg-none">
-          <a href="../index.php"><img src="../assets/images/logo/freshcart-logo.svg"
+          <a href="../index.php"><img src="../assets/images/freshcart-logo.svg"
               alt="eCommerce HTML Template"></a>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
@@ -435,7 +435,7 @@
                   </div>
                   <div class="col-lg-3 col-12 mb-4 mb-lg-0">
                     <div class="card border-0">
-                      <img src="../assets/images/banner/menu-banner.jpg" alt="eCommerce HTML Template"
+                      <img src="../assets/images/menu-banner.jpg" alt="eCommerce HTML Template"
                         class="img-fluid">
                       <div class="position-absolute ps-6 mt-8">
                         <h5 class=" mb-0 ">Dont miss this <br>offer today.</h5>
@@ -779,7 +779,7 @@
           <!-- row -->
           <div class="row align-items-center">
             <div class="col-3 col-md-2">
-              <!-- img --> <img src="../assets/images/products/product-img-1.jpg" alt="Ecommerce"
+              <!-- img --> <img src="../assets/images/product-img-1.jpg" alt="Ecommerce"
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
@@ -825,7 +825,7 @@
           <!-- row -->
           <div class="row align-items-center">
             <div class="col-3 col-md-2">
-              <!-- img --> <img src="../assets/images/products/product-img-2.jpg" alt="Ecommerce"
+              <!-- img --> <img src="../assets/images/product-img-2.jpg" alt="Ecommerce"
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
@@ -870,7 +870,7 @@
           <!-- row -->
           <div class="row align-items-center">
             <div class="col-3 col-md-2">
-              <!-- img --> <img src="../assets/images/products/product-img-3.jpg" alt="Ecommerce"
+              <!-- img --> <img src="../assets/images/product-img-3.jpg" alt="Ecommerce"
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
@@ -915,7 +915,7 @@
           <!-- row -->
           <div class="row align-items-center">
             <div class="col-3 col-md-2">
-              <!-- img --> <img src="../assets/images/products/product-img-4.jpg" alt="Ecommerce"
+              <!-- img --> <img src="../assets/images/product-img-4.jpg" alt="Ecommerce"
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
@@ -960,7 +960,7 @@
           <!-- row -->
           <div class="row align-items-center">
             <div class="col-3 col-md-2">
-              <!-- img --> <img src="../assets/images/products/product-img-5.jpg" alt="Ecommerce"
+              <!-- img --> <img src="../assets/images/product-img-5.jpg" alt="Ecommerce"
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
@@ -1360,7 +1360,7 @@
                     </div>
                     <a href="shop-single.php">
                       <!-- img -->
-                      <img src="../assets/images/products/product-img-1.jpg" alt="Grocery Ecommerce Template"
+                      <img src="../assets/images/product-img-1.jpg" alt="Grocery Ecommerce Template"
                         class="mb-3 img-fluid"></a>
                     <!-- action btn -->
                     <div class="card-product-action">
@@ -1412,7 +1412,7 @@
 
                     <a href="shop-single.php">
                       <!-- img -->
-                      <img src="../assets/images/products/product-img-2.jpg" alt="Grocery Ecommerce Template"
+                      <img src="../assets/images/product-img-2.jpg" alt="Grocery Ecommerce Template"
                         class="mb-3 img-fluid"></a>
                     <!-- action btn -->
                     <div class="card-product-action">
@@ -1459,7 +1459,7 @@
               <div class="card card-product">
                 <div class="card-body">
                   <div class="text-center position-relative"> <a href="shop-single.php"><img
-                        src="../assets/images/products/product-img-3.jpg" alt="Grocery Ecommerce Template"
+                        src="../assets/images/product-img-3.jpg" alt="Grocery Ecommerce Template"
                         class="mb-3 img-fluid"></a>
                     <!-- action btn -->
                     <div class="card-product-action">
@@ -1513,7 +1513,7 @@
 
                     <a href="shop-single.php">
                       <!-- img -->
-                      <img src="../assets/images/products/product-img-4.jpg" alt="Grocery Ecommerce Template"
+                      <img src="../assets/images/product-img-4.jpg" alt="Grocery Ecommerce Template"
                         class="mb-3 img-fluid"></a>
                     <!-- action btn -->
                     <div class="card-product-action">
@@ -1560,7 +1560,7 @@
               <div class="card card-product">
                 <div class="card-body">
                   <div class="text-center position-relative"> <a href="shop-single.php"><img
-                        src="../assets/images/products/product-img-5.jpg" alt="Grocery Ecommerce Template"
+                        src="../assets/images/product-img-5.jpg" alt="Grocery Ecommerce Template"
                         class="mb-3 img-fluid"></a>
                     <!-- action btn -->
                     <div class="card-product-action">
@@ -1613,7 +1613,7 @@
                     </div>
                     <a href="shop-single.php">
                       <!-- img -->
-                      <img src="../assets/images/products/product-img-6.jpg" alt="Grocery Ecommerce Template"
+                      <img src="../assets/images/product-img-6.jpg" alt="Grocery Ecommerce Template"
                         class="mb-3 img-fluid"></a>
                     <!-- action btn -->
                     <div class="card-product-action">
@@ -1660,7 +1660,7 @@
               <div class="card card-product">
                 <div class="card-body">
                   <div class="text-center position-relative"> <a href="shop-single.php"><img
-                        src="../assets/images/products/product-img-7.jpg" alt="Grocery Ecommerce Template"
+                        src="../assets/images/product-img-7.jpg" alt="Grocery Ecommerce Template"
                         class="mb-3 img-fluid"></a>
                     <!-- action btn -->
                     <div class="card-product-action">
@@ -1707,7 +1707,7 @@
               <div class="card card-product">
                 <div class="card-body">
                   <div class="text-center position-relative"> <a href="shop-single.php"><img
-                        src="../assets/images/products/product-img-8.jpg" alt="Grocery Ecommerce Template"
+                        src="../assets/images/product-img-8.jpg" alt="Grocery Ecommerce Template"
                         class="mb-3 img-fluid"></a>
                     <!-- action btn -->
                     <div class="card-product-action">
@@ -1755,7 +1755,7 @@
               <div class="card card-product">
                 <div class="card-body">
                   <div class="text-center position-relative"> <a href="shop-single.php"><img
-                        src="../assets/images/products/product-img-9.jpg" alt="Grocery Ecommerce Template"
+                        src="../assets/images/product-img-9.jpg" alt="Grocery Ecommerce Template"
                         class="mb-3 img-fluid"></a>
                     <!-- action btn -->
                     <div class="card-product-action">
@@ -1803,7 +1803,7 @@
               <div class="card card-product">
                 <div class="card-body">
                   <div class="text-center position-relative"> <a href="shop-single.php"><img
-                        src="../assets/images/products/product-img-10.jpg" alt="Grocery Ecommerce Template"
+                        src="../assets/images/product-img-10.jpg" alt="Grocery Ecommerce Template"
                         class="mb-3 img-fluid"></a>
                     <!-- action btn -->
                     <div class="card-product-action">
@@ -1901,12 +1901,12 @@
                 class="zoom"
                 onmousemove="zoom(event)"
                 style="
-                  background-image: url(../assets/images/products/product-single-img-1.jpg);
+                  background-image: url(../assets/images/product-single-img-1.jpg);
                 "
               >
                 <!-- img -->
                 <img
-                  src="../assets/images/products/product-single-img-1.jpg"
+                  src="../assets/images/product-single-img-1.jpg"
                   alt=""
             >
               </div>
@@ -1915,12 +1915,12 @@
                   class="zoom"
                   onmousemove="zoom(event)"
                   style="
-                    background-image: url(../assets/images/products/product-single-img-2.jpg);
+                    background-image: url(../assets/images/product-single-img-2.jpg);
                   "
                 >
                   <!-- img -->
                   <img
-                    src="../assets/images/products/product-single-img-2.jpg"
+                    src="../assets/images/product-single-img-2.jpg"
                     alt=""
               >
                 </div>
@@ -1930,12 +1930,12 @@
                   class="zoom"
                   onmousemove="zoom(event)"
                   style="
-                    background-image: url(../assets/images/products/product-single-img-3.jpg);
+                    background-image: url(../assets/images/product-single-img-3.jpg);
                   "
                 >
                   <!-- img -->
                   <img
-                    src="../assets/images/products/product-single-img-3.jpg"
+                    src="../assets/images/product-single-img-3.jpg"
                     alt=""
               >
                 </div>
@@ -1945,12 +1945,12 @@
                   class="zoom"
                   onmousemove="zoom(event)"
                   style="
-                    background-image: url(../assets/images/products/product-single-img-4.jpg);
+                    background-image: url(../assets/images/product-single-img-4.jpg);
                   "
                 >
                   <!-- img -->
                   <img
-                    src="../assets/images/products/product-single-img-4.jpg"
+                    src="../assets/images/product-single-img-4.jpg"
                     alt=""
               >
                 </div>
@@ -1963,7 +1963,7 @@
                   <div class="thumbnails-img">
                     <!-- img -->
                     <img
-                      src="../assets/images/products/product-single-img-1.jpg"
+                      src="../assets/images/product-single-img-1.jpg"
                       alt=""
                 >
                   </div>
@@ -1972,7 +1972,7 @@
                   <div class="thumbnails-img" >
                     <!-- img -->
                     <img
-                      src="../assets/images/products/product-single-img-2.jpg"
+                      src="../assets/images/product-single-img-2.jpg"
                       alt=""
                 >
                   </div>
@@ -1981,7 +1981,7 @@
                   <div class="thumbnails-img">
                     <!-- img -->
                     <img
-                      src="../assets/images/products/product-single-img-3.jpg"
+                      src="../assets/images/product-single-img-3.jpg"
                       alt=""
                 >
                   </div>
@@ -1990,7 +1990,7 @@
                   <div class="thumbnails-img">
                     <!-- img -->
                     <img
-                      src="../assets/images/products/product-single-img-4.jpg"
+                      src="../assets/images/product-single-img-4.jpg"
                       alt=""
                 >
                   </div>
@@ -2202,19 +2202,19 @@
           <ul class="list-inline mb-0">
             <li class="list-inline-item text-dark">Payment Partners</li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/amazonpay.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/amazonpay.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/american-express.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/american-express.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/mastercard.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/mastercard.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/paypal.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/paypal.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/visa.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/visa.svg" alt=""></a>
             </li>
           </ul>
         </div>
@@ -2222,10 +2222,10 @@
           <ul class="list-inline mb-0 text-lg-end text-center">
             <li class="list-inline-item mb-2 mb-md-0 text-dark">Get deliveries with FreshCart</li>
             <li class="list-inline-item ms-4">
-              <a href="#!"> <img src="../assets/images/appbutton/appstore-btn.svg" alt=""
+              <a href="#!"> <img src="../assets/images/appstore-btn.svg" alt=""
                   style="width: 140px;"></a></li>
             <li class="list-inline-item">
-              <a href="#!"> <img src="../assets/images/appbutton/googleplay-btn.svg" alt=""
+              <a href="#!"> <img src="../assets/images/googleplay-btn.svg" alt=""
                   style="width: 140px;"></a></li>
           </ul>
         </div>
@@ -2267,12 +2267,12 @@
   <script src="../assets/libs/nouislider/dist/nouislider.min.js"></script>
   <script src="../assets/libs/wnumb/wNumb.min.js"></script>
   <!-- Libs JS -->
-<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script src="../assets/js/theme.min.js"></script>
+
+
 
 <!-- Theme JS -->
-<script src="../assets/js/theme.min.js"></script>
+ <script src="../assets/js/theme.min.js"></script>
   <script src="../assets/libs/tiny-slider/dist/min/tiny-slider.js"></script>
   <script src="../assets/js/vendors/tns-slider.js"></script>
   <script src="../assets/js/vendors/zoom.js"></script>

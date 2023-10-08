@@ -74,7 +74,7 @@
                     <div class="card-body p-6">
                       <div>
                         <!-- img -->
-                        <img src="../assets/images/stores-logo/<?php echo $value["Sel_Image"]; ?>" alt=""
+                        <img src="../assets/images/<?php echo $value["Sel_Image"]; ?>" alt=""
                           class="rounded-circle icon-shape icon-xxl mb-6">
                         <!-- content -->
                         <h2 class="mb-2 h5"><a href="#!" class="text-inherit"><?php echo $value["Sel_StoreName"]; ?></a></h2>
@@ -114,12 +114,12 @@
 
 
   <!-- Libs JS -->
-<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script src="../assets/js/theme.min.js"></script>
+
+
 
 <!-- Theme JS -->
-<script src="../assets/js/theme.min.js"></script>
+ <script src="../assets/js/theme.min.js"></script>
 
 </body>
 

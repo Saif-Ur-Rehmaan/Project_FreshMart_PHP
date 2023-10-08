@@ -26,7 +26,7 @@
                         <div class="col-md-12">
                             <!-- card -->
                             <div class="card bg-light border-0 rounded-4"
-                                style="background-image: url(../assets/images/slider/slider-image-1.jpg); background-repeat: no-repeat; background-size: cover; background-position: right;">
+                                style="background-image: url(../assets/images/slider-image-1.jpg); background-repeat: no-repeat; background-size: cover; background-position: right;">
                                 <div class="card-body p-lg-12">
                                     <h1>Welcome back! FreshCart
                                     </h1>
@@ -530,61 +530,67 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                                <?php
+                                                $query = "SELECT 
+                                                    orders.Ord_Name as OrderNumber,
+                                                    (SELECT products.P_Title from products WHERE products.P_Id=orders._Product_Id) as ProductName,
+                                                    orders.Ord_Date as OrderDate,
+                                                    (orders.Ord_Quantity*orders.Ord_UnitPrice) as price,
+                                                    orders.Ord_Status as OrderStatus
+                                                    from orders where   orders.Ord_Date >= DATE_SUB(NOW(), INTERVAL 30 DAY) ";
 
-                                                    <td>#FC0005</td>
-                                                    <td>Haldiram's Sev Bhujia</td>
-                                                    <td>28 March 2023</td>
-                                                    <td>$18.00</td>
-                                                    <td>
-                                                        <span
-                                                            class="badge bg-light-primary text-dark-primary">Shipped</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
+                                                $res = DatabaseManager::query($query);
+                                                while ($row = mysqli_fetch_assoc($res)) {
+                                                    ?>
+                                                    <tr>
 
-                                                    <td>#FC0004</td>
-                                                    <td>NutriChoice Digestive</td>
-                                                    <td>24 March 2023</td>
-                                                    <td>$24.00</td>
-                                                    <td>
-                                                        <span
-                                                            class="badge bg-light-warning text-dark-warning">Pending</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
+                                                        <td>
+                                                            <?php echo $row["OrderNumber"] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $row["ProductName"] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $row["OrderDate"] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo "$" . $row["price"] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                               switch ($row["OrderStatus"]) {
+                                                                case '0':
+                                                                  echo '<span class="badge badge-warning text-dark bg-light-danger">Pending</span>';
+                                                                  break;
+                                                                case '1':
+                                                                  echo '<span class="badge badge-warning text-dark bg-warning">Packeging</span>';
+                                                                  break;
+                                                                case '2':
+                                                                  echo '<span class="badge badge-info text-light bg-dark">Shipping</span>';
+                                                                  break;
+                                                                case '3':
+                                                                  echo '<span class="badge badge-success text-dark bg-light-secondary">Warehouse</span>';
+                                                                  break;
+                                                                case '4':
+                                                                  echo '<span class="badge badge-primary text-dark bg-light-info">Delevering</span>';
+                                                                  break;
+                                                                case '6':
+                                                                  echo '<span class="badge badge-primary text-light bg-danger">Canceled</span>';
+                                                                  break;
+                                                                default:
+                                                                  echo '<span class="badge badge-success text-light bg-success">Success</span>';
+                                  
+                                                                  break;
+                                                              }
+                                                            ?>
 
-                                                    <td>#FC0003</td>
-                                                    <td>Onion Flavour Potato</td>
-                                                    <td>8 Feb 2023</td>
-                                                    <td>$9.00</td>
-                                                    <td>
-                                                        <span
-                                                            class="badge bg-light-danger text-dark-danger">Cancel</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
+                                                        </td>
 
-                                                    <td>#FC0002</td>
-                                                    <td>Blueberry Greek Yogurt</td>
-                                                    <td>20 Jan 2023</td>
-                                                    <td>$12.00</td>
-                                                    <td>
-                                                        <span
-                                                            class="badge bg-light-warning text-dark-warning">Pending</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
+                                                    </tr>
 
-                                                    <td>#FC0001</td>
-                                                    <td>Slurrp Millet Chocolate</td>
-                                                    <td>14 Jan 2023</td>
-                                                    <td>$8.00</td>
-                                                    <td>
-                                                        <span
-                                                            class="badge bg-light-info text-dark-info">Processing</span>
-                                                    </td>
-                                                </tr>
+                                                <?php } ?>
+  
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -598,12 +604,12 @@
     </div>
 
     <!-- Libs JS -->
-    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+     <?php include "../inc/LibsJs.php"?>
+    
+    
 
     <!-- Theme JS -->
-    <script src="../assets/js/theme.min.js"></script>
+     <script src="../assets/js/theme.min.js"></script>
     <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
     <!-- chart script start-->
     <script defr>
@@ -704,16 +710,16 @@
                                             AND Ord_Status != 6";
                                 }
                                 $req = DatabaseManager::query($query);
-                                if($req->num_rows!=0){
+                                if ($req->num_rows != 0) {
                                     if ($currentMonth - 1 == $i) {
                                         $data = mysqli_fetch_assoc($req)["TotalExpense"];
                                         echo $data;
                                     } else {
                                         echo "0,";
-    
+
                                     }
 
-                                }else{
+                                } else {
                                     echo "0";
                                 }
                             }
@@ -803,7 +809,7 @@
                             labels: {
                                 formatter: function (e) {
 
-                                    return "$"+e;
+                                    return "$" + e;
                                 },
                                 show: !0,
                                 align: "right",

@@ -3,7 +3,7 @@
               <div class="card border-0 text-center card-lg">
                 <div class="card-body p-6">
                   <div>
-                    <!-- img --><img src="../assets/images/stores-logo/stores-logo-2.svg" alt=""
+                    <!-- img --><img src="../assets/images/stores-logo-2.svg" alt=""
                       class="rounded-circle icon-shape icon-xxl mb-6">
 
                     <!-- content -->
@@ -33,7 +33,7 @@
               <div class="card border-0 text-center card-lg">
                 <div class="card-body p-6">
                   <div>
-                    <!-- img --><img src="../assets/images/stores-logo/stores-logo-3.svg" alt=""
+                    <!-- img --><img src="../assets/images/stores-logo-3.svg" alt=""
                       class="rounded-circle icon-shape icon-xxl mb-6">
 
                     <!-- content -->
@@ -63,7 +63,7 @@
               <div class="card border-0 text-center card-lg">
                 <div class="card-body p-6">
                   <div>
-                    <!-- img --><img src="../assets/images/stores-logo/stores-logo-4.svg" alt=""
+                    <!-- img --><img src="../assets/images/stores-logo-4.svg" alt=""
                       class="rounded-circle icon-shape icon-xxl mb-6">
 
                     <!-- content -->
@@ -93,7 +93,7 @@
               <div class="card border-0 text-center card-lg">
                 <div class="card-body p-6">
                   <div>
-                    <!-- img --><img src="../assets/images/stores-logo/stores-logo-5.svg" alt=""
+                    <!-- img --><img src="../assets/images/stores-logo-5.svg" alt=""
                       class="rounded-circle icon-shape icon-xxl mb-6">
 
                     <!-- content -->
@@ -123,7 +123,7 @@
               <div class="card border-0 text-center card-lg">
                 <div class="card-body p-6">
                   <div>
-                    <!-- img --><img src="../assets/images/stores-logo/stores-logo-6.svg" alt=""
+                    <!-- img --><img src="../assets/images/stores-logo-6.svg" alt=""
                       class="rounded-circle icon-shape icon-xxl mb-6">
 
                     <!-- content -->
@@ -153,7 +153,7 @@
               <div class="card border-0 text-center card-lg">
                 <div class="card-body p-6">
                   <div>
-                    <!-- img --><img src="../assets/images/stores-logo/stores-logo-7.svg" alt=""
+                    <!-- img --><img src="../assets/images/stores-logo-7.svg" alt=""
                       class="rounded-circle icon-shape icon-xxl mb-6">
 
                     <!-- content -->
@@ -183,7 +183,7 @@
               <div class="card border-0 text-center card-lg">
                 <div class="card-body p-6">
                   <div>
-                    <!-- img --><img src="../assets/images/stores-logo/stores-logo-8.svg" alt=""
+                    <!-- img --><img src="../assets/images/stores-logo-8.svg" alt=""
                       class="rounded-circle icon-shape icon-xxl mb-6">
 
                     <!-- content -->
@@ -210,7 +210,7 @@
               <div class="card border-0 text-center card-lg">
                 <div class="card-body p-6">
                   <div>
-                    <!-- img --><img src="../assets/images/stores-logo/stores-logo-9.svg" alt=""
+                    <!-- img --><img src="../assets/images/stores-logo-9.svg" alt=""
                       class="rounded-circle icon-shape icon-xxl mb-6">
                     <!-- content -->
                     <h2 class="mb-2 h5"><a href="#!" class="text-inherit">Spencers</a></h2>

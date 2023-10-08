@@ -25,7 +25,7 @@
 </script>
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico">
 
 
 <!-- Libs CSS -->
@@ -123,12 +123,12 @@
         <div class="row w-100 align-items-center gx-lg-2 gx-0">
           <div class="col-xxl-2 col-lg-3">
             <a class="navbar-brand d-none d-lg-block" href="../index.php">
-              <img src="../assets/images/logo/freshcart-logo.svg" alt="eCommerce HTML Template">
+              <img src="../assets/images/freshcart-logo.svg" alt="eCommerce HTML Template">
 
             </a>
             <div class="d-flex justify-content-between w-100 d-lg-none">
               <a class="navbar-brand" href="../index.php">
-                <img src="../assets/images/logo/freshcart-logo.svg" alt="eCommerce HTML Template">
+                <img src="../assets/images/freshcart-logo.svg" alt="eCommerce HTML Template">
 
               </a>
 
@@ -294,7 +294,7 @@
       </div>
       <div class="offcanvas offcanvas-start p-4 p-lg-0" id="navbar-default">
         <div class="d-flex justify-content-between align-items-center mb-2 d-block d-lg-none">
-          <a href="../index.php"><img src="../assets/images/logo/freshcart-logo.svg"
+          <a href="../index.php"><img src="../assets/images/freshcart-logo.svg"
               alt="eCommerce HTML Template"></a>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
@@ -435,7 +435,7 @@
                   </div>
                   <div class="col-lg-3 col-12 mb-4 mb-lg-0">
                     <div class="card border-0">
-                      <img src="../assets/images/banner/menu-banner.jpg" alt="eCommerce HTML Template"
+                      <img src="../assets/images/menu-banner.jpg" alt="eCommerce HTML Template"
                         class="img-fluid">
                       <div class="position-absolute ps-6 mt-8">
                         <h5 class=" mb-0 ">Dont miss this <br>offer today.</h5>
@@ -779,7 +779,7 @@
           <!-- row -->
           <div class="row align-items-center">
             <div class="col-3 col-md-2">
-              <!-- img --> <img src="../assets/images/products/product-img-1.jpg" alt="Ecommerce"
+              <!-- img --> <img src="../assets/images/product-img-1.jpg" alt="Ecommerce"
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
@@ -825,7 +825,7 @@
           <!-- row -->
           <div class="row align-items-center">
             <div class="col-3 col-md-2">
-              <!-- img --> <img src="../assets/images/products/product-img-2.jpg" alt="Ecommerce"
+              <!-- img --> <img src="../assets/images/product-img-2.jpg" alt="Ecommerce"
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
@@ -870,7 +870,7 @@
           <!-- row -->
           <div class="row align-items-center">
             <div class="col-3 col-md-2">
-              <!-- img --> <img src="../assets/images/products/product-img-3.jpg" alt="Ecommerce"
+              <!-- img --> <img src="../assets/images/product-img-3.jpg" alt="Ecommerce"
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
@@ -915,7 +915,7 @@
           <!-- row -->
           <div class="row align-items-center">
             <div class="col-3 col-md-2">
-              <!-- img --> <img src="../assets/images/products/product-img-4.jpg" alt="Ecommerce"
+              <!-- img --> <img src="../assets/images/product-img-4.jpg" alt="Ecommerce"
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
@@ -960,7 +960,7 @@
           <!-- row -->
           <div class="row align-items-center">
             <div class="col-3 col-md-2">
-              <!-- img --> <img src="../assets/images/products/product-img-5.jpg" alt="Ecommerce"
+              <!-- img --> <img src="../assets/images/product-img-5.jpg" alt="Ecommerce"
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
@@ -1099,7 +1099,7 @@
             <div class="col-md-6">
               <div class=" me-6">
                 <!-- img -->
-                <img src="../assets/images/about/about-img.jpg" alt="" class="img-fluid rounded">
+                <img src="../assets/images/about-img.jpg" alt="" class="img-fluid rounded">
               </div>
             </div>
 
@@ -1119,7 +1119,7 @@
                 <div class="card-body p-8">
                   <div class="mb-4">
                     <!-- img -->
-                    <img src="../assets/images/about/about-icons-1.svg" alt="">
+                    <img src="../assets/images/about-icons-1.svg" alt="">
                   </div>
                   <h4>Grow my business with Freshcart</h4>
                   <p>Duis placerat, urna ut dictum lobortis, erat libero feugiat nulla, ullamcorper fermentum lectus
@@ -1137,7 +1137,7 @@
                 <div class="card-body p-8">
                   <div class="mb-4">
                     <!-- img -->
-                    <img src="../assets/images/about/about-icons-2.svg" alt="">
+                    <img src="../assets/images/about-icons-2.svg" alt="">
                   </div>
                   <h4>Advertise my brand on Freshcart</h4>
                   <p>Duis placerat, urna ut dictum lobortis, erat libero feugiat nulla, ullamcorper fermentum lectus
@@ -1155,7 +1155,7 @@
                 <div class="card-body p-8">
                   <div class="mb-4">
                     <!-- img -->
-                    <img src="../assets/images/about/about-icons-3.svg" alt="">
+                    <img src="../assets/images/about-icons-3.svg" alt="">
                   </div>
                   <h4>Learn more about Freshcart</h4>
                   <p>Vivamus non risus id sapien egestas tempus id sed lla mus justo metus, suscipit non hendrerit. </p>
@@ -1248,7 +1248,7 @@
             <small>Vice President, Retail</small>
           </div>
            <!-- img -->
-          <img src="../assets/images/about/team-1.png" alt="" class="img-fluid">
+          <img src="../assets/images/team-1.png" alt="" class="img-fluid">
         </div>
       </div>
        <!-- item -->
@@ -1261,7 +1261,7 @@
             <small>Chief Financial Officer</small>
           </div>
            <!-- img -->
-          <img src="../assets/images/about/team-2.png" alt="" class="img-fluid">
+          <img src="../assets/images/team-2.png" alt="" class="img-fluid">
         </div>
       </div>
        <!-- item -->
@@ -1273,7 +1273,7 @@
             <small>Chief Communications Officer</small>
           </div>
            <!-- img -->
-          <img src="../assets/images/about/team-3.png" alt="" class="img-fluid">
+          <img src="../assets/images/team-3.png" alt="" class="img-fluid">
         </div>
       </div>
        <!-- item -->
@@ -1285,7 +1285,7 @@
             <small>Chief Technology Officer</small>
           </div>
            <!-- img -->
-          <img src="../assets/images/about/team-4.png" alt="" class="img-fluid">
+          <img src="../assets/images/team-4.png" alt="" class="img-fluid">
         </div>
       </div>
        <!-- item -->
@@ -1297,7 +1297,7 @@
             <small>Chief Human Resources Officer</small>
           </div>
            <!-- img -->
-          <img src="../assets/images/about/team-5.png" alt="" class="img-fluid">
+          <img src="../assets/images/team-5.png" alt="" class="img-fluid">
         </div>
       </div>
        <!-- item -->
@@ -1309,7 +1309,7 @@
             <small>Chief Financial Officer</small>
           </div>
            <!-- img -->
-          <img src="../assets/images/about/team-2.png" alt="" class="img-fluid">
+          <img src="../assets/images/team-2.png" alt="" class="img-fluid">
         </div>
       </div>
        <!-- item -->
@@ -1321,7 +1321,7 @@
             <small>Chief Communications Officer</small>
           </div>
            <!-- img -->
-          <img src="../assets/images/about/team-3.png" alt="" class="img-fluid">
+          <img src="../assets/images/team-3.png" alt="" class="img-fluid">
         </div>
       </div>
        <!-- item -->
@@ -1333,7 +1333,7 @@
             <small>Chief Technology Officer</small>
           </div>
            <!-- img -->
-          <img src="../assets/images/about/team-4.png" alt="" class="img-fluid">
+          <img src="../assets/images/team-4.png" alt="" class="img-fluid">
         </div>
       </div>
 
@@ -1436,19 +1436,19 @@
           <ul class="list-inline mb-0">
             <li class="list-inline-item text-dark">Payment Partners</li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/amazonpay.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/amazonpay.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/american-express.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/american-express.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/mastercard.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/mastercard.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/paypal.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/paypal.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/visa.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/visa.svg" alt=""></a>
             </li>
           </ul>
         </div>
@@ -1456,10 +1456,10 @@
           <ul class="list-inline mb-0 text-lg-end text-center">
             <li class="list-inline-item mb-2 mb-md-0 text-dark">Get deliveries with FreshCart</li>
             <li class="list-inline-item ms-4">
-              <a href="#!"> <img src="../assets/images/appbutton/appstore-btn.svg" alt=""
+              <a href="#!"> <img src="../assets/images/appstore-btn.svg" alt=""
                   style="width: 140px;"></a></li>
             <li class="list-inline-item">
-              <a href="#!"> <img src="../assets/images/appbutton/googleplay-btn.svg" alt=""
+              <a href="#!"> <img src="../assets/images/googleplay-btn.svg" alt=""
                   style="width: 140px;"></a></li>
           </ul>
         </div>
@@ -1499,12 +1499,12 @@
 </footer>
   <!-- Javascript-->
   <!-- Libs JS -->
-<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script src="../assets/js/theme.min.js"></script>
+
+
 
 <!-- Theme JS -->
-<script src="../assets/js/theme.min.js"></script>
+ <script src="../assets/js/theme.min.js"></script>
   <script src="../assets/libs/slick-carousel/slick/slick.min.js"></script>
   <script src="../assets/js/vendors/slick-slider.js"></script>
 

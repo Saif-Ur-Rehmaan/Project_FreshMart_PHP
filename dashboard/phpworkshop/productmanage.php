@@ -29,7 +29,7 @@ if (isset($_POST["Add_Product"])) {
     $P_Images = time().$_FILES['file']['name'];
     $from = $_FILES['file']['tmp_name'];
     $name=$P_Images;
-    $to = '../../assets/images/products/' .$name;
+    $to = '../../assets/images/' .$name;
     
  
     
@@ -55,7 +55,7 @@ if (isset($_POST["Add_Product"])) {
 
 if (isset($_GET["DeleteProductOfId"])) {
     $ID = $_GET["DeleteProductOfId"];
-    $filename = "../../assets/images/products/".DatabaseManager::select("products","P_Images as cl","P_Id=$ID")[0]["cl"]; // Specify the path to the file
+    $filename = "../../assets/images/".DatabaseManager::select("products","P_Images as cl","P_Id=$ID")[0]["cl"]; // Specify the path to the file
     
     if (file_exists($filename)) {
         if (unlink($filename)) {
@@ -114,14 +114,14 @@ if (isset($_POST["Edit_Product"])) {
     $P_Images =time().$_FILES['file']['name'];
     $from = $_FILES['file']['tmp_name'];
     $name=$P_Images;
-    $to = '../../assets/images/products/' .$name;
+    $to = '../../assets/images/' .$name;
      
 
 
 
 
   if($P_Images!=null){
-    $filename = "../../assets/images/products/".DatabaseManager::select("products","P_Images as cl","P_Id=$Edit_Product_id")[0]["cl"]; // Specify the path to the file
+    $filename = "../../assets/images/".DatabaseManager::select("products","P_Images as cl","P_Id=$Edit_Product_id")[0]["cl"]; // Specify the path to the file
     
     if (file_exists($filename)) {
         if (unlink($filename)) {

@@ -16,7 +16,7 @@
 </script>
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico">
 
 
 <!-- Libs CSS -->

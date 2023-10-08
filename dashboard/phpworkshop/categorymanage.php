@@ -18,7 +18,7 @@ if (isset($_POST["Create_Category"])) {
 
     $C_Logo =time(). $_FILES['C_image']['name'];
     $from = $_FILES['C_image']['tmp_name'];
-    $to = '../../assets/images/icons/' . $C_Logo;
+    $to = '../../assets/images/' . $C_Logo;
 
     // Check for file upload errors
     if ($_FILES['C_image']['error'] === UPLOAD_ERR_OK) {
@@ -57,7 +57,7 @@ if (isset($_POST["Create_Category"])) {
 
 if (isset($_GET["DeleteCategoryOfId"])) {
     $id = $_GET["DeleteCategoryOfId"];
-    $filename = "../../assets/images/icons/".DatabaseManager::select("categories","C_Logo as cl","C_id=$id")[0]["cl"]; // Specify the path to the file
+    $filename = "../../assets/images/".DatabaseManager::select("categories","C_Logo as cl","C_id=$id")[0]["cl"]; // Specify the path to the file
     
     if (file_exists($filename)) {
         if (unlink($filename)) {
@@ -93,12 +93,12 @@ if (isset($_POST["Edit_Category"])) {
 
     $C_Logo =time(). $_FILES['C_image']['name'];
     $from = $_FILES['C_image']['tmp_name'];
-    $to = '../../assets/images/icons/' . $C_Logo;
+    $to = '../../assets/images/' . $C_Logo;
 
     // Check for file upload errors
     if ($_FILES['C_image']['error'] === UPLOAD_ERR_OK) {
         if (move_uploaded_file($from, $to)) {
-            $filename = "../../assets/images/icons/".DatabaseManager::select("categories","C_Logo as cl","C_id=$EDITID")[0]["cl"]; // Specify the path to the file
+            $filename = "../../assets/images/".DatabaseManager::select("categories","C_Logo as cl","C_id=$EDITID")[0]["cl"]; // Specify the path to the file
     
             if (file_exists($filename)) {
                 if (unlink($filename)) {

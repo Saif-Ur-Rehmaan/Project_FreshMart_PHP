@@ -24,7 +24,7 @@
 </script>
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico">
 
 
 <!-- Libs CSS -->
@@ -46,7 +46,7 @@
       <div class="col-xl-7 col-lg-8">
         <div class="d-flex align-items-center">
           <a class="navbar-brand d-none d-lg-block" href="../index.php">
-            <img src="../assets/images/logo/freshcart-logo.svg" alt="eCommerce HTML Template">
+            <img src="../assets/images/freshcart-logo.svg" alt="eCommerce HTML Template">
 
           </a>
           <div class=" w-100 ms-4  d-none d-lg-block ">
@@ -74,7 +74,7 @@
         </div>
         <div class="d-flex justify-content-between align-items-center w-100 d-lg-none">
           <a class="navbar-brand mb-0" href="../index.php">
-            <img src="../assets/images/logo/freshcart-logo.svg" alt="eCommerce HTML Template">
+            <img src="../assets/images/freshcart-logo.svg" alt="eCommerce HTML Template">
 
           </a>
 
@@ -118,7 +118,7 @@
                       <li class="list-group-item px-0 py-3">
                         <div class="row align-items-center g-0">
                           <div class="col-lg-3 col-3 text-center">
-                            <!-- img --> <img src="../assets/images/products/product-img-1.jpg" alt="Ecommerce"
+                            <!-- img --> <img src="../assets/images/product-img-1.jpg" alt="Ecommerce"
                               class="icon-xxl"></div>
                           <div class="col-lg-7 col-7">
                             <!-- title -->
@@ -140,7 +140,7 @@
                       <li class="list-group-item px-0 py-3">
                         <div class="row align-items-center g-0">
                           <div class="col-lg-3 col-3 text-center">
-                            <!-- img --> <img src="../assets/images/products/product-img-2.jpg" alt="Ecommerce"
+                            <!-- img --> <img src="../assets/images/product-img-2.jpg" alt="Ecommerce"
                               class="icon-xxl"></div>
                           <div class="col-lg-7 col-7">
                             <!-- title -->
@@ -164,7 +164,7 @@
                       <li class="list-group-item px-0 py-3">
                         <div class="row align-items-center g-0">
                           <div class="col-lg-3 col-3 text-center">
-                            <!-- img --> <img src="../assets/images/products/product-img-3.jpg" alt="Ecommerce"
+                            <!-- img --> <img src="../assets/images/product-img-3.jpg" alt="Ecommerce"
                               class="icon-xxl"></div>
                           <div class="col-lg-7 col-7">
                             <!-- title -->
@@ -260,7 +260,7 @@
                   <li class="list-group-item px-0 py-3">
                     <div class="row align-items-center g-0">
                       <div class="col-lg-3 text-center">
-                        <!-- img --> <img src="../assets/images/products/product-img-1.jpg" alt="Ecommerce"
+                        <!-- img --> <img src="../assets/images/product-img-1.jpg" alt="Ecommerce"
                           class="icon-xxl"></div>
                       <div class="col-lg-7">
                         <!-- title -->
@@ -282,7 +282,7 @@
                   <li class="list-group-item px-0 py-3">
                     <div class="row align-items-center g-0">
                       <div class="col-lg-3 text-center">
-                        <!-- img --> <img src="../assets/images/products/product-img-2.jpg" alt="Ecommerce"
+                        <!-- img --> <img src="../assets/images/product-img-2.jpg" alt="Ecommerce"
                           class="icon-xxl"></div>
                       <div class="col-lg-7">
                         <!-- title -->
@@ -306,7 +306,7 @@
                   <li class="list-group-item px-0 py-3">
                     <div class="row align-items-center g-0">
                       <div class="col-lg-3 text-center">
-                        <!-- img --> <img src="../assets/images/products/product-img-3.jpg" alt="Ecommerce"
+                        <!-- img --> <img src="../assets/images/product-img-3.jpg" alt="Ecommerce"
                           class="icon-xxl"></div>
                       <div class="col-lg-7">
                         <!-- title -->
@@ -357,7 +357,7 @@
 
     <div class="offcanvas offcanvas-start p-4 p-lg-0 " id="navbar-default">
       <div class="d-flex justify-content-between align-items-center mb-4 d-block d-lg-none">
-        <a href="../index.php"><img src="../assets/images/logo/freshcart-logo.svg"
+        <a href="../index.php"><img src="../assets/images/freshcart-logo.svg"
             alt="eCommerce HTML Template"></a>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
@@ -1689,7 +1689,7 @@
                 </div>
                 <div class="col-lg-3 col-12 mb-4 mb-lg-0">
                   <div class="card border-0">
-                    <img src="../assets/images/banner/menu-banner.jpg" alt="eCommerce HTML Template"
+                    <img src="../assets/images/menu-banner.jpg" alt="eCommerce HTML Template"
                       class="img-fluid ">
                     <div class="position-absolute ps-6 mt-8">
                       <h5 class=" mb-0 ">Dont miss this <br>offer today.</h5>
@@ -1833,7 +1833,7 @@
           </form>
         </div>
         <div class="my-10 text-center">
-          <img src="../assets/images/svg-graphics/delivery-boy.svg" alt="" class="img-fluid">
+          <img src="../assets/images/delivery-boy.svg" alt="" class="img-fluid">
 
         </div>
       </div>
@@ -1883,7 +1883,7 @@
       <main>
          <!-- section -->
          <section class="py-lg-16 py-10"
-            style="background: url(../assets/images/banner/banner-4.jpg)no-repeat; background-position: center; background-size: cover;">
+            style="background: url(../assets/images/banner-4.jpg)no-repeat; background-position: center; background-size: cover;">
             <div class="container">
                <!-- row -->
                <div class="row">
@@ -2189,7 +2189,7 @@
                               </div>
                               <!-- img -->
                               <!-- img -->
-                              <a href="#!"> <img src="../assets/images/products/product-img-15.jpg"
+                              <a href="#!"> <img src="../assets/images/product-img-15.jpg"
                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                               <!-- action btn -->
                               <!-- action btn -->
@@ -2252,7 +2252,7 @@
                                  <span class="badge bg-success">14%</span>
                               </div>
                               <!-- img -->
-                              <a href="#!"><img src="../assets/images/products/product-img-16.jpg"
+                              <a href="#!"><img src="../assets/images/product-img-16.jpg"
                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                               <!-- action btn -->
                               <!-- action btn -->
@@ -2313,7 +2313,7 @@
                         <div class="card-body">
                            <div class="text-center position-relative">
                               <!-- img -->
-                              <a href="#!"><img src="../assets/images/products/product-img-17.jpg"
+                              <a href="#!"><img src="../assets/images/product-img-17.jpg"
                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                               <!-- action btn -->
                               <div class="card-product-action">
@@ -2376,7 +2376,7 @@
                                  <span class="badge bg-danger">Hot</span>
                               </div>
                               <!-- img -->
-                              <a href="#!"><img src="../assets/images/products/product-img-18.jpg"
+                              <a href="#!"><img src="../assets/images/product-img-18.jpg"
                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                               <!-- action btn -->
                               <div class="card-product-action">
@@ -2435,7 +2435,7 @@
                         <div class="card-body">
                            <div class="text-center position-relative">
                               <!-- img -->
-                              <a href="#!"><img src="../assets/images/products/product-img-19.jpg"
+                              <a href="#!"><img src="../assets/images/product-img-19.jpg"
                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                               <!-- action btn -->
                               <div class="card-product-action">
@@ -2498,7 +2498,7 @@
                                  <span class="badge bg-danger">Sale</span>
                               </div>
                               <!-- img -->
-                              <a href="#!"> <img src="../assets/images/products/product-img-15.jpg"
+                              <a href="#!"> <img src="../assets/images/product-img-15.jpg"
                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                               <!-- action btn -->
                               <div class="card-product-action">
@@ -2560,7 +2560,7 @@
                                  <span class="badge bg-success">14%</span>
                               </div>
                               <!-- img -->
-                              <a href="#!"><img src="../assets/images/products/product-img-16.jpg"
+                              <a href="#!"><img src="../assets/images/product-img-16.jpg"
                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                               <!-- action btn -->
                               <div class="card-product-action">
@@ -2618,7 +2618,7 @@
                         <div class="card-body">
                            <div class="text-center position-relative">
                               <!-- img -->
-                              <a href="#!"><img src="../assets/images/products/product-img-17.jpg"
+                              <a href="#!"><img src="../assets/images/product-img-17.jpg"
                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                               <!-- action btn -->
                               <div class="card-product-action">
@@ -2681,7 +2681,7 @@
                                  <span class="badge bg-danger">Hot</span>
                               </div>
                               <!-- img -->
-                              <a href="#!"><img src="../assets/images/products/product-img-18.jpg"
+                              <a href="#!"><img src="../assets/images/product-img-18.jpg"
                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                               <!-- action btn -->
                               <div class="card-product-action">
@@ -2739,7 +2739,7 @@
                         <div class="card-body">
                            <div class="text-center position-relative">
                               <!-- img -->
-                              <a href="#!"><img src="../assets/images/products/product-img-19.jpg"
+                              <a href="#!"><img src="../assets/images/product-img-19.jpg"
                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                               <!-- action btn -->
                               <div class="card-product-action">
@@ -2800,7 +2800,7 @@
                   <div class="row flex-nowrap">
                      <div class="col">
                         <div class="card border-0 card-hover">
-                           <a href="#" class="img-zoom"> <img src="../assets/images/banner/ad-banner-4.jpg" alt=""
+                           <a href="#" class="img-zoom"> <img src="../assets/images/ad-banner-4.jpg" alt=""
                               class=" rounded"></a>
                            <div class="position-absolute bg-dark-info w-100 bottom-0 py-3 px-4 rounded-bottom">
                               <a href="#" class="text-white  d-flex align-items-center btn-transition">Offer
@@ -2810,7 +2810,7 @@
                      </div>
                      <div class="col">
                         <div class="card border-0">
-                           <a href="#" class="img-zoom"> <img src="../assets/images/banner/ad-banner-5.jpg" alt=""
+                           <a href="#" class="img-zoom"> <img src="../assets/images/ad-banner-5.jpg" alt=""
                               class=" rounded"></a>
                            <div class="position-absolute bg-dark-warning w-100 bottom-0 py-3 px-4 rounded-bottom">
                               <a href="#" class="text-white  d-flex align-items-center btn-transition">Fresh Food &
@@ -2821,7 +2821,7 @@
                      </div>
                      <div class="col">
                         <div class="card border-0">
-                           <a href="#" class="img-zoom"><img src="../assets/images/banner/ad-banner-6.jpg" alt=""
+                           <a href="#" class="img-zoom"><img src="../assets/images/ad-banner-6.jpg" alt=""
                               class=" rounded"></a>
                            <div class="position-absolute bg-dark-danger w-100 bottom-0 py-3 px-4 rounded-bottom">
                               <a href="#" class="text-white  d-flex align-items-center btn-transition">Mixed and
@@ -2879,7 +2879,7 @@
                                        <span class="badge bg-danger">Sale</span>
                                     </div>
                                     <!-- img -->
-                                    <a href="#!"> <img src="../assets/images/products/product-img-1.jpg"
+                                    <a href="#!"> <img src="../assets/images/product-img-1.jpg"
                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                                     <!-- action btn -->
                                     <div class="product-action-btn">
@@ -2929,7 +2929,7 @@
                                  <!-- badge -->
                                  <div class="text-center position-relative ">
                                     <!-- img -->
-                                    <a href="#!"> <img src="../assets/images/products/product-img-2.jpg"
+                                    <a href="#!"> <img src="../assets/images/product-img-2.jpg"
                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                                     <!-- action btn -->
                                     <div class="product-action-btn">
@@ -2978,7 +2978,7 @@
                                  <!-- badge -->
                                  <div class="text-center position-relative ">
                                     <!-- img -->
-                                    <a href="#!"> <img src="../assets/images/products/product-img-3.jpg"
+                                    <a href="#!"> <img src="../assets/images/product-img-3.jpg"
                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                                     <!-- action btn -->
                                     <div class="product-action-btn">
@@ -3028,7 +3028,7 @@
                                  <!-- badge -->
                                  <div class="text-center position-relative ">
                                     <!-- img -->
-                                    <a href="#!"> <img src="../assets/images/products/product-img-4.jpg"
+                                    <a href="#!"> <img src="../assets/images/product-img-4.jpg"
                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                                     <!-- action btn -->
                                     <div class="product-action-btn">
@@ -3081,7 +3081,7 @@
                                        <span class="badge bg-warning text-dark">14%</span>
                                     </div>
                                     <!-- img -->
-                                    <a href="#!"> <img src="../assets/images/products/product-img-5.jpg"
+                                    <a href="#!"> <img src="../assets/images/product-img-5.jpg"
                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                                     <!-- action btn -->
                                     <div class="product-action-btn">
@@ -3132,7 +3132,7 @@
                                  <!-- badge -->
                                  <div class="text-center position-relative ">
                                     <!-- img -->
-                                    <a href="#!"> <img src="../assets/images/products/product-img-6.jpg"
+                                    <a href="#!"> <img src="../assets/images/product-img-6.jpg"
                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                                     <!-- action btn -->
                                     <div class="product-action-btn">
@@ -3183,7 +3183,7 @@
                                  <!-- badge -->
                                  <div class="text-center position-relative ">
                                     <!-- img -->
-                                    <a href="#!"> <img src="../assets/images/products/product-img-8.jpg"
+                                    <a href="#!"> <img src="../assets/images/product-img-8.jpg"
                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                                     <!-- action btn -->
                                     <div class="product-action-btn">
@@ -3235,7 +3235,7 @@
                                  <!-- badge -->
                                  <div class="text-center position-relative ">
                                     <!-- img -->
-                                    <a href="#!"> <img src="../assets/images/products/product-img-9.jpg"
+                                    <a href="#!"> <img src="../assets/images/product-img-9.jpg"
                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                                     <!-- action btn -->
                                     <div class="product-action-btn">
@@ -3287,7 +3287,7 @@
                                  <!-- badge -->
                                  <div class="text-center position-relative ">
                                     <!-- img -->
-                                    <a href="#!"> <img src="../assets/images/products/product-img-2.jpg"
+                                    <a href="#!"> <img src="../assets/images/product-img-2.jpg"
                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                                     <!-- action btn -->
                                     <div class="product-action-btn">
@@ -3387,7 +3387,7 @@
                      <!-- card -->
                      <div class="card p-6 card-product">
                         <div>
-                           <!-- img --><img src="../assets/images/stores-logo/stores-logo-1.svg" alt=""
+                           <!-- img --><img src="../assets/images/stores-logo-1.svg" alt=""
                               class="rounded-circle icon-shape icon-xl">
                         </div>
                         <div class="mt-4">
@@ -3417,7 +3417,7 @@
                      <!-- card -->
                      <div class="card p-6 card-product">
                         <div>
-                           <!-- img --><img src="../assets/images/stores-logo/stores-logo-2.svg" alt=""
+                           <!-- img --><img src="../assets/images/stores-logo-2.svg" alt=""
                               class="rounded-circle icon-shape icon-xl">
                         </div>
                         <div class="mt-4">
@@ -3443,7 +3443,7 @@
                      <!-- card -->
                      <div class="card p-6 card-product">
                         <div>
-                           <!-- img --><img src="../assets/images/stores-logo/stores-logo-3.svg" alt=""
+                           <!-- img --><img src="../assets/images/stores-logo-3.svg" alt=""
                               class="rounded-circle icon-shape icon-xl">
                         </div>
                         <div class="mt-4">
@@ -3507,7 +3507,7 @@
                         <a href="#!">
                            <!-- img -->
                            <div class="img-zoom">
-                              <img src="../assets/images/blog/blog-img-1.jpg" alt=""
+                              <img src="../assets/images/blog-img-1.jpg" alt=""
                                  class="img-fluid rounded w-100">
                            </div>
                         </a>
@@ -3535,7 +3535,7 @@
                         <a href="#!">
                            <div class="img-zoom">
                               <!-- img -->
-                              <img src="../assets/images/blog/blog-img-2.jpg" alt=""
+                              <img src="../assets/images/blog-img-2.jpg" alt=""
                                  class="img-fluid rounded w-100">
                            </div>
                         </a>
@@ -3565,7 +3565,7 @@
                         <a href="#!">
                            <!-- img -->
                            <div class="img-zoom">
-                              <img src="../assets/images/blog/blog-img-3.jpg" alt=""
+                              <img src="../assets/images/blog-img-3.jpg" alt=""
                                  class="img-fluid rounded w-100">
                            </div>
                         </a>
@@ -3595,7 +3595,7 @@
                         <a href="#!">
                            <!-- img -->
                            <div class="img-zoom">
-                              <img src="../assets/images/blog/blog-img-4.jpg" alt=""
+                              <img src="../assets/images/blog-img-4.jpg" alt=""
                                  class="img-fluid rounded w-100">
                            </div>
                         </a>
@@ -3943,12 +3943,12 @@
                 class="zoom"
                 onmousemove="zoom(event)"
                 style="
-                  background-image: url(../assets/images/products/product-single-img-1.jpg);
+                  background-image: url(../assets/images/product-single-img-1.jpg);
                 "
               >
                 <!-- img -->
                 <img
-                  src="../assets/images/products/product-single-img-1.jpg"
+                  src="../assets/images/product-single-img-1.jpg"
                   alt=""
             >
               </div>
@@ -3957,12 +3957,12 @@
                   class="zoom"
                   onmousemove="zoom(event)"
                   style="
-                    background-image: url(../assets/images/products/product-single-img-2.jpg);
+                    background-image: url(../assets/images/product-single-img-2.jpg);
                   "
                 >
                   <!-- img -->
                   <img
-                    src="../assets/images/products/product-single-img-2.jpg"
+                    src="../assets/images/product-single-img-2.jpg"
                     alt=""
               >
                 </div>
@@ -3972,12 +3972,12 @@
                   class="zoom"
                   onmousemove="zoom(event)"
                   style="
-                    background-image: url(../assets/images/products/product-single-img-3.jpg);
+                    background-image: url(../assets/images/product-single-img-3.jpg);
                   "
                 >
                   <!-- img -->
                   <img
-                    src="../assets/images/products/product-single-img-3.jpg"
+                    src="../assets/images/product-single-img-3.jpg"
                     alt=""
               >
                 </div>
@@ -3987,12 +3987,12 @@
                   class="zoom"
                   onmousemove="zoom(event)"
                   style="
-                    background-image: url(../assets/images/products/product-single-img-4.jpg);
+                    background-image: url(../assets/images/product-single-img-4.jpg);
                   "
                 >
                   <!-- img -->
                   <img
-                    src="../assets/images/products/product-single-img-4.jpg"
+                    src="../assets/images/product-single-img-4.jpg"
                     alt=""
               >
                 </div>
@@ -4005,7 +4005,7 @@
                   <div class="thumbnails-img">
                     <!-- img -->
                     <img
-                      src="../assets/images/products/product-single-img-1.jpg"
+                      src="../assets/images/product-single-img-1.jpg"
                       alt=""
                 >
                   </div>
@@ -4014,7 +4014,7 @@
                   <div class="thumbnails-img" >
                     <!-- img -->
                     <img
-                      src="../assets/images/products/product-single-img-2.jpg"
+                      src="../assets/images/product-single-img-2.jpg"
                       alt=""
                 >
                   </div>
@@ -4023,7 +4023,7 @@
                   <div class="thumbnails-img">
                     <!-- img -->
                     <img
-                      src="../assets/images/products/product-single-img-3.jpg"
+                      src="../assets/images/product-single-img-3.jpg"
                       alt=""
                 >
                   </div>
@@ -4032,7 +4032,7 @@
                   <div class="thumbnails-img">
                     <!-- img -->
                     <img
-                      src="../assets/images/products/product-single-img-4.jpg"
+                      src="../assets/images/product-single-img-4.jpg"
                       alt=""
                 >
                   </div>
@@ -4156,7 +4156,7 @@
   <div class="container">
     <div class="row align-items-center ">
         <div class="col-8 col-md-12 col-lg-4">
-            <a href="#"><img src="../assets/images/logo/freshcart-white-logo.svg" alt=""></a>
+            <a href="#"><img src="../assets/images/freshcart-white-logo.svg" alt=""></a>
         </div>
         <div class="col-4 col-md-12 col-lg-8 text-end">
             <ul class="list-inline text-md-end mb-0 small">
@@ -4274,19 +4274,19 @@
           <ul class="list-inline mb-0">
             <li class="list-inline-item text-light">Payment Partners</li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/amazonpay.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/amazonpay.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/american-express.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/american-express.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/mastercard.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/mastercard.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/paypal.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/paypal.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/visa.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/visa.svg" alt=""></a>
             </li>
           </ul>
         </div>
@@ -4299,12 +4299,12 @@
 </footer>
       <!-- Javascript-->
       <!-- Libs JS -->
-<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script src="../assets/js/theme.min.js"></script>
+
+
 
 <!-- Theme JS -->
-<script src="../assets/js/theme.min.js"></script>
+ <script src="../assets/js/theme.min.js"></script>
       <script src="../assets/libs/slick-carousel/slick/slick.min.js"></script>
       <script src="../assets/js/vendors/slick-slider.js"></script>
       <script src="../assets/libs/tiny-slider/dist/min/tiny-slider.js"></script>

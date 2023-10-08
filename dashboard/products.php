@@ -123,7 +123,7 @@
                                                     </td>
                                                     <td>
                                                         <a href="#!"> <img
-                                                                src="../assets/images/products/<?php echo  $row["P_Images"] ?>"
+                                                                src="../assets/images/<?php echo  $row["P_Images"] ?>"
                                                                 alt="" class="icon-shape icon-md"></a>
                                                     </td>
                                                     <td><a href="#" class="text-reset">
@@ -259,12 +259,12 @@
 
 
     <!-- Libs JS -->
-    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+     <?php include "../inc/LibsJs.php"?>
+    
+    
 
     <!-- Theme JS -->
-    <script src="../assets/js/theme.min.js"></script>
+     <script src="../assets/js/theme.min.js"></script>
     <!-- product search -->
     <script>
         $(document).ready(() => {
@@ -307,7 +307,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <a href="#!"> <img src="../assets/images/products/${row['P_Images']}" alt="" class="icon-shape icon-md"></a>
+                                                <a href="#!"> <img src="../assets/images/${row['P_Images']}" alt="" class="icon-shape icon-md"></a>
                                             </td>
                                             <td><a href="#" class="text-reset">${row["P_Title"]}</a></td>
                                             <td>Snack & Munchies</td>

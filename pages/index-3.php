@@ -26,7 +26,7 @@
 </script>
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico">
 
 
 <!-- Libs CSS -->
@@ -56,7 +56,7 @@
             </svg>
           </button>
           <a class="navbar-brand d-none d-lg-block ms-4" href="../index.php">
-            <img src="../assets/images/logo/freshcart-logo.svg" alt="eCommerce HTML Template">
+            <img src="../assets/images/freshcart-logo.svg" alt="eCommerce HTML Template">
 
           </a>
           <div class="d-flex  w-100 ms-4 ">
@@ -89,7 +89,7 @@
             </svg>
           </button>
           <a class="navbar-brand" href="../index.php">
-            <img src="../assets/images/logo/freshcart-logo.svg" alt="eCommerce HTML Template">
+            <img src="../assets/images/freshcart-logo.svg" alt="eCommerce HTML Template">
           </a>
           <div class="d-flex align-items-center lh-1">
             <div class="list-inline me-2">
@@ -185,7 +185,7 @@
     </div>
     <div class="offcanvas offcanvas-start p-4 w-xxl-20 w-lg-30" id="navbar-default">
       <div class="d-flex justify-content-between align-items-center mb-2 ">
-        <a href="../index.php"><img src="../assets/images/logo/freshcart-logo.svg" alt="eCommerce HTML Template"></a>
+        <a href="../index.php"><img src="../assets/images/freshcart-logo.svg" alt="eCommerce HTML Template"></a>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class=" my-4">
@@ -509,7 +509,7 @@
           <!-- row -->
           <div class="row align-items-center">
             <div class="col-3 col-md-2">
-              <!-- img --> <img src="../assets/images/products/product-img-1.jpg" alt="Ecommerce"
+              <!-- img --> <img src="../assets/images/product-img-1.jpg" alt="Ecommerce"
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
@@ -554,7 +554,7 @@
           <!-- row -->
           <div class="row align-items-center">
             <div class="col-3 col-md-2">
-              <!-- img --> <img src="../assets/images/products/product-img-2.jpg" alt="Ecommerce"
+              <!-- img --> <img src="../assets/images/product-img-2.jpg" alt="Ecommerce"
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
@@ -598,7 +598,7 @@
           <!-- row -->
           <div class="row align-items-center">
             <div class="col-3 col-md-2">
-              <!-- img --> <img src="../assets/images/products/product-img-3.jpg" alt="Ecommerce"
+              <!-- img --> <img src="../assets/images/product-img-3.jpg" alt="Ecommerce"
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
@@ -642,7 +642,7 @@
           <!-- row -->
           <div class="row align-items-center">
             <div class="col-3 col-md-2">
-              <!-- img --> <img src="../assets/images/products/product-img-4.jpg" alt="Ecommerce"
+              <!-- img --> <img src="../assets/images/product-img-4.jpg" alt="Ecommerce"
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
@@ -686,7 +686,7 @@
           <!-- row -->
           <div class="row align-items-center">
             <div class="col-3 col-md-2">
-              <!-- img --> <img src="../assets/images/products/product-img-5.jpg" alt="Ecommerce"
+              <!-- img --> <img src="../assets/images/product-img-5.jpg" alt="Ecommerce"
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
@@ -811,7 +811,7 @@
            <!-- hero slider -->
           <div class="hero-slider">
             <div
-              style="background: url(../assets/images/slider/slider-image-1.jpg)no-repeat; background-size: cover; border-radius: .5rem;">
+              style="background: url(../assets/images/slider-image-1.jpg)no-repeat; background-size: cover; border-radius: .5rem;">
               <div class="ps-lg-12 py-lg-16 col-xxl-7 col-lg-9 py-14 px-8 text-xs-center">
                  <!-- badge -->
                 <div class="d-flex align-items-center mb-4"><span>Exclusive Offer</span> <span
@@ -831,7 +831,7 @@
             </div>
              <!-- img -->
             <div class=" "
-              style="background: url(../assets/images/slider/slider-image-2.jpg)no-repeat; background-size: cover; border-radius: .5rem;">
+              style="background: url(../assets/images/slider-image-2.jpg)no-repeat; background-size: cover; border-radius: .5rem;">
               <div class="ps-lg-12 py-lg-16 col-xxl-7 col-lg-9 py-14 ps-8 text-xs-center">
                  <!-- badge -->
                 <div class="d-flex align-items-center mb-4"><span>Exclusive Offer</span> <span
@@ -850,7 +850,7 @@
             </div>
                    <!-- img -->
             <div class=" "
-              style="background: url(../assets/images/slider/slider-image-3.jpg)no-repeat; background-size: cover; border-radius: .5rem;">
+              style="background: url(../assets/images/slider-image-3.jpg)no-repeat; background-size: cover; border-radius: .5rem;">
               <div class="ps-lg-12 py-lg-16 col-xxl-7 col-lg-9 py-14 ps-8 text-xs-center">
                        <!-- badge -->
                 <div class="d-flex align-items-center mb-4"><span>Exclusive Offer</span> <span
@@ -872,7 +872,7 @@
         </div>
         <div class="col-xxl-4 col-xl-5 col-12 d-lg-flex d-xl-block gap-3 gap-xl-0">
 
-          <div class="flex-fill px-8 py-9 mb-6 mb-md-0 mb-xl-6 rounded" style="background:url(../assets/images/banner/ad-banner-1.jpg)no-repeat; background-size: cover;">
+          <div class="flex-fill px-8 py-9 mb-6 mb-md-0 mb-xl-6 rounded" style="background:url(../assets/images/ad-banner-1.jpg)no-repeat; background-size: cover;">
             <div>
 
 
@@ -888,7 +888,7 @@
           </div>
 
 
-          <div class="flex-fill px-8 py-8 rounded " style="background:url(../assets/images/banner/ad-banner-2.jpg)no-repeat; background-size: cover;">
+          <div class="flex-fill px-8 py-8 rounded " style="background:url(../assets/images/ad-banner-2.jpg)no-repeat; background-size: cover;">
 
             <!-- Banner Content -->
 <div>
@@ -932,7 +932,7 @@
             <div class="text-center mb-10">
 
  <!-- img -->
-              <a href="#"><img src="../assets/images/category/dairy-bread-eggs.png" alt=""
+              <a href="#"><img src="../assets/images/dairy-bread-eggs.png" alt=""
                   class="card-image rounded-circle"></a>
  <!-- text -->
               <div class="mt-4">
@@ -947,7 +947,7 @@
           <div class="col-lg-2 col-md-4 col-6">
             <div class="text-center mb-10">
  <!-- img -->
-              <a href="#"><img src="../assets/images/category/fruits-vegetables.png" alt=""
+              <a href="#"><img src="../assets/images/fruits-vegetables.png" alt=""
                   class="card-image rounded-circle"></a>
               <div class="mt-4">
                  <!-- text -->
@@ -963,7 +963,7 @@
 
             <div class="text-center mb-10">
                <!-- img -->
-              <a href="#"><img src="../assets/images/category/snack-munchies.png" alt=""
+              <a href="#"><img src="../assets/images/snack-munchies.png" alt=""
                   class="card-image rounded-circle"></a>
                    <!-- text -->
               <div class="mt-4">
@@ -978,7 +978,7 @@
           <div class="col-lg-2 col-md-4 col-6">
             <div class="text-center mb-10">
  <!-- img -->
-              <a href="#"><img src="../assets/images/category/bakery-biscuits.png" alt=""
+              <a href="#"><img src="../assets/images/bakery-biscuits.png" alt=""
                   class="card-image rounded-circle"></a>
                    <!-- text -->
               <div class="mt-4">
@@ -993,7 +993,7 @@
           <div class="col-lg-2 col-md-4 col-6">
             <div class="text-center mb-10">
                <!-- img -->
-              <a href="#"><img src="../assets/images/category/instant-food.png" alt=""
+              <a href="#"><img src="../assets/images/instant-food.png" alt=""
                   class="card-image rounded-circle"></a>
                    <!-- text -->
               <div class="mt-4">
@@ -1008,7 +1008,7 @@
           <div class="col-lg-2 col-md-4 col-6">
             <div class="text-center mb-10">
                <!-- img -->
-              <a href="#"><img src="../assets/images/category/tea-coffee-drinks.png" alt=""
+              <a href="#"><img src="../assets/images/tea-coffee-drinks.png" alt=""
                   class="card-image rounded-circle"></a>
                    <!-- text -->
               <div class="mt-4">
@@ -1023,7 +1023,7 @@
           <div class="col-lg-2 col-md-4 col-6">
             <div class="text-center mb-10">
                <!-- img -->
-              <a href="#"><img src="../assets/images/category/cold-drinks-juices.png" alt=""
+              <a href="#"><img src="../assets/images/cold-drinks-juices.png" alt=""
                   class="card-image rounded-circle"></a>
                    <!-- text -->
               <div class="mt-4">
@@ -1038,7 +1038,7 @@
           <div class="col-lg-2 col-md-4 col-6">
             <div class="text-center mb-10">
                <!-- img -->
-              <a href="#"><img src="../assets/images/category/chicken-meat-fish.png" alt=""
+              <a href="#"><img src="../assets/images/chicken-meat-fish.png" alt=""
                   class="card-image rounded-circle"></a>
                    <!-- text -->
               <div class="mt-4">
@@ -1054,7 +1054,7 @@
              <!-- text -->
             <div class="text-center mb-10">
                <!-- img -->
-              <a href="#"><img src="../assets/images/category/baby-care.png" alt=""
+              <a href="#"><img src="../assets/images/baby-care.png" alt=""
                   class="card-image rounded-circle"></a>
                    <!-- text -->
               <div class="mt-4">
@@ -1069,7 +1069,7 @@
           <div class="col-lg-2 col-md-4 col-6">
             <div class="text-center mb-10">
                <!-- img -->
-              <a href="#"><img src="../assets/images/category/cleaning-essentials.png" alt=""
+              <a href="#"><img src="../assets/images/cleaning-essentials.png" alt=""
                   class="card-image rounded-circle"></a>
                    <!-- img -->
               <div class="mt-4">
@@ -1084,7 +1084,7 @@
           <div class="col-lg-2 col-md-4 col-6">
             <div class="text-center mb-10">
  <!-- img -->
-              <a href="#"><img src="../assets/images/category/pet-care.png" alt=""
+              <a href="#"><img src="../assets/images/pet-care.png" alt=""
                   class="card-image rounded-circle"></a>
                    <!-- text -->
               <div class="mt-4">
@@ -1097,7 +1097,7 @@
 
             <div class="text-center mb-10">
  <!-- img -->
-              <a href="#"><img src="../assets/images/category/atta-rice-dal.png" alt=""
+              <a href="#"><img src="../assets/images/atta-rice-dal.png" alt=""
                   class="card-image rounded-circle"></a>
                    <!-- text -->
               <div class="mt-4">
@@ -1192,7 +1192,7 @@
                           <span class="badge bg-danger">Sale</span>
                         </div>
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-1.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-1.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -1244,7 +1244,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-2.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-2.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -1295,7 +1295,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-3.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-3.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -1346,7 +1346,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-4.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-4.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -1400,7 +1400,7 @@
                           <span class="badge bg-warning text-dark">14%</span>
                         </div>
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-5.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-5.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -1452,7 +1452,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-6.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-6.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -1504,7 +1504,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-8.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-8.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -1557,7 +1557,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-9.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-9.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -1610,7 +1610,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-2.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-2.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -1661,7 +1661,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-3.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-3.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -1724,7 +1724,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-4.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-4.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -1778,7 +1778,7 @@
                           <span class="badge bg-danger">Sale</span>
                         </div>
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-1.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-1.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -1830,7 +1830,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-2.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-2.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -1881,7 +1881,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-3.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-3.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -1934,7 +1934,7 @@
                           <span class="badge bg-warning text-dark">14%</span>
                         </div>
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-5.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-5.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -1986,7 +1986,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-6.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-6.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2038,7 +2038,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-8.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-8.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2091,7 +2091,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-9.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-9.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2156,7 +2156,7 @@
                           <span class="badge bg-warning text-dark">14%</span>
                         </div>
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-5.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-5.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2208,7 +2208,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-6.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-6.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2260,7 +2260,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-8.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-8.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2313,7 +2313,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-9.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-9.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2369,7 +2369,7 @@
                           <span class="badge bg-danger">Sale</span>
                         </div>
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-1.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-1.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2421,7 +2421,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-2.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-2.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2472,7 +2472,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-3.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-3.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2523,7 +2523,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-4.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-4.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2581,7 +2581,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-4.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-4.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2635,7 +2635,7 @@
                           <span class="badge bg-warning text-dark">14%</span>
                         </div>
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-5.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-5.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2687,7 +2687,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-6.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-6.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2741,7 +2741,7 @@
                           <span class="badge bg-danger">Sale</span>
                         </div>
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-1.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-1.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2793,7 +2793,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-2.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-2.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2844,7 +2844,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-3.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-3.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2896,7 +2896,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-8.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-8.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -2949,7 +2949,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-9.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-9.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -3009,7 +3009,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-4.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-4.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -3063,7 +3063,7 @@
                           <span class="badge bg-warning text-dark">14%</span>
                         </div>
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-5.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-5.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -3115,7 +3115,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-6.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-6.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -3169,7 +3169,7 @@
                           <span class="badge bg-danger">Sale</span>
                         </div>
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-1.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-1.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -3221,7 +3221,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-2.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-2.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -3272,7 +3272,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-3.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-3.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -3323,7 +3323,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-8.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-8.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -3376,7 +3376,7 @@
                       <div class="text-center position-relative ">
 
                         <!-- img -->
-                        <a href="#!"> <img src="../assets/images/products/product-img-9.jpg"
+                        <a href="#!"> <img src="../assets/images/product-img-9.jpg"
                             alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                         <!-- action btn -->
                             <div class="product-action-btn">
@@ -3448,7 +3448,7 @@
               <a href="#" class="btn btn-dark mt-5">Get Discount on Share</a>
 
             </div>
-            <div class="p-6 d-lg-block d-none"><img src="../assets/images/svg-graphics/store-graphics.svg" alt=""
+            <div class="p-6 d-lg-block d-none"><img src="../assets/images/store-graphics.svg" alt=""
                 class="img-fluid">
             </div>
           </div>
@@ -3485,7 +3485,7 @@
                 </div>
 
                 <!-- img -->
-                <a href="#!"> <img src="../assets/images/products/product-img-2.jpg" alt="Grocery Ecommerce Template"
+                <a href="#!"> <img src="../assets/images/product-img-2.jpg" alt="Grocery Ecommerce Template"
                     class="mb-3 img-fluid"></a>
                 <!-- action btn -->
                     <div class="product-action-btn">
@@ -3544,7 +3544,7 @@
 
 
                 <!-- img -->
-                <a href="#!"> <img src="../assets/images/products/product-img-3.jpg" alt="Grocery Ecommerce Template"
+                <a href="#!"> <img src="../assets/images/product-img-3.jpg" alt="Grocery Ecommerce Template"
                     class="mb-3 img-fluid"></a>
                 <!-- action btn -->
                     <div class="product-action-btn">
@@ -3602,7 +3602,7 @@
                 </div>
 
                 <!-- img -->
-                <a href="#!"> <img src="../assets/images/products/product-img-8.jpg" alt="Grocery Ecommerce Template"
+                <a href="#!"> <img src="../assets/images/product-img-8.jpg" alt="Grocery Ecommerce Template"
                     class="mb-3 img-fluid"></a>
                 <!-- action btn -->
                     <div class="product-action-btn">
@@ -3661,7 +3661,7 @@
                 </div>
 
                 <!-- img -->
-                <a href="#!"> <img src="../assets/images/products/product-img-9.jpg" alt="Grocery Ecommerce Template"
+                <a href="#!"> <img src="../assets/images/product-img-9.jpg" alt="Grocery Ecommerce Template"
                     class="mb-3 img-fluid"></a>
                 <!-- action btn -->
                     <div class="product-action-btn">
@@ -3719,7 +3719,7 @@
 
 
                 <!-- img -->
-                <a href="#!"> <img src="../assets/images/products/product-img-10.jpg" alt="Grocery Ecommerce Template"
+                <a href="#!"> <img src="../assets/images/product-img-10.jpg" alt="Grocery Ecommerce Template"
                     class="mb-3 img-fluid"></a>
                 <!-- action btn -->
                     <div class="product-action-btn">
@@ -3795,7 +3795,7 @@
                   <span class="badge bg-danger">Sale</span>
                 </div>
                 <!-- img -->
-                <a href="#!"> <img src="../assets/images/products/product-img-1.jpg" alt="Grocery Ecommerce Template"
+                <a href="#!"> <img src="../assets/images/product-img-1.jpg" alt="Grocery Ecommerce Template"
                     class="mb-3 img-fluid"></a>
                 <!-- action btn -->
                     <div class="product-action-btn">
@@ -3845,7 +3845,7 @@
               <div class="text-center position-relative ">
 
                 <!-- img -->
-                <a href="#!"> <img src="../assets/images/products/product-img-2.jpg" alt="Grocery Ecommerce Template"
+                <a href="#!"> <img src="../assets/images/product-img-2.jpg" alt="Grocery Ecommerce Template"
                     class="mb-3 img-fluid"></a>
                 <!-- action btn -->
                     <div class="product-action-btn">
@@ -3895,7 +3895,7 @@
               <div class="text-center position-relative ">
 
                 <!-- img -->
-                <a href="#!"> <img src="../assets/images/products/product-img-3.jpg" alt="Grocery Ecommerce Template"
+                <a href="#!"> <img src="../assets/images/product-img-3.jpg" alt="Grocery Ecommerce Template"
                     class="mb-3 img-fluid"></a>
                 <!-- action btn -->
                     <div class="product-action-btn">
@@ -3945,7 +3945,7 @@
               <div class="text-center position-relative ">
 
                 <!-- img -->
-                <a href="#!"> <img src="../assets/images/products/product-img-4.jpg" alt="Grocery Ecommerce Template"
+                <a href="#!"> <img src="../assets/images/product-img-4.jpg" alt="Grocery Ecommerce Template"
                     class="mb-3 img-fluid"></a>
                 <!-- action btn -->
                     <div class="product-action-btn">
@@ -3997,7 +3997,7 @@
                   <span class="badge bg-warning text-dark">14%</span>
                 </div>
                 <!-- img -->
-                <a href="#!"> <img src="../assets/images/products/product-img-5.jpg" alt="Grocery Ecommerce Template"
+                <a href="#!"> <img src="../assets/images/product-img-5.jpg" alt="Grocery Ecommerce Template"
                     class="mb-3 img-fluid"></a>
                 <!-- action btn -->
                     <div class="product-action-btn">
@@ -4047,7 +4047,7 @@
               <div class="text-center position-relative ">
 
                 <!-- img -->
-                <a href="#!"> <img src="../assets/images/products/product-img-6.jpg" alt="Grocery Ecommerce Template"
+                <a href="#!"> <img src="../assets/images/product-img-6.jpg" alt="Grocery Ecommerce Template"
                     class="mb-3 img-fluid"></a>
                 <!-- action btn -->
                     <div class="product-action-btn">
@@ -4097,7 +4097,7 @@
               <div class="text-center position-relative ">
 
                 <!-- img -->
-                <a href="#!"> <img src="../assets/images/products/product-img-8.jpg" alt="Grocery Ecommerce Template"
+                <a href="#!"> <img src="../assets/images/product-img-8.jpg" alt="Grocery Ecommerce Template"
                     class="mb-3 img-fluid"></a>
                 <!-- action btn -->
                     <div class="product-action-btn">
@@ -4148,7 +4148,7 @@
               <div class="text-center position-relative ">
 
                 <!-- img -->
-                <a href="#!"> <img src="../assets/images/products/product-img-9.jpg" alt="Grocery Ecommerce Template"
+                <a href="#!"> <img src="../assets/images/product-img-9.jpg" alt="Grocery Ecommerce Template"
                     class="mb-3 img-fluid"></a>
                 <!-- action btn -->
                     <div class="product-action-btn">
@@ -4199,7 +4199,7 @@
               <div class="text-center position-relative ">
 
                 <!-- img -->
-                <a href="#!"> <img src="../assets/images/products/product-img-2.jpg" alt="Grocery Ecommerce Template"
+                <a href="#!"> <img src="../assets/images/product-img-2.jpg" alt="Grocery Ecommerce Template"
                     class="mb-3 img-fluid"></a>
                 <!-- action btn -->
                     <div class="product-action-btn">
@@ -4249,7 +4249,7 @@
               <div class="text-center position-relative ">
 
                 <!-- img -->
-                <a href="#!"> <img src="../assets/images/products/product-img-3.jpg" alt="Grocery Ecommerce Template"
+                <a href="#!"> <img src="../assets/images/product-img-3.jpg" alt="Grocery Ecommerce Template"
                     class="mb-3 img-fluid"></a>
                 <!-- action btn -->
                     <div class="product-action-btn">
@@ -4302,7 +4302,7 @@
   </section>
    <!-- section cta -->
   <section class="bg-dark"
-    style="background:url(../assets/images/svg-graphics/pattern.svg)no-repeat; background-size: cover; background-position: center;">
+    style="background:url(../assets/images/pattern.svg)no-repeat; background-size: cover; background-position: center;">
     <div class="container">
        <!-- row -->
       <div class="row">
@@ -4336,7 +4336,7 @@
             <div class="col-md-6">
               <div class="text-center">
                  <!-- img -->
-                <img src="../assets/images/png/girl-email.png" alt="" class="img-fluid">
+                <img src="../assets/images/girl-email.png" alt="" class="img-fluid">
               </div>
             </div>
 
@@ -4370,12 +4370,12 @@
                 class="zoom"
                 onmousemove="zoom(event)"
                 style="
-                  background-image: url(../assets/images/products/product-single-img-1.jpg);
+                  background-image: url(../assets/images/product-single-img-1.jpg);
                 "
               >
                 <!-- img -->
                 <img
-                  src="../assets/images/products/product-single-img-1.jpg"
+                  src="../assets/images/product-single-img-1.jpg"
                   alt=""
             >
               </div>
@@ -4384,12 +4384,12 @@
                   class="zoom"
                   onmousemove="zoom(event)"
                   style="
-                    background-image: url(../assets/images/products/product-single-img-2.jpg);
+                    background-image: url(../assets/images/product-single-img-2.jpg);
                   "
                 >
                   <!-- img -->
                   <img
-                    src="../assets/images/products/product-single-img-2.jpg"
+                    src="../assets/images/product-single-img-2.jpg"
                     alt=""
               >
                 </div>
@@ -4399,12 +4399,12 @@
                   class="zoom"
                   onmousemove="zoom(event)"
                   style="
-                    background-image: url(../assets/images/products/product-single-img-3.jpg);
+                    background-image: url(../assets/images/product-single-img-3.jpg);
                   "
                 >
                   <!-- img -->
                   <img
-                    src="../assets/images/products/product-single-img-3.jpg"
+                    src="../assets/images/product-single-img-3.jpg"
                     alt=""
               >
                 </div>
@@ -4414,12 +4414,12 @@
                   class="zoom"
                   onmousemove="zoom(event)"
                   style="
-                    background-image: url(../assets/images/products/product-single-img-4.jpg);
+                    background-image: url(../assets/images/product-single-img-4.jpg);
                   "
                 >
                   <!-- img -->
                   <img
-                    src="../assets/images/products/product-single-img-4.jpg"
+                    src="../assets/images/product-single-img-4.jpg"
                     alt=""
               >
                 </div>
@@ -4432,7 +4432,7 @@
                   <div class="thumbnails-img">
                     <!-- img -->
                     <img
-                      src="../assets/images/products/product-single-img-1.jpg"
+                      src="../assets/images/product-single-img-1.jpg"
                       alt=""
                 >
                   </div>
@@ -4441,7 +4441,7 @@
                   <div class="thumbnails-img" >
                     <!-- img -->
                     <img
-                      src="../assets/images/products/product-single-img-2.jpg"
+                      src="../assets/images/product-single-img-2.jpg"
                       alt=""
                 >
                   </div>
@@ -4450,7 +4450,7 @@
                   <div class="thumbnails-img">
                     <!-- img -->
                     <img
-                      src="../assets/images/products/product-single-img-3.jpg"
+                      src="../assets/images/product-single-img-3.jpg"
                       alt=""
                 >
                   </div>
@@ -4459,7 +4459,7 @@
                   <div class="thumbnails-img">
                     <!-- img -->
                     <img
-                      src="../assets/images/products/product-single-img-4.jpg"
+                      src="../assets/images/product-single-img-4.jpg"
                       alt=""
                 >
                   </div>
@@ -4670,19 +4670,19 @@
           <ul class="list-inline mb-0">
             <li class="list-inline-item text-dark">Payment Partners</li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/amazonpay.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/amazonpay.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/american-express.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/american-express.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/mastercard.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/mastercard.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/paypal.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/paypal.svg" alt=""></a>
             </li>
             <li class="list-inline-item">
-              <a href="#!"><img src="../assets/images/payment/visa.svg" alt=""></a>
+              <a href="#!"><img src="../assets/images/visa.svg" alt=""></a>
             </li>
           </ul>
         </div>
@@ -4690,10 +4690,10 @@
           <ul class="list-inline mb-0 text-lg-end text-center">
             <li class="list-inline-item mb-2 mb-md-0 text-dark">Get deliveries with FreshCart</li>
             <li class="list-inline-item ms-4">
-              <a href="#!"> <img src="../assets/images/appbutton/appstore-btn.svg" alt=""
+              <a href="#!"> <img src="../assets/images/appstore-btn.svg" alt=""
                   style="width: 140px;"></a></li>
             <li class="list-inline-item">
-              <a href="#!"> <img src="../assets/images/appbutton/googleplay-btn.svg" alt=""
+              <a href="#!"> <img src="../assets/images/googleplay-btn.svg" alt=""
                   style="width: 140px;"></a></li>
           </ul>
         </div>
@@ -4733,12 +4733,12 @@
 </footer>
   <!-- Javascript-->
   <!-- Libs JS -->
-<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script src="../assets/js/theme.min.js"></script>
+
+
 
 <!-- Theme JS -->
-<script src="../assets/js/theme.min.js"></script>
+ <script src="../assets/js/theme.min.js"></script>
   <script src="../assets/libs/slick-carousel/slick/slick.min.js"></script>
   <script src="../assets/js/vendors/slick-slider.js"></script>
   <script src="../assets/libs/tiny-slider/dist/min/tiny-slider.js"></script>

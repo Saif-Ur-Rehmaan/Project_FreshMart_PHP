@@ -57,7 +57,7 @@ $EditId=(isset($_GET["EditCategoryOfId"]))?$_GET["EditCategoryOfId"]:"";
                                     <div class="mb-4 d-flex">
                                         <div class="position-relative">
                                             <img class="image  icon-shape icon-xxxl bg-light rounded-4"
-                                                src="../assets/images/icons/<?php echo (isset($_GET["EditCategoryOfId"]))?DatabaseManager::select("categories","C_Logo as p","C_id=$EditId")[0]["p"] :""; ?>"
+                                                src="../assets/images/<?php echo (isset($_GET["EditCategoryOfId"]))?DatabaseManager::select("categories","C_Logo as p","C_id=$EditId")[0]["p"] :""; ?>"
                                                 alt="image">
 
                                             <div class="file-upload position-absolute end-0 top-0 mt-n2 me-n1">
@@ -97,7 +97,7 @@ $EditId=(isset($_GET["EditCategoryOfId"]))?$_GET["EditCategoryOfId"]:"";
                                         <div class="mb-3 col-lg-6">
                                             <label class="form-label">Parent Category</label>
                                             <select class="form-select" name="C_ParentCategory">
-                                                <option>Parent Category Name</option>
+                                                <option value="NULL">Parent Category Name</option>
                                                 <?php $categoriesName= DatabaseManager::select("categories","C_id,C_name");
                                                     if(isset($_GET["EditCategoryOfId"])){
                                                         $PC=DatabaseManager::select("categories","C_ParentCategory as p","C_id=$EditId")[0]["p"];
@@ -213,12 +213,12 @@ $EditId=(isset($_GET["EditCategoryOfId"]))?$_GET["EditCategoryOfId"]:"";
 
     <script src="../assets/libs/flatpickr/dist/flatpickr.min.js"></script>
     <!-- Libs JS -->
-    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+     <?php include "../inc/LibsJs.php"?>
+    
+    
 
     <!-- Theme JS -->
-    <script src="../assets/js/theme.min.js"></script>
+     <script src="../assets/js/theme.min.js"></script>
     <script src="../assets/libs/quill/dist/quill.min.js"></script>
     <script src="../assets/js/vendors/editor.js"></script>
     <script src="../assets/libs/dropzone/dist/min/dropzone.min.js"></script>

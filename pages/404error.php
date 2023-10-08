@@ -23,7 +23,7 @@
 </script>
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico">
 
 
 <!-- Libs CSS -->
@@ -49,7 +49,7 @@
         <div class="offset-lg-1 col-lg-10  py-8 py-xl-0">
           <div class=" mb-10 mb-xxl-0">
             <!-- img -->
-            <a href="../index.php"> <img src="../assets/images/logo/freshcart-logo.svg" alt=""></a>
+            <a href="../index.php"> <img src="../assets/images/freshcart-logo.svg" alt=""></a>
           </div>
           <div class="row justify-content-center align-items-center">
             <!-- content -->
@@ -103,7 +103,7 @@
             <div class="col-md-6">
               <div>
                  <!-- img -->
-                <img src="../assets/images/svg-graphics/error.svg" alt="" class="img-fluid">
+                <img src="../assets/images/error.svg" alt="" class="img-fluid">
               </div>
             </div>
           </div>
@@ -121,12 +121,12 @@
 
   <!-- Javascript-->
   <!-- Libs JS -->
-<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script src="../assets/js/theme.min.js"></script>
+
+
 
 <!-- Theme JS -->
-<script src="../assets/js/theme.min.js"></script>
+ <script src="../assets/js/theme.min.js"></script>
 
 
 

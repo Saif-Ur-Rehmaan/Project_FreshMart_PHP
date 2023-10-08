@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2023 at 10:10 PM
+-- Generation Time: Oct 08, 2023 at 07:52 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -36,7 +36,7 @@ CREATE TABLE `categories` (
   `C_MetaTitle` varchar(255) NOT NULL,
   `C_MetaDescription` text NOT NULL,
   `C_Slug` varchar(255) NOT NULL,
-  `C_ParentCategory` text NOT NULL,
+  `C_ParentCategory` text DEFAULT NULL,
   `C_Date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -45,13 +45,13 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`C_id`, `C_name`, `C_Logo`, `C_Status`, `C_Description`, `C_MetaTitle`, `C_MetaDescription`, `C_Slug`, `C_ParentCategory`, `C_Date`) VALUES
-(0, 'Dairy, Bread & Eggs', 'dairy.svg', 0, '', '', '', 'abc', '0', '2023-09-24'),
-(1, 'Bakery & Biscuits', 'bakery.svg', 1, 'asdca', 'mtitle', 'asadsasd', 'xyz', '0', '2023-09-24'),
-(2, 'Snack & Munchies', 'snacks.svg', 1, '', '', '', '', '0', '2023-09-24'),
+(0, 'Dairy, Bread & Eggs', 'dairy.svg', 0, '', '', '', 'abc', NULL, '2023-09-24'),
+(1, 'Bakery & Biscuits', 'bakery.svg', 1, 'asdca', 'mtitle', 'asadsasd', 'xyz', NULL, '2023-09-24'),
+(2, 'Snack & Munchies', 'snacks.svg', 1, '', '', '', '', NULL, '2023-09-24'),
 (3, 'Baby Care', 'baby-food.svg', 1, '', '', '', '', '0', '2023-09-24'),
-(4, 'Cold Drinks & Juices', 'wine.svg', 1, '', '', '', '', '0', '2023-09-24'),
+(4, 'Cold Drinks & Juices', 'wine.svg', 1, '', '', '', '', NULL, '2023-09-24'),
 (5, 'Toiletries', 'toiletries.svg', 0, '', '', '', '', '0', '2023-09-24'),
-(11, 'Pet Food', 'petfoods.svg', 1, 'desc for pet food\r\n\r\n', 'Pet Food,cat food , dog food ,food', 'Meta desc for pet food', 'pet-food', 'Parent Category Name', '2023-09-24');
+(11, 'Pet Food', 'petfoods.svg', 1, 'desc for pet food\r\n\r\n', 'Pet Food,cat food , dog food ,food', 'Meta desc for pet food', 'pet-food', '2', '2023-09-24');
 
 -- --------------------------------------------------------
 
@@ -90,6 +90,27 @@ CREATE TABLE `customersview` (
 ,`ContactNo` varchar(255)
 ,`spend` double
 );
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messeges`
+--
+
+CREATE TABLE `messeges` (
+  `Mes_Id` int(11) NOT NULL,
+  `_Client_Id_From` int(11) NOT NULL,
+  `Messege` text NOT NULL,
+  `Mes_Status` int(11) NOT NULL DEFAULT 0 COMMENT '0=unread,1=read',
+  `_Client_Id_To` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `messeges`
+--
+
+INSERT INTO `messeges` (`Mes_Id`, `_Client_Id_From`, `Messege`, `Mes_Status`, `_Client_Id_To`) VALUES
+(1, 2, 'messege 1', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -141,26 +162,27 @@ CREATE TABLE `products` (
   `P_SalePrice` int(11) NOT NULL DEFAULT 0,
   `P_MetaTitle` varchar(255) NOT NULL,
   `P_MetaDescription` text NOT NULL,
-  `Date` timestamp NOT NULL DEFAULT current_timestamp()
+  `Date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `P_IsFeatured` int(11) NOT NULL DEFAULT 0 COMMENT '0=not,1=featured'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`P_Id`, `P_Title`, `_Category_id`, `_Client_id`, `P_Weight`, `P_Units`, `P_Images`, `P_Description`, `P_InStock`, `P_Code`, `P_SKU`, `P_Status`, `P_ActualPrice`, `P_RegularPrice`, `P_SalePrice`, `P_MetaTitle`, `P_MetaDescription`, `Date`) VALUES
-(54, 'buiscit', 2, 1, '10g', '30', 'product-single-img-4.jpg ', '', 1, 'buis124', 'SBS_-ANMOL', 1, 5, 15, 0, 'sa', 'as', '2023-09-24 07:42:09'),
-(57, 'Napolitanke Ljesnjak', 2, 1, '200g', '20', 'product-single-img-1.jpg ', 'hi', 1, 'napolitankeljesnjak845', 'NAPOL845KELJ', 1, 5, 45, 35, 'title', 'lorem ipsem', '2023-06-08 10:43:02'),
-(58, 'popcorn', 2, 1, '250g,500g,1000g,', '10', 'product-img-1.jpg ', '', 1, '123a', 'POP-SHEL', 1, 5, 2, 0, '', '', '2023-09-24 10:54:59'),
-(65, 'Product 2', 0, 1, '0.7', '5', 'product2.jpg', 'Description for Product 2', 1, 'P002', 'SKU002', 1, 5, 29, 24, 'Meta Title 2', 'Meta Description 2', '2023-09-24 14:25:50'),
-(66, 'Product 3', 0, 1, '0.6', '20', 'product3.jpg', 'Description for Product 3', 1, 'P003', 'SKU003', 1, 5, 12, 9, 'Meta Title 3', 'Meta Description 3', '2023-09-24 14:25:50'),
-(67, 'Product 4', 0, 1, '0.8', '15', 'product4.jpg', 'Description for Product 4', 1, 'P004', 'SKU004', 1, 5, 39, 34, 'Meta Title 4', 'Meta Description 4', '2023-09-24 14:25:50'),
-(68, 'Product 5', 0, 1, '0.9', '10', 'product5.jpg', 'Description for Product 5', 1, 'P005', 'SKU005', 0, 5, 22, 19, 'Meta Title 5', 'Meta Description 5', '2023-09-24 14:25:50'),
-(69, 'Product 6', 0, 1, '0.4', '25', 'product6.jpg', 'Description for Product 6', 1, 'P006', 'SKU006', 1, 5, 15, 12, 'Meta Title 6', 'Meta Description 6', '2023-09-24 14:25:50'),
-(70, 'Product 7', 0, 1, '0.7', '8', 'product7.jpg', 'Description for Product 7', 1, 'P007', 'SKU007', 0, 5, 32, 27, 'Meta Title 7', 'Meta Description 7', '2023-09-24 14:25:50'),
-(71, 'Product 8', 0, 1, '0.6', '12', 'product8.jpg', 'Description for Product 8', 1, 'P008', 'SKU008', 0, 5, 27, 22, 'Meta Title 8', 'Meta Description 8', '2023-09-24 14:25:50'),
-(72, 'Product 9', 0, 1, '0.3', '30', 'product9.jpg', 'Description for Product 9', 1, 'P009', 'SKU009', 1, 5, 18, 14, 'Meta Title 9', 'Meta Description 9', '2023-09-24 14:25:50'),
-(73, 'Product 10', 0, 1, '0.8', '18', 'product10.jpg', 'Description for Product 10', 1, 'P010', 'SKU010', 0, 5, 37, 32, 'Meta Title 10', 'Meta Description 10', '2023-09-24 14:25:50');
+INSERT INTO `products` (`P_Id`, `P_Title`, `_Category_id`, `_Client_id`, `P_Weight`, `P_Units`, `P_Images`, `P_Description`, `P_InStock`, `P_Code`, `P_SKU`, `P_Status`, `P_ActualPrice`, `P_RegularPrice`, `P_SalePrice`, `P_MetaTitle`, `P_MetaDescription`, `Date`, `P_IsFeatured`) VALUES
+(54, 'buiscit', 2, 1, '10g', '30', 'product-single-img-4.jpg ', '', 1, 'buis124', 'SBS_-ANMOL', 1, 5, 15, 0, 'sa', 'as', '2023-09-24 07:42:09', 1),
+(57, 'Napolitanke Ljesnjak', 2, 1, '200g', '20', 'product-single-img-1.jpg ', 'hi', 1, 'napolitankeljesnjak845', 'NAPOL845KELJ', 1, 5, 45, 35, 'title', 'lorem ipsem', '2023-06-08 10:43:02', 0),
+(58, 'popcorn', 2, 1, '250g,500g,1000g,', '10', 'product-img-1.jpg ', '', 1, '123a', 'POP-SHEL', 1, 5, 2, 0, '', '', '2023-09-24 10:54:59', 0),
+(65, 'Product 2', 0, 1, '0.7', '5', 'category-cold-drinks-juices.jpg', 'Description for Product 2', 1, 'P002', 'SKU002', 1, 5, 29, 24, 'Meta Title 2', 'Meta Description 2', '2023-09-24 14:25:50', 1),
+(66, 'Product 3', 0, 1, '0.6', '20', 'category-dairy-bread-eggs.jpg', 'Description for Product 3', 1, 'P003', 'SKU003', 1, 5, 12, 9, 'Meta Title 3', 'Meta Description 3', '2023-09-24 14:25:50', 1),
+(67, 'Product 4', 0, 1, '0.8', '15', 'category-instant-food.jpg', 'Description for Product 4', 1, 'P004', 'SKU004', 1, 5, 39, 34, 'Meta Title 4', 'Meta Description 4', '2023-09-24 14:25:50', 0),
+(68, 'Product 5', 0, 1, '0.9', '10', 'product-img-7.jpg', 'Description for Product 5', 1, 'P005', 'SKU005', 0, 5, 22, 19, 'Meta Title 5', 'Meta Description 5', '2023-09-24 14:25:50', 1),
+(69, 'Product 6', 0, 1, '0.4', '25', 'product-img-3.jpg', 'Description for Product 6', 1, 'P006', 'SKU006', 1, 5, 15, 12, 'Meta Title 6', 'Meta Description 6', '2023-09-24 14:25:50', 1),
+(70, 'Product 7', 0, 1, '0.7', '8', 'product-img-5.jpg', 'Description for Product 7', 1, 'P007', 'SKU007', 0, 5, 32, 27, 'Meta Title 7', 'Meta Description 7', '2023-09-24 14:25:50', 0),
+(71, 'Product 8', 0, 1, '0.6', '12', 'product-img-13.jpg', 'Description for Product 8', 1, 'P008', 'SKU008', 0, 5, 27, 22, 'Meta Title 8', 'Meta Description 8', '2023-09-24 14:25:50', 0),
+(72, 'Product 9', 0, 1, '0.3', '30', 'product-img-13.jpg', 'Description for Product 9', 1, 'P009', 'SKU009', 1, 5, 18, 14, 'Meta Title 9', 'Meta Description 9', '2023-09-24 14:25:50', 1),
+(73, 'Product 10', 0, 1, '0.8', '18', 'product-img-13.jpg', 'Description for Product 10', 1, 'P010', 'SKU010', 0, 5, 37, 32, 'Meta Title 10', 'Meta Description 10', '2023-09-24 14:25:50', 0);
 
 -- --------------------------------------------------------
 
@@ -383,6 +405,14 @@ ALTER TABLE `clients`
   ADD KEY `FK_Role` (`Cli_Role`);
 
 --
+-- Indexes for table `messeges`
+--
+ALTER TABLE `messeges`
+  ADD PRIMARY KEY (`Mes_Id`),
+  ADD KEY `FK_msCliId_from` (`_Client_Id_From`),
+  ADD KEY `FK_msCliId_fo` (`_Client_Id_To`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -443,6 +473,12 @@ ALTER TABLE `clients`
   MODIFY `Cli_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `messeges`
+--
+ALTER TABLE `messeges`
+  MODIFY `Mes_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
@@ -487,6 +523,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `clients`
   ADD CONSTRAINT `FK_Role` FOREIGN KEY (`Cli_Role`) REFERENCES `roles` (`Rol_Id`);
+
+--
+-- Constraints for table `messeges`
+--
+ALTER TABLE `messeges`
+  ADD CONSTRAINT `FK_msCliId_fo` FOREIGN KEY (`_Client_Id_To`) REFERENCES `clients` (`Cli_Id`),
+  ADD CONSTRAINT `FK_msCliId_from` FOREIGN KEY (`_Client_Id_From`) REFERENCES `clients` (`Cli_Id`);
 
 --
 -- Constraints for table `orders`

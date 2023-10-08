@@ -283,12 +283,12 @@
 
 
   <!-- Libs JS -->
-  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+   <?php include "../inc/LibsJs.php"?>
+  
+  
 
   <!-- Theme JS -->
-  <script src="../assets/js/theme.min.js"></script>
+   <script src="../assets/js/theme.min.js"></script>
   <script>
     $(document).ready(() => {
       $('#_PRODUCT_SEARCH_INP').on("keyup", search)
