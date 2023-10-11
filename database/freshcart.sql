@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2023 at 07:52 PM
+-- Generation Time: Oct 11, 2023 at 08:47 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -135,8 +135,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`Ord_Id`, `_Client_Id`, `_Product_Id`, `Ord_Quantity`, `Ord_Date`, `Ord_Status`, `Ord_Name`, `Ord_UnitPrice`, `Ord_ShippingPrice`) VALUES
-(5, 2, 54, '2', '2022-10-01', 5, 'FC#1007', '15', 10),
-(6, 2, 57, '3', '2023-09-25', 5, 'FC#1009', '35', 15);
+(5, 3, 54, '2', '2022-10-01', 5, 'FC#1007', '15', 10),
+(6, 3, 57, '3', '2023-09-25', 5, 'FC#1009', '35', 15);
 
 -- --------------------------------------------------------
 
@@ -301,7 +301,7 @@ CREATE TABLE `sellers` (
 --
 
 INSERT INTO `sellers` (`Sel_Id`, `_Client_Id`, `Sel_StoreName`, `Sel_Store_Address`, `Sel_ContactNo`, `Sel_Image`, `Sel_RegistrationDate`) VALUES
-(1, 1, 'E-Grocery Super Market', 'abc street , karachi ,pakistan', '123456879', 'stores-logo-1.svg', '2023-10-01');
+(1, 3, 'E-Grocery Super Market', 'abc street , karachi ,pakistan', '123456879', 'stores-logo-1.svg', '2023-10-01');
 
 -- --------------------------------------------------------
 
@@ -333,13 +333,13 @@ INSERT INTO `users` (`Use_Id`, `_Client_Id`, `Use_ContactNo`, `Use_Address`, `Us
 -- (See below for the actual view)
 --
 CREATE TABLE `vendorsorsellers` (
-`TotalStoreSell` double
+`Sel_Id` int(11)
 ,`Mail` varchar(255)
 ,`Sel_StoreName` varchar(255)
-,`Sel_Id` int(11)
-,`Earning` double
 ,`Sel_ContactNo` varchar(255)
 ,`Sel_Image` varchar(255)
+,`TotalStoreSell` double
+,`Earning` double
 );
 
 -- --------------------------------------------------------
@@ -349,7 +349,7 @@ CREATE TABLE `vendorsorsellers` (
 --
 DROP TABLE IF EXISTS `customersview`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `customersview`  AS SELECT `users`.`_Client_Id` AS `_Client_id`, (select `clients`.`Cli_DisplayName` from `clients` where `clients`.`Cli_Id` = `users`.`_Client_Id`) AS `CustomerName`, (select `clients`.`Cli_Mail` from `clients` where `clients`.`Cli_Id` = `users`.`_Client_Id`) AS `Mail`, `users`.`Use_RegistrationDate` AS `RegisterDate`, `users`.`Use_ContactNo` AS `ContactNo`, (select case when `products`.`P_SalePrice` <> '' and `products`.`P_SalePrice` <> 0 then `products`.`P_SalePrice` else `products`.`P_RegularPrice` end from `products` where `products`.`P_Id` = (select `orders`.`_Product_Id` from `orders` where `orders`.`_Client_Id` = `orders`.`_Client_Id` and `orders`.`Ord_Status` = 5)) * (select `orders`.`Ord_Quantity` from `orders` where `orders`.`Ord_Id` = (select `orders`.`Ord_Id` from `orders` where `orders`.`_Client_Id` = `orders`.`_Client_Id` and `orders`.`Ord_Status` = 5)) AS `spend` FROM `users``users`  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `customersview`  AS SELECT `clients`.`Cli_Id` AS `_Client_id`, `clients`.`Cli_DisplayName` AS `CustomerName`, `clients`.`Cli_Mail` AS `Mail`, (select `users`.`Use_RegistrationDate` from `users` where `users`.`_Client_Id` = `clients`.`Cli_Id`) AS `RegisterDate`, (select `users`.`Use_ContactNo` from `users` where `users`.`_Client_Id` = `clients`.`Cli_Id`) AS `ContactNo`, (select sum(`orders`.`Ord_Quantity` * `orders`.`Ord_UnitPrice`) from `orders` where `orders`.`Ord_Status` <> 6 and `orders`.`_Client_Id` = `clients`.`Cli_Id`) AS `spend` FROM `clients` WHERE `clients`.`Cli_Role` = 11  ;
 
 -- --------------------------------------------------------
 
@@ -385,7 +385,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vendorsorsellers`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vendorsorsellers`  AS SELECT (select sum(`searchorderview`.`Totalamount`) from `searchorderview` where `searchorderview`.`_Client_Id` = `searchorderview`.`_Client_Id` and `searchorderview`.`Ord_Status` = 5) AS `TotalStoreSell`, (select `clients`.`Cli_Mail` from `clients` where `clients`.`Cli_Id` = `sellers`.`_Client_Id`) AS `Mail`, (select `sellers`.`Sel_StoreName` from `sellers` where `sellers`.`_Client_Id` = `sellers`.`_Client_Id`) AS `Sel_StoreName`, (select `sellers`.`Sel_Id` from `sellers` where `sellers`.`_Client_Id` = `sellers`.`_Client_Id`) AS `Sel_Id`, (select sum(`searchorderview`.`Totalamount`) from `searchorderview` where `searchorderview`.`_Client_Id` = `searchorderview`.`_Client_Id` and `searchorderview`.`Ord_Status` = 5) - (select (select `products`.`P_ActualPrice` from `products` where `products`.`P_Id` = (select `orders`.`_Product_Id` from `orders` where `orders`.`Ord_Status` = 5)) * (select `orders`.`Ord_Quantity` from `orders` where `orders`.`Ord_Id` = (select `orders`.`Ord_Id` from `orders` where `orders`.`Ord_Status` = 5))) AS `Earning`, `sellers`.`Sel_ContactNo` AS `Sel_ContactNo`, `sellers`.`Sel_Image` AS `Sel_Image` FROM `sellers``sellers`  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vendorsorsellers`  AS SELECT (select `sellers`.`Sel_Id` from `sellers` where `sellers`.`_Client_Id` = `clients`.`Cli_Id`) AS `Sel_Id`, `clients`.`Cli_Mail` AS `Mail`, (select `sellers`.`Sel_StoreName` from `sellers` where `sellers`.`_Client_Id` = `clients`.`Cli_Id`) AS `Sel_StoreName`, (select `sellers`.`Sel_ContactNo` from `sellers` where `sellers`.`_Client_Id` = `clients`.`Cli_Id`) AS `Sel_ContactNo`, (select `sellers`.`Sel_Image` from `sellers` where `sellers`.`_Client_Id` = `clients`.`Cli_Id`) AS `Sel_Image`, (select sum(`orders`.`Ord_Quantity` * `orders`.`Ord_UnitPrice`) from `orders` where `orders`.`_Client_Id` = `clients`.`Cli_Id`) AS `TotalStoreSell`, (select sum(`orders`.`Ord_Quantity` * `orders`.`Ord_UnitPrice`) from `orders` where `orders`.`_Client_Id` = `clients`.`Cli_Id`) - (select sum(`orders`.`Ord_Quantity` * (select `products`.`P_ActualPrice` from `products` where `products`.`P_Id` = `orders`.`_Product_Id`)) from `orders` where `orders`.`_Client_Id` = `clients`.`Cli_Id`) AS `Earning` FROM `clients` WHERE `clients`.`Cli_Role` = 22  ;
 
 --
 -- Indexes for dumped tables
@@ -464,7 +464,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `C_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `C_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `clients`
@@ -488,7 +488,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `P_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `P_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `reviews_products`

@@ -1,7 +1,7 @@
 <!-- add product work start -->
 <?php
 include "../inc/config.php";
-$connection = mysqli_connect('localhost', 'root', '', 'freshcart');
+$connection = DatabaseManager::connect();
 if (isset($_POST["Add_Product"])) {
     $P_Title = $_POST["P_Title"];
     $_Catagory_id = $_POST["_Catagory_id"];
@@ -9,6 +9,11 @@ if (isset($_POST["Add_Product"])) {
     $P_Units = $_POST["P_Units"];
     $P_Description = $_POST["P_Description"];
 
+
+
+    $Client_id=3;////  ALERT !      STATIC CLIENT ID
+    
+    
     if (isset($_POST["P_InStock"])) {
         $P_InStock = 1;
     } else {
@@ -33,10 +38,11 @@ if (isset($_POST["Add_Product"])) {
     
  
     
-    $query = "INSERT INTO `products` (`P_Title`,`_Category_id`, `P_Weight`, `P_Units`, `P_Images`, `P_Description`, `P_InStock`, `P_Code`, `P_SKU`, `P_Status`, `P_RegularPrice`, `P_SalePrice`, `P_MetaTitle`, `P_MetaDescription`)
-   VALUES ('$P_Title','$_Catagory_id', '$P_Weight', '$P_Units', '$P_Images', '$P_Description', '$P_InStock', '$P_Code', '$P_SKU', '$P_Status', '$P_RegularPrice', '$P_SalePrice', '$P_MetaTitle', '$P_MetaDescription')";
-
-    $connection = mysqli_connect('localhost', 'root', '', 'freshcart');
+    $query = "INSERT INTO `products` (`P_Title`,`_Client_id`,`_Category_id`, `P_Weight`, `P_Units`, `P_Images`, `P_Description`, `P_InStock`, `P_Code`, `P_SKU`, `P_Status`, `P_RegularPrice`, `P_SalePrice`, `P_MetaTitle`, `P_MetaDescription`)
+   VALUES ('$P_Title','$Client_id','$_Catagory_id', '$P_Weight', '$P_Units', '$P_Images', '$P_Description', '$P_InStock', '$P_Code', '$P_SKU', '$P_Status', '$P_RegularPrice', '$P_SalePrice', '$P_MetaTitle', '$P_MetaDescription')";
+    echo "<pre>";
+    print_r($query);
+    $connection = DatabaseManager::connect();
     if (mysqli_query($connection, $query)) {
         if (move_uploaded_file($from, $to)) {
         } else {

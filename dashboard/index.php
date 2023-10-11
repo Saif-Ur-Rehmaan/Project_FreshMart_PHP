@@ -558,30 +558,30 @@
                                                         </td>
                                                         <td>
                                                             <?php
-                                                               switch ($row["OrderStatus"]) {
+                                                            switch ($row["OrderStatus"]) {
                                                                 case '0':
-                                                                  echo '<span class="badge badge-warning text-dark bg-light-danger">Pending</span>';
-                                                                  break;
+                                                                    echo '<span class="badge badge-warning text-dark bg-light-danger">Pending</span>';
+                                                                    break;
                                                                 case '1':
-                                                                  echo '<span class="badge badge-warning text-dark bg-warning">Packeging</span>';
-                                                                  break;
+                                                                    echo '<span class="badge badge-warning text-dark bg-warning">Packeging</span>';
+                                                                    break;
                                                                 case '2':
-                                                                  echo '<span class="badge badge-info text-light bg-dark">Shipping</span>';
-                                                                  break;
+                                                                    echo '<span class="badge badge-info text-light bg-dark">Shipping</span>';
+                                                                    break;
                                                                 case '3':
-                                                                  echo '<span class="badge badge-success text-dark bg-light-secondary">Warehouse</span>';
-                                                                  break;
+                                                                    echo '<span class="badge badge-success text-dark bg-light-secondary">Warehouse</span>';
+                                                                    break;
                                                                 case '4':
-                                                                  echo '<span class="badge badge-primary text-dark bg-light-info">Delevering</span>';
-                                                                  break;
+                                                                    echo '<span class="badge badge-primary text-dark bg-light-info">Delevering</span>';
+                                                                    break;
                                                                 case '6':
-                                                                  echo '<span class="badge badge-primary text-light bg-danger">Canceled</span>';
-                                                                  break;
+                                                                    echo '<span class="badge badge-primary text-light bg-danger">Canceled</span>';
+                                                                    break;
                                                                 default:
-                                                                  echo '<span class="badge badge-success text-light bg-success">Success</span>';
-                                  
-                                                                  break;
-                                                              }
+                                                                    echo '<span class="badge badge-success text-light bg-success">Success</span>';
+
+                                                                    break;
+                                                            }
                                                             ?>
 
                                                         </td>
@@ -589,8 +589,8 @@
                                                     </tr>
 
                                                 <?php } ?>
-  
-                                                
+
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -604,12 +604,14 @@
     </div>
 
     <!-- Libs JS -->
-     <?php include "../inc/LibsJs.php"?>
-    
-    
+    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+
+
 
     <!-- Theme JS -->
-     <script src="../assets/js/theme.min.js"></script>
+    <script src="../assets/js/theme.min.js"></script>
     <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
     <!-- chart script start-->
     <script defr>

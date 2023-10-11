@@ -89,7 +89,7 @@ use function PHPSTORM_META\type;
                                             <div class="mb-3 col-lg-6">
                                                 <label class="form-label">Product Category</label>
                                                 <select name="_Catagory_id" class="form-select">
-                                                    <option>Product Category</option>
+                                                    <option value="null">Product Category</option>
                                                     <!-- value my Catagori id aai gi jo forien key h  -->
                                                     <?php $cname = DatabaseManager::select("categories", 'C_name,C_id');
                                                     $catid = $row["_Category_id"];
@@ -270,7 +270,7 @@ use function PHPSTORM_META\type;
                                             <div class="mb-3 col-lg-6">
                                                 <label class="form-label">Product Category</label>
                                                 <select name="_Catagory_id" class="form-select">
-                                                    <option selected>Product Category</option>
+                                                    <option selected value="null">Product Category</option>
                                                     <?php $cname = DatabaseManager::select("categories", 'C_name,C_id');
                                                     
                                                     foreach ($cname as $key => $value) {
