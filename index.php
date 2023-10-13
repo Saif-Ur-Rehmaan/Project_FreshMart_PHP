@@ -376,7 +376,12 @@
                                                   echo '<i class="bi bi-star-fill"></i>';
                                                   break;
                                                 default:
-                                                  // Handle other cases or display a default icon
+                                                echo '<i class="bi bi-star"></i>';
+                                                echo '<i class="bi bi-star"></i>';
+                                                echo '<i class="bi bi-star"></i>';
+                                                echo '<i class="bi bi-star"></i>';
+                                                echo '<i class="bi bi-star"></i>';
+
                                                   break;
                                               }
 
@@ -415,439 +420,7 @@
                           </div>
                       
                   <?php } ?>
-                    <!-- <div class="col">
-                        <div class="card card-product">
-                            <div class="card-body">
-                                <div class="text-center position-relative">
-                                    <div class=" position-absolute top-0 start-0">
-                                        <span class="badge bg-success">14%</span>
-                                    </div>
-                                    <a href="pages/shop-single.php"><img src="assets/images/product-img-2.jpg"
-                                            alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                    <div class="card-product-action">
-                                        <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></a>
-                                        <a href="shop-wishlist.php" class="btn-action" data-bs-toggle="tooltip"
-                                            data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
-                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                            title="Compare"><i class="bi bi-arrow-left-right"></i></a>
-                                    </div>
-
-                                </div>
-                                <div class="text-small mb-1"><a href="#!"
-                                        class="text-decoration-none text-muted"><small>Bakery &
-                                            Biscuits</small></a></div>
-                                <h2 class="fs-6"><a href="pages/shop-single.php"
-                                        class="text-inherit text-decoration-none">NutriChoice
-                                        Digestive </a></h2>
-                                <div class="text-warning">
-
-                                    <small> <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-half"></i></small> <span class="text-muted small">4.5
-                                        (25)</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div><span class="text-dark">$24</span>
-                                    </div>
-                                    <div><a href="#!" class="btn btn-primary btn-sm">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-plus">
-                                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg> Add</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-product">
-                            <div class="card-body">
-                                <div class="text-center position-relative"> <a href="pages/shop-single.php"><img
-                                            src="assets/images/product-img-3.jpg" alt="Grocery Ecommerce Template"
-                                            class="mb-3 img-fluid"></a>
-                                    <div class="card-product-action">
-                                        <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></a>
-                                        <a href="shop-wishlist.php" class="btn-action" data-bs-toggle="tooltip"
-                                            data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
-                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                            title="Compare"><i class="bi bi-arrow-left-right"></i></a>
-                                    </div>
-                                </div>
-                                <div class="text-small mb-1"><a href="#!"
-                                        class="text-decoration-none text-muted"><small>Bakery &
-                                            Biscuits</small></a></div>
-                                <h2 class="fs-6"><a href="pages/shop-single.php"
-                                        class="text-inherit text-decoration-none">Cadbury 5
-                                        Star Chocolate</a></h2>
-                                <div class="text-warning">
-
-                                    <small> <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i></small> <span class="text-muted small">5
-                                        (469)</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div><span class="text-dark">$32</span> <span
-                                            class="text-decoration-line-through text-muted">$35</span>
-                                    </div>
-                                    <div><a href="#!" class="btn btn-primary btn-sm">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-plus">
-                                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg> Add</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-product">
-                            <div class="card-body">
-                                <div class="text-center position-relative"> <a href="pages/shop-single.php"><img
-                                            src="assets/images/product-img-4.jpg" alt="Grocery Ecommerce Template"
-                                            class="mb-3 img-fluid"></a>
-                                    <div class="card-product-action">
-                                        <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></a>
-                                        <a href="shop-wishlist.php" class="btn-action" data-bs-toggle="tooltip"
-                                            data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
-                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                            title="Compare"><i class="bi bi-arrow-left-right"></i></a>
-                                    </div>
-                                    <div class=" position-absolute top-0 start-0">
-                                        <span class="badge bg-danger">Hot</span>
-                                    </div>
-                                </div>
-                                <div class="text-small mb-1"><a href="#!"
-                                        class="text-decoration-none text-muted"><small>Snack &
-                                            Munchies</small></a></div>
-                                <h2 class="fs-6"><a href="pages/shop-single.php"
-                                        class="text-inherit text-decoration-none">Onion
-                                        Flavour Potato</a></h2>
-                                <div class="text-warning">
-
-                                    <small> <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-half"></i>
-                                        <i class="bi bi-star"></i></small> <span class="text-muted small">3.5
-                                        (456)</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div><span class="text-dark">$3</span> <span
-                                            class="text-decoration-line-through text-muted">$5</span>
-                                    </div>
-                                    <div><a href="#!" class="btn btn-primary btn-sm">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-plus">
-                                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg> Add</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-product">
-                            <div class="card-body">
-                                <div class="text-center position-relative"> <a href="pages/shop-single.php"><img
-                                            src="assets/images/product-img-5.jpg" alt="Grocery Ecommerce Template"
-                                            class="mb-3 img-fluid"></a>
-                                    <div class="card-product-action">
-                                        <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></a>
-                                        <a href="shop-wishlist.php" class="btn-action" data-bs-toggle="tooltip"
-                                            data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
-                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                            title="Compare"><i class="bi bi-arrow-left-right"></i></a>
-                                    </div>
-                                </div>
-                                <div class="text-small mb-1"><a href="#!"
-                                        class="text-decoration-none text-muted"><small>Instant
-                                            Food</small></a></div>
-                                <h2 class="fs-6"><a href="pages/shop-single.php"
-                                        class="text-inherit text-decoration-none">Salted
-                                        Instant Popcorn </a></h2>
-                                <div class="text-warning">
-
-                                    <small> <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-half"></i></small> <span class="text-muted small">4.5
-                                        (39)</span>
-                                </div>
-                                <div class="d-flex justify-content-between mt-4">
-                                    <div><span class="text-dark">$13</span> <span
-                                            class="text-decoration-line-through text-muted">$18</span>
-                                    </div>
-                                    <div><a href="#!" class="btn btn-primary btn-sm">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-plus">
-                                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg> Add</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-product">
-                            <div class="card-body">
-
-                                <div class="text-center position-relative ">
-                                    <div class=" position-absolute top-0 start-0">
-                                        <span class="badge bg-danger">Sale</span>
-                                    </div>
-                                    <a href="#!"> <img src="assets/images/product-img-6.jpg"
-                                            alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                    <div class="card-product-action">
-                                        <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></a>
-                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                            title="Wishlist"><i class="bi bi-heart"></i></a>
-                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                            title="Compare"><i class="bi bi-arrow-left-right"></i></a>
-                                    </div>
-                                </div>
-                                <div class="text-small mb-1"><a href="#!"
-                                        class="text-decoration-none text-muted"><small>Dairy, Bread &
-                                            Eggs</small></a></div>
-                                <h2 class="fs-6"><a href="pages/shop-single.php"
-                                        class="text-inherit text-decoration-none">Blueberry
-                                        Greek Yogurt</a></h2>
-                                <div>
-
-                                    <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-half"></i></small> <span class="text-muted small">4.5
-                                        (189)</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div><span class="text-dark">$18</span> <span
-                                            class="text-decoration-line-through text-muted">$24</span>
-                                    </div>
-                                    <div><a href="#!" class="btn btn-primary btn-sm">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-plus">
-                                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg> Add</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-product">
-                            <div class="card-body">
-                                <div class="text-center position-relative"> <a href="pages/shop-single.php"><img
-                                            src="assets/images/product-img-7.jpg" alt="Grocery Ecommerce Template"
-                                            class="mb-3 img-fluid"></a>
-                                    <div class="card-product-action">
-                                        <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></a>
-                                        <a href="shop-wishlist.php" class="btn-action" data-bs-toggle="tooltip"
-                                            data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
-                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                            title="Compare"><i class="bi bi-arrow-left-right"></i></a>
-                                    </div>
-                                </div>
-                                <div class="text-small mb-1"><a href="#!"
-                                        class="text-decoration-none text-muted"><small>Dairy, Bread &
-                                            Eggs</small></a></div>
-                                <h2 class="fs-6"><a href="pages/shop-single.php"
-                                        class="text-inherit text-decoration-none">Britannia
-                                        Cheese Slices</a></h2>
-                                <div class="text-warning">
-
-                                    <small> <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i></small> <span class="text-muted small">5
-                                        (345)</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div><span class="text-dark">$24</span>
-                                    </div>
-                                    <div><a href="#!" class="btn btn-primary btn-sm">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-plus">
-                                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg> Add</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-product">
-                            <div class="card-body">
-                                <div class="text-center position-relative"> <a href="pages/shop-single.php"><img
-                                            src="assets/images/product-img-8.jpg" alt="Grocery Ecommerce Template"
-                                            class="mb-3 img-fluid"></a>
-                                    <div class="card-product-action">
-                                        <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></a>
-                                        <a href="shop-wishlist.php" class="btn-action" data-bs-toggle="tooltip"
-                                            data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
-                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                            title="Compare"><i class="bi bi-arrow-left-right"></i></a>
-                                    </div>
-                                </div>
-                                <div class="text-small mb-1"><a href="#!"
-                                        class="text-decoration-none text-muted"><small>Instant
-                                            Food</small></a></div>
-                                <h2 class="fs-6"><a href="pages/shop-single.php"
-                                        class="text-inherit text-decoration-none">Kellogg's
-                                        Original Cereals</a>
-                                </h2>
-                                <div class="text-warning">
-
-                                    <small> <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-half"></i></small> <span class="text-muted small">4
-                                        (90)</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div><span class="text-dark">$32</span> <span
-                                            class="text-decoration-line-through text-muted">$35</span>
-                                    </div>
-                                    <div><a href="#!" class="btn btn-primary btn-sm">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-plus">
-                                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg> Add</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-product">
-                            <div class="card-body">
-                                <div class="text-center position-relative"> <a href="pages/shop-single.php"><img
-                                            src="assets/images/product-img-9.jpg" alt="Grocery Ecommerce Template"
-                                            class="mb-3 img-fluid"></a>
-                                    <div class="card-product-action">
-                                        <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></a>
-                                        <a href="shop-wishlist.php" class="btn-action" data-bs-toggle="tooltip"
-                                            data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
-                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                            title="Compare"><i class="bi bi-arrow-left-right"></i></a>
-                                    </div>
-                                </div>
-                                <div class="text-small mb-1"><a href="#!"
-                                        class="text-decoration-none text-muted"><small>Snack &
-                                            Munchies</small></a></div>
-                                <h2 class="fs-6"><a href="pages/shop-single.php"
-                                        class="text-inherit text-decoration-none">Slurrp
-                                        Millet Chocolate </a></h2>
-                                <div class="text-warning">
-
-                                    <small> <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-half"></i></small> <span class="text-muted small">4.5
-                                        (67)</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div><span class="text-dark">$3</span> <span
-                                            class="text-decoration-line-through text-muted">$5</span>
-                                    </div>
-                                    <div><a href="#!" class="btn btn-primary btn-sm">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-plus">
-                                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg> Add</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-product">
-                            <div class="card-body">
-                                <div class="text-center position-relative"> <a href="pages/shop-single.php"><img
-                                            src="assets/images/product-img-10.jpg" alt="Grocery Ecommerce Template"
-                                            class="mb-3 img-fluid"></a>
-                                    <div class="card-product-action">
-                                        <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></a>
-                                        <a href="shop-wishlist.php" class="btn-action" data-bs-toggle="tooltip"
-                                            data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
-                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                            title="Compare"><i class="bi bi-arrow-left-right"></i></a>
-                                    </div>
-                                </div>
-                                <div class="text-small mb-1"><a href="#!"
-                                        class="text-decoration-none text-muted"><small>Dairy, Bread &
-                                            Eggs</small></a></div>
-                                <h2 class="fs-6"><a href="pages/shop-single.php"
-                                        class="text-inherit text-decoration-none">Amul
-                                        Butter - 500 g</a></h2>
-                                <div class="text-warning">
-
-                                    <small> <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-half"></i>
-                                        <i class="bi bi-star"></i></small> <span class="text-muted small">3.5
-                                        (89)</span>
-                                </div>
-                                <div class="d-flex justify-content-between mt-4">
-                                    <div><span class="text-dark">$13</span> <span
-                                            class="text-decoration-line-through text-muted">$18</span>
-                                    </div>
-                                    <div><a href="#!" class="btn btn-primary btn-sm">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-plus">
-                                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg> Add</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+                     
                 </div>
             </div>
         </section>
@@ -874,160 +447,171 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="card card-product">
-                                <div class="card-body">
-                                    <div class="text-center  position-relative "> <a href="pages/shop-single.php"><img
-                                                src="assets/images/product-img-11.jpg" alt="Grocery Ecommerce Template"
-                                                class="mb-3 img-fluid"></a>
+                        <?php
+                        $pids=DatabaseManager::select("discounts LIMIT 3","Product_Id,DATE_FORMAT(EndDate, '%Y/%m/%d %H:%i:%s') AS formatted_date");
+                        foreach ($pids as $key => $value) {
+                            $DPId=$value["Product_Id"];
+                            $DealEndDate=$value["formatted_date"];
+                                $Record=DatabaseManager::select("products","
+                                products.P_Images as PImg,
+                                products.P_Title as PTitle,
+                                products.P_SalePrice as salep,
+                                products.P_RegularPrice as regprice,
+                                (select categories.C_name FROM categories  WHERE categories.C_id=products._Category_Id)as catName,	
+                                (CASE
+                                    WHEN (SELECT COUNT(reviews_products.Rev_Id) FROM reviews_products WHERE reviews_products._Product_id = products.P_Id) > 0 
+                                        THEN
+                                        ROUND((SELECT SUM(reviews_products.Rev_Star) FROM reviews_products WHERE reviews_products._Product_id = products.P_Id) /
+                                        (SELECT COUNT(reviews_products.Rev_Id) FROM reviews_products WHERE reviews_products._Product_id = products.P_Id) * 2) / 2
+                                        ELSE
+                                            0
+                                END) AS average_rating
+                                ","products.P_Id=$DPId");
 
-                                        <div class="card-product-action">
-                                            <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                                data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                    data-bs-toggle="tooltip" data-bs-html="true"
-                                                    title="Quick View"></i></a>
-                                            <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                                title="Wishlist"><i class="bi bi-heart"></i></a>
-                                            <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                                title="Compare"><i class="bi bi-arrow-left-right"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="text-small mb-1"><a href="#!"
-                                            class="text-decoration-none text-muted"><small>Tea, Coffee &
-                                                Drinks</small></a></div>
-                                    <h2 class="fs-6"><a href="pages/shop-single.php"
-                                            class="text-inherit text-decoration-none">Roast
-                                            Ground Coffee</a></h2>
+                            $PImg =$Record[0]["PImg"];
+                            $PTitle =$Record[0]["PTitle"];
+                            $salep =$Record[0]["salep"];
+                            $regprice =$Record[0]["regprice"];
+                            $catName =$Record[0]["catName"];
+                            $average_rating =$Record[0]["average_rating"];?>
 
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-dark">$13</span> <span
-                                                class="text-decoration-line-through text-muted">$18</span>
+
+                                <div class="col">
+                                    <div class="card card-product">
+                                        <div class="card-body">
+                                            <div class="text-center  position-relative "> <a href="pages/shop-single.php"><img
+                                                        src="assets/images/<?php echo $PImg?>" alt="<?php echo $PTitle?>"
+                                                        class="mb-3 img-fluid"></a>
+
+                                                <div class="card-product-action">
+                                                    <a href="#!" class="btn-action" data-bs-toggle="modal" data-bs-target="#quickViewModal">
+                                                        <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i>
+                                                    </a>
+                                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist">
+                                                        <i class="bi bi-heart"></i>
+                                                    </a>
+                                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true" title="Compare">
+                                                        <i class="bi bi-arrow-left-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="text-small mb-1">
+                                                <a href="#!" class="text-decoration-none text-muted">
+                                                    <small><?php echo $catName?>a</small>
+                                                </a>
+                                            </div>
+                                            <h2 class="fs-6">
+                                                <a href="pages/shop-single.php" class="text-inherit text-decoration-none">
+                                                <?php echo $PTitle?></a></h2>
+
+                                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <div><span class="text-dark">$<?php echo $regprice?></span> <span
+                                                        class="text-decoration-line-through text-muted">$<?php echo $salep ?></span>
+                                                </div>
+                                                <div>
+                                                    <small class="text-warning">
+                                                    <?php
+                                              // Assuming $value["NumberOfReviews"] contains the average rating value
+                                              $averageRating = $average_rating;
+
+                                              switch ($averageRating) {
+                                                case 1:
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star"></i>';
+                                                  echo '<i class="bi bi-star"></i>';
+                                                  echo '<i class="bi bi-star"></i>';
+                                                  echo '<i class="bi bi-star"></i>';
+                                                  break;
+                                                case 1.5:
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-half"></i>';
+                                                  echo '<i class="bi bi-star"></i>';
+                                                  echo '<i class="bi bi-star"></i>';
+                                                  echo '<i class="bi bi-star"></i>';
+                                                  break;
+                                                case 2:
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star"></i>';
+                                                  echo '<i class="bi bi-star"></i>';
+                                                  echo '<i class="bi bi-star"></i>';
+                                                  break;
+                                                case 2.5:
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-half"></i>';
+                                                  echo '<i class="bi bi-star"></i>';
+                                                  echo '<i class="bi bi-star"></i>';
+                                                  break;
+                                                case 3:
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star"></i>';
+                                                  echo '<i class="bi bi-star"></i>';
+                                                  break;
+                                                case 3.5:
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-half"></i>';
+                                                  echo '<i class="bi bi-star"></i>';
+                                                  break;
+                                                case 4:
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star"></i>';
+                                                  break;
+                                                case 4.5:
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-half"></i>';
+                                                  break;
+                                                case 5:
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  echo '<i class="bi bi-star-fill"></i>';
+                                                  break;
+                                                default:
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                  break;
+                                              }
+
+                                              ?>
+                                                    </small>
+                                                    <span><small><?php echo $average_rating?></small></span>
+                                                </div>
+                                            </div>
+                                            <div class="d-grid mt-2"><a href="#!" class="btn btn-primary ">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="feather feather-plus">
+                                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                    </svg> Add to cart </a></div>
+                                            <div class="d-flex justify-content-start text-center mt-3">
+                                                <div class="deals-countdown w-100" data-countdown="<?php echo $DealEndDate ?>"></div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-half"></i>
-                                            </small>
-                                            <span><small>4.5</small></span>
-                                        </div>
-                                    </div>
-                                    <div class="d-grid mt-2"><a href="#!" class="btn btn-primary ">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-plus">
-                                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg> Add to cart </a></div>
-                                    <div class="d-flex justify-content-start text-center mt-3">
-                                        <div class="deals-countdown w-100" data-countdown="2028/10/10 00:00:00"></div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-product">
-                                <div class="card-body">
-                                    <div class="text-center  position-relative "> <a href="pages/shop-single.php"><img
-                                                src="assets/images/product-img-12.jpg" alt="Grocery Ecommerce Template"
-                                                class="mb-3 img-fluid"></a>
-                                        <div class="card-product-action">
-                                            <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                                data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                    data-bs-toggle="tooltip" data-bs-html="true"
-                                                    title="Quick View"></i></a>
-                                            <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                                title="Wishlist"><i class="bi bi-heart"></i></a>
-                                            <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                                title="Compare"><i class="bi bi-arrow-left-right"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="text-small mb-1"><a href="#!"
-                                            class="text-decoration-none text-muted"><small>Fruits &
-                                                Vegetables</small></a></div>
-                                    <h2 class="fs-6"><a href="pages/shop-single.php"
-                                            class="text-inherit text-decoration-none">Crushed
-                                            Tomatoes</a></h2>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-dark">$13</span> <span
-                                                class="text-decoration-line-through text-muted">$18</span>
-                                        </div>
-                                        <div>
-                                            <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-half"></i>
-                                            </small>
-                                            <span><small>4.5</small></span>
-                                        </div>
-                                    </div>
-                                    <div class="d-grid mt-2"><a href="#!" class="btn btn-primary ">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-plus">
-                                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg> Add to cart </a></div>
-                                    <div class="d-flex justify-content-start text-center mt-3 w-100">
-                                        <div class="deals-countdown w-100" data-countdown="2028/12/9 00:00:00"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-product">
-                                <div class="card-body">
-                                    <div class="text-center  position-relative "> <a href="pages/shop-single.php"><img
-                                                src="assets/images/product-img-13.jpg" alt="Grocery Ecommerce Template"
-                                                class="mb-3 img-fluid"></a>
-                                        <div class="card-product-action">
-                                            <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                                data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                    data-bs-toggle="tooltip" data-bs-html="true"
-                                                    title="Quick View"></i></a>
-                                            <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                                title="Wishlist"><i class="bi bi-heart"></i></a>
-                                            <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                                title="Compare"><i class="bi bi-arrow-left-right"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="text-small mb-1"><a href="#!"
-                                            class="text-decoration-none text-muted"><small>Fruits &
-                                                Vegetables</small></a></div>
-                                    <h2 class="fs-6"><a href="pages/shop-single.php"
-                                            class="text-inherit text-decoration-none">Golden
-                                            Pineapple</a></h2>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-dark">$13</span> <span
-                                                class="text-decoration-line-through text-muted">$18</span>
-                                        </div>
-                                        <div>
-                                            <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-half"></i></small>
-                                            <span><small>4.5</small></span>
-                                        </div>
-                                    </div>
-                                    <div class="d-grid mt-2"><a href="#!" class="btn btn-primary ">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-plus">
-                                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg> Add to cart </a></div>
-                                    <div class="d-flex justify-content-start text-center mt-3">
-                                        <div class="deals-countdown w-100" data-countdown="2028/11/11 00:00:00"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                                
+                                
+                        <?php }
+                        ?>
+                       
                     </div>
                 </div>
             </div>

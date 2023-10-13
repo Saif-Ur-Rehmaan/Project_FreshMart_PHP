@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2023 at 08:47 PM
+-- Generation Time: Oct 13, 2023 at 11:38 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -90,6 +90,28 @@ CREATE TABLE `customersview` (
 ,`ContactNo` varchar(255)
 ,`spend` double
 );
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discounts`
+--
+
+CREATE TABLE `discounts` (
+  `Dai_Id` int(11) NOT NULL,
+  `Product_Id` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `EndDate` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `discounts`
+--
+
+INSERT INTO `discounts` (`Dai_Id`, `Product_Id`, `created_at`, `EndDate`) VALUES
+(1, 54, '2023-10-13 18:30:25', '2024-10-03'),
+(2, 57, '2023-10-13 18:30:25', '2024-12-19'),
+(3, 58, '2023-10-13 18:30:40', '2024-12-26');
 
 -- --------------------------------------------------------
 
@@ -312,11 +334,11 @@ INSERT INTO `sellers` (`Sel_Id`, `_Client_Id`, `Sel_StoreName`, `Sel_Store_Addre
 CREATE TABLE `users` (
   `Use_Id` int(11) NOT NULL,
   `_Client_Id` int(11) NOT NULL,
-  `Use_ContactNo` varchar(255) NOT NULL,
-  `Use_Address` varchar(255) NOT NULL,
-  `Use_image` varchar(255) NOT NULL DEFAULT 'UserDefault.jpg',
-  `Use_PaymentMethod` varchar(255) NOT NULL,
-  `Use_RegistrationDate` date NOT NULL DEFAULT current_timestamp()
+  `Use_ContactNo` varchar(255) DEFAULT NULL,
+  `Use_Address` varchar(255) DEFAULT NULL,
+  `Use_image` varchar(255) DEFAULT 'UserDefault.jpg',
+  `Use_PaymentMethod` varchar(255) DEFAULT NULL,
+  `Use_RegistrationDate` date DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -405,6 +427,12 @@ ALTER TABLE `clients`
   ADD KEY `FK_Role` (`Cli_Role`);
 
 --
+-- Indexes for table `discounts`
+--
+ALTER TABLE `discounts`
+  ADD PRIMARY KEY (`Dai_Id`);
+
+--
 -- Indexes for table `messeges`
 --
 ALTER TABLE `messeges`
@@ -464,13 +492,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `C_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `C_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `Cli_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Cli_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `discounts`
+--
+ALTER TABLE `discounts`
+  MODIFY `Dai_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `messeges`
@@ -512,7 +546,7 @@ ALTER TABLE `sellers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `Use_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Use_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -563,6 +597,35 @@ ALTER TABLE `sellers`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users` FOREIGN KEY (`_Client_Id`) REFERENCES `clients` (`Cli_Id`);
+
+DELIMITER $$
+--
+-- Events
+--
+CREATE DEFINER=`root`@`localhost` EVENT `UpdateColumnDaily` ON SCHEDULE EVERY 1 DAY STARTS '2023-10-15 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+    -- Define variables to store the random product ID and the current timestamp
+    DECLARE randomProductId INT;
+    DECLARE currentTimestamp TIMESTAMP;
+
+    -- Generate a random product ID not in discounts.Product_Id
+    SELECT P_Id INTO randomProductId
+    FROM products
+    WHERE P_Id NOT IN (SELECT Product_Id FROM discounts)
+    ORDER BY RAND()
+    LIMIT 1;
+
+    -- Set the current timestamp
+    SET currentTimestamp = NOW();
+
+    -- Update the discounts table
+    UPDATE discounts
+    SET Product_Id = randomProductId,
+        EndDate = CURRENT_DATE + INTERVAL 1 DAY,
+        created_at = NOW()
+    WHERE 1;  -- Condition to update all rows or specify your conditions
+END$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
