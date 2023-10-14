@@ -17,14 +17,14 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-    gtag('config', 'G-M8S4MT3EYG');
+        gtag('config', 'G-M8S4MT3EYG');
     </script>
 
     <!-- Favicon icon-->
@@ -73,7 +73,7 @@
     <!-------------------------------------------------------------- main start ------------------------------------------------ -->
     <main>
         <!-- slider -->
-      <section class="mt-8">
+        <section class="mt-8">
             <div class="container">
                 <div class="hero-slider ">
                     <div
@@ -125,23 +125,23 @@
                                             products.P_Images as Category1stProductimg
                                         , products._Category_id as cid FROM products WHERE products.P_IsFeatured=1  group BY products._Category_id");
                     while ($row = mysqli_fetch_assoc($res)) {
-                      $cid = $row["cid"];
-                      $ProductImg = $row["Category1stProductimg"];
-                      $Cname = $row["Cname"];
-                      ?>
-                              <div class="item">
-                                  <a href="pages/shop-grid.php" class="text-decoration-none text-inherit">
-                                      <div class="card card-product mb-lg-4">
-                                          <div class="card-body text-center py-8">
-                                              <img src="assets/images/<?php echo $ProductImg; ?>" alt="<?php echo $Cname ?>"
-                                                  class="mb-3 img-fluid">
-                                              <div class="text-truncate">
-                                                  <?php echo $Cname ?>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </a>
-                              </div>
+                        $cid = $row["cid"];
+                        $ProductImg = $row["Category1stProductimg"];
+                        $Cname = $row["Cname"];
+                        ?>
+                        <div class="item">
+                            <a href="pages/shop-grid.php" class="text-decoration-none text-inherit">
+                                <div class="card card-product mb-lg-4">
+                                    <div class="card-body text-center py-8">
+                                        <img src="assets/images/<?php echo $ProductImg; ?>" alt="<?php echo $Cname ?>"
+                                            class="mb-3 img-fluid">
+                                        <div class="text-truncate">
+                                            <?php echo $Cname ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
 
                     <?php } ?>
 
@@ -206,8 +206,8 @@
                 </div>
 
                 <div class="row g-4 row-cols-lg-5 row-cols-2 row-cols-md-3">
-                  <?php
-                  $query = "SELECT
+                    <?php
+                    $query = "SELECT
                   products.P_Id AS pid,
                   products.P_Title AS productname,
                   (SELECT categories.C_name FROM categories WHERE categories.C_id = products._Category_id) AS categoryname,
@@ -228,199 +228,208 @@
                order by
                 (SELECT COUNT(reviews_products.Rev_Id) FROM reviews_products WHERE reviews_products._Product_id = products.P_Id) desc;              
               ";
-                  $res = mysqli_query($connection, $query);
-                  $PopularProducts = [];
+                    $res = mysqli_query($connection, $query);
+                    $PopularProducts = [];
 
-                  if ($res->num_rows > 10) {
-                    for ($i = 0; $i < 10; $i++) {
-                      $row = $row = mysqli_fetch_assoc($res);
-                      $data = [
-                        "ProductId" => $row["pid"],
-                        "CategoryName" => $row["categoryname"],
-                        "ProductName" => $row["productname"],
-                        "ProductImg" => $row["pimg"],
-                        "AverageRating" => $row["average_rating"],
-                        "NumberOfReviews" => $row["ReviewCount"],
-                        "RegularPrice" => $row["Price"],
-                        "SalePrice" => $row["SalePrice"]
-                      ];
-                      array_push($PopularProducts, $data);
+                    if ($res->num_rows > 10) {
+                        for ($i = 0; $i < 10; $i++) {
+                            $row = $row = mysqli_fetch_assoc($res);
+                            $data = [
+                                "ProductId" => $row["pid"],
+                                "CategoryName" => $row["categoryname"],
+                                "ProductName" => $row["productname"],
+                                "ProductImg" => $row["pimg"],
+                                "AverageRating" => $row["average_rating"],
+                                "NumberOfReviews" => $row["ReviewCount"],
+                                "RegularPrice" => $row["Price"],
+                                "SalePrice" => $row["SalePrice"]
+                            ];
+                            array_push($PopularProducts, $data);
+                        }
+                    } else {
+                        while ($row = mysqli_fetch_assoc($res)) {
+                            $data = [
+                                "ProductId" => $row["pid"],
+                                "CategoryName" => $row["categoryname"],
+                                "ProductName" => $row["productname"],
+                                "ProductImg" => $row["pimg"],
+                                "AverageRating" => $row["average_rating"],
+                                "NumberOfReviews" => $row["ReviewCount"],
+                                "RegularPrice" => $row["Price"],
+                                "SalePrice" => $row["SalePrice"]
+                            ];
+                            array_push($PopularProducts, $data);
+
+                        }
+
                     }
-                  } else {
-                    while ($row = mysqli_fetch_assoc($res)) {
-                      $data = [
-                        "ProductId" => $row["pid"],
-                        "CategoryName" => $row["categoryname"],
-                        "ProductName" => $row["productname"],
-                        "ProductImg" => $row["pimg"],
-                        "AverageRating" => $row["average_rating"],
-                        "NumberOfReviews" => $row["ReviewCount"],
-                        "RegularPrice" => $row["Price"],
-                        "SalePrice" => $row["SalePrice"]
-                      ];
-                      array_push($PopularProducts, $data);
 
-                    }
-
-                  }
-
-                  foreach ($PopularProducts as $key => $value) {  
-                    ?>
-                          <div class="col">
-                              <div class="card card-product" style="height:100%">
-                                  <div class="card-body" style="
+                    foreach ($PopularProducts as $key => $value) {
+                        ?>
+                        <div class="col">
+                            <div class="card card-product" style="height:100%">
+                                <div class="card-body" style="
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 ">
-  
-                                      <div class="text-center position-relative ">
+
+                                    <div class="text-center position-relative ">
                                         <?php
                                         if ($value["SalePrice"] != 0) {
-                                          echo '<div class=" position-absolute top-0 start-0">
+                                            echo '<div class=" position-absolute top-0 start-0">
                                               <span class="badge bg-danger">Sale</span>
                                           </div>';
                                         }
                                         ?>
-                                      
-                                          <a href="#!" style="height:13.25rem;display: flex;
+
+                                        <a href="#!" style="height:13.25rem;display: flex;
     justify-content: center;
-    align-items: center; "> 
-                                            <img src="assets/images/<?php echo $value["ProductImg"] ?>"  alt="<?php echo $value["ProductName"] ?>" class="mb-3 img-fluid"></a>
-  
-                                          <div class="card-product-action">
-                                              <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                                  data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                      data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></a>
-                                              <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                                  title="Wishlist"><i class="bi bi-heart"></i></a>
-                                              <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                                  title="Compare"><i class="bi bi-arrow-left-right"></i></a>
-                                          </div>
-  
-                                      </div>
-                                      <div class="text-small mb-1">
-                                        <a href="#!" class="text-decoration-none text-muted"><small><?php echo $value["CategoryName"] ?></small></a>
-                                      </div>
-                                      <h2 class="fs-6"><a href="pages/shop-single.php"
-                                              class="text-inherit text-decoration-none"><?php echo $value["ProductName"] ?></a></h2>
-                                      <div>
-  
-                                          <small class="text-warning"> 
-                                              <?php
-                                              // Assuming $value["NumberOfReviews"] contains the average rating value
-                                              $averageRating = $value["AverageRating"];
+    align-items: center; ">
+                                            <img src="assets/images/<?php echo $value["ProductImg"] ?>"
+                                                alt="<?php echo $value["ProductName"] ?>" class="mb-3 img-fluid"></a>
 
-                                              switch ($averageRating) {
-                                                case 1:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  break;
-                                                case 1.5:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-half"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  break;
-                                                case 2:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  break;
-                                                case 2.5:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-half"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  break;
-                                                case 3:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  break;
-                                                case 3.5:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-half"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  break;
-                                                case 4:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  break;
-                                                case 4.5:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-half"></i>';
-                                                  break;
-                                                case 5:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  break;
-                                                default:
-                                                echo '<i class="bi bi-star"></i>';
-                                                echo '<i class="bi bi-star"></i>';
-                                                echo '<i class="bi bi-star"></i>';
-                                                echo '<i class="bi bi-star"></i>';
-                                                echo '<i class="bi bi-star"></i>';
+                                        <div class="card-product-action">
+                                            <a href="#!" class="btn-action" data-bs-toggle="modal"
+                                                data-bs-target="#quickViewModal"><i class="bi bi-eye"
+                                                    data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></a>
+                                            <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                                title="Wishlist"><i class="bi bi-heart"></i></a>
+                                            <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                                title="Compare"><i class="bi bi-arrow-left-right"></i></a>
+                                        </div>
 
-                                                  break;
-                                              }
+                                    </div>
+                                    <div class="text-small mb-1">
+                                        <a href="#!" class="text-decoration-none text-muted"><small>
+                                                <?php echo $value["CategoryName"] ?>
+                                            </small></a>
+                                    </div>
+                                    <h2 class="fs-6"><a href="pages/shop-single.php"
+                                            class="text-inherit text-decoration-none">
+                                            <?php echo $value["ProductName"] ?>
+                                        </a></h2>
+                                    <div>
 
-                                              ?>
-                                          </small>
-                                           <span class="text-muted small"><?php echo number_format($value["AverageRating"], 1) ?>(<?php echo $value["NumberOfReviews"] ?>)</span>
-                                      </div>
-                                      <div class="d-flex justify-content-between align-items-center mt-3">
-
-                                          <div>
+                                        <small class="text-warning">
                                             <?php
-                                            if($value["SalePrice"]!=0){
-                                              echo  '<span class="text-dark">$'.$value["SalePrice"].'</span>
-                                              <span class="text-decoration-line-through text-muted ">$'.$value["RegularPrice"].'</span>';
-                                            }else{
-                                                      echo  '<span class="text-dark">$'.$value["RegularPrice"].'</span>';
-                                                      
+                                            // Assuming $value["NumberOfReviews"] contains the average rating value
+                                            $averageRating = $value["AverageRating"];
+
+                                            switch ($averageRating) {
+                                                case 1:
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    break;
+                                                case 1.5:
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-half"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    break;
+                                                case 2:
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    break;
+                                                case 2.5:
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-half"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    break;
+                                                case 3:
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    break;
+                                                case 3.5:
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-half"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    break;
+                                                case 4:
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    break;
+                                                case 4.5:
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-half"></i>';
+                                                    break;
+                                                case 5:
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    echo '<i class="bi bi-star-fill"></i>';
+                                                    break;
+                                                default:
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+                                                    echo '<i class="bi bi-star"></i>';
+
+                                                    break;
+                                            }
+
+                                            ?>
+                                        </small>
+                                        <span class="text-muted small">
+                                            <?php echo number_format($value["AverageRating"], 1) ?>(
+                                            <?php echo $value["NumberOfReviews"] ?>)
+                                        </span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+
+                                        <div>
+                                            <?php
+                                            if ($value["SalePrice"] != 0) {
+                                                echo '<span class="text-dark">$' . $value["SalePrice"] . '</span>
+                                              <span class="text-decoration-line-through text-muted ">$' . $value["RegularPrice"] . '</span>';
+                                            } else {
+                                                echo '<span class="text-dark">$' . $value["RegularPrice"] . '</span>';
+
                                             }
                                             ?>
-                                           
-                                          </div>
-                                          <div>
-                                            <a href="#!" class="btn btn-primary btn-sm _AddToCartBtn" data-Product_id="<?php echo $value["ProductId"]?>" >
-                                                  <svg xmlns="http://www.w3.org/2000/svg" onclick="this.parentNode.click()" width="16" height="16"
-                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      class="feather feather-plus">
-                                                      <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                                                  </svg> Add
+
+                                        </div>
+                                        <div>
+                                            <a href="#!" class="btn btn-primary btn-sm _AddToCartBtn"
+                                                data-Product_id="<?php echo $value["ProductId"] ?>">
+                                                <svg xmlns="http://www.w3.org/2000/svg" onclick="this.parentNode.click()"
+                                                    width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round" class="feather feather-plus">
+                                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                </svg> Add
                                             </a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      
-                  <?php } ?>
-                     
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php } ?>
+
                 </div>
             </div>
         </section>
@@ -448,11 +457,11 @@
                             </div>
                         </div>
                         <?php
-                        $pids=DatabaseManager::select("discounts LIMIT 3","Product_Id,DATE_FORMAT(EndDate, '%Y/%m/%d %H:%i:%s') AS formatted_date");
+                        $pids = DatabaseManager::select("discounts LIMIT 3", "Product_Id,DATE_FORMAT(EndDate, '%Y/%m/%d %H:%i:%s') AS formatted_date");
                         foreach ($pids as $key => $value) {
-                            $DPId=$value["Product_Id"];
-                            $DealEndDate=$value["formatted_date"];
-                                $Record=DatabaseManager::select("products","
+                            $DPId = $value["Product_Id"];
+                            $DealEndDate = $value["formatted_date"];
+                            $Record = DatabaseManager::select("products", "
                                 products.P_Images as PImg,
                                 products.P_Title as PTitle,
                                 products.P_SalePrice as salep,
@@ -466,152 +475,166 @@
                                         ELSE
                                             0
                                 END) AS average_rating
-                                ","products.P_Id=$DPId");
+                                ", "products.P_Id=$DPId");
 
-                            $PImg =$Record[0]["PImg"];
-                            $PTitle =$Record[0]["PTitle"];
-                            $salep =$Record[0]["salep"];
-                            $regprice =$Record[0]["regprice"];
-                            $catName =$Record[0]["catName"];
-                            $average_rating =$Record[0]["average_rating"];?>
+                            $PImg = $Record[0]["PImg"];
+                            $PTitle = $Record[0]["PTitle"];
+                            $salep = $Record[0]["salep"];
+                            $regprice = $Record[0]["regprice"];
+                            $catName = $Record[0]["catName"];
+                            $average_rating = $Record[0]["average_rating"]; ?>
 
 
-                                <div class="col">
-                                    <div class="card card-product">
-                                        <div class="card-body">
-                                            <div class="text-center  position-relative "> <a href="pages/shop-single.php"><img
-                                                        src="assets/images/<?php echo $PImg?>" alt="<?php echo $PTitle?>"
-                                                        class="mb-3 img-fluid"></a>
+                            <div class="col">
+                                <div class="card card-product">
+                                    <div class="card-body">
+                                        <div class="text-center  position-relative "> <a href="pages/shop-single.php"><img
+                                                    src="assets/images/<?php echo $PImg ?>" alt="<?php echo $PTitle ?>"
+                                                    class="mb-3 img-fluid"></a>
 
-                                                <div class="card-product-action">
-                                                    <a href="#!" class="btn-action" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                                                        <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i>
-                                                    </a>
-                                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist">
-                                                        <i class="bi bi-heart"></i>
-                                                    </a>
-                                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true" title="Compare">
-                                                        <i class="bi bi-arrow-left-right"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="text-small mb-1">
-                                                <a href="#!" class="text-decoration-none text-muted">
-                                                    <small><?php echo $catName?>a</small>
+                                            <div class="card-product-action">
+                                                <a href="#!" class="btn-action" data-bs-toggle="modal"
+                                                    data-bs-target="#quickViewModal">
+                                                    <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true"
+                                                        title="Quick View"></i>
+                                                </a>
+                                                <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                                    title="Wishlist">
+                                                    <i class="bi bi-heart"></i>
+                                                </a>
+                                                <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                                    title="Compare">
+                                                    <i class="bi bi-arrow-left-right"></i>
                                                 </a>
                                             </div>
-                                            <h2 class="fs-6">
-                                                <a href="pages/shop-single.php" class="text-inherit text-decoration-none">
-                                                <?php echo $PTitle?></a></h2>
+                                        </div>
+                                        <div class="text-small mb-1">
+                                            <a href="#!" class="text-decoration-none text-muted">
+                                                <small>
+                                                    <?php echo $catName ?>a
+                                                </small>
+                                            </a>
+                                        </div>
+                                        <h2 class="fs-6">
+                                            <a href="pages/shop-single.php" class="text-inherit text-decoration-none">
+                                                <?php echo $PTitle ?>
+                                            </a>
+                                        </h2>
 
-                                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                                <div><span class="text-dark">$<?php echo $regprice?></span> <span
-                                                        class="text-decoration-line-through text-muted">$<?php echo $salep ?></span>
-                                                </div>
-                                                <div>
-                                                    <small class="text-warning">
-                                                    <?php
-                                              // Assuming $value["NumberOfReviews"] contains the average rating value
-                                              $averageRating = $average_rating;
-
-                                              switch ($averageRating) {
-                                                case 1:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  break;
-                                                case 1.5:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-half"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  break;
-                                                case 2:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  break;
-                                                case 2.5:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-half"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  break;
-                                                case 3:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  break;
-                                                case 3.5:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-half"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  break;
-                                                case 4:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star"></i>';
-                                                  break;
-                                                case 4.5:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-half"></i>';
-                                                  break;
-                                                case 5:
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  echo '<i class="bi bi-star-fill"></i>';
-                                                  break;
-                                                default:
-                                                    echo '<i class="bi bi-star"></i>';
-                                                    echo '<i class="bi bi-star"></i>';
-                                                    echo '<i class="bi bi-star"></i>';
-                                                    echo '<i class="bi bi-star"></i>';
-                                                    echo '<i class="bi bi-star"></i>';
-                                                  break;
-                                              }
-
-                                              ?>
-                                                    </small>
-                                                    <span><small><?php echo $average_rating?></small></span>
-                                                </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <div><span class="text-dark">$
+                                                    <?php echo $regprice ?>
+                                                </span> <span class="text-decoration-line-through text-muted">$
+                                                    <?php echo $salep ?>
+                                                </span>
                                             </div>
-                                            <div class="d-grid mt-2"><a href="#!" class="btn btn-primary ">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                        stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-plus">
-                                                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                                    </svg> Add to cart </a></div>
-                                            <div class="d-flex justify-content-start text-center mt-3">
-                                                <div class="deals-countdown w-100" data-countdown="<?php echo $DealEndDate ?>"></div>
+                                            <div>
+                                                <small class="text-warning">
+                                                    <?php
+                                                    // Assuming $value["NumberOfReviews"] contains the average rating value
+                                                    $averageRating = $average_rating;
+
+                                                    switch ($averageRating) {
+                                                        case 1:
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            break;
+                                                        case 1.5:
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-half"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            break;
+                                                        case 2:
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            break;
+                                                        case 2.5:
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-half"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            break;
+                                                        case 3:
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            break;
+                                                        case 3.5:
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-half"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            break;
+                                                        case 4:
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            break;
+                                                        case 4.5:
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-half"></i>';
+                                                            break;
+                                                        case 5:
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            echo '<i class="bi bi-star-fill"></i>';
+                                                            break;
+                                                        default:
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            echo '<i class="bi bi-star"></i>';
+                                                            break;
+                                                    }
+
+                                                    ?>
+                                                </small>
+                                                <span><small>
+                                                        <?php echo $average_rating ?>
+                                                    </small></span>
+                                            </div>
+                                        </div>
+                                        <div class="d-grid mt-2"><a href="#!" class="btn btn-primary ">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-plus">
+                                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                </svg> Add to cart </a></div>
+                                        <div class="d-flex justify-content-start text-center mt-3">
+                                            <div class="deals-countdown w-100" data-countdown="<?php echo $DealEndDate ?>">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                
-                                
+
+
                         <?php }
                         ?>
-                       
+
                     </div>
                 </div>
             </div>
@@ -688,15 +711,15 @@
     <script src="assets/js/vendors/increment-value.js"></script>
 
     <!---------------------------------- Javascript------------------------------------------------>
-<script>
-  $(document).ready(()=>{
-    $("._AddToCartBtn").on("click",(e)=>{
-      let productId= e.target.getAttribute("data-Product_id");
-      console.log(productId);
-      //$.ajax()//use ajax for addtocart . similar for quickview ,location etc modals
-    })
-  })
-</script>
+    <script>
+        $(document).ready(() => {
+            $("._AddToCartBtn").on("click", (e) => {
+                let productId = e.target.getAttribute("data-Product_id");
+                console.log(productId);
+                //$.ajax()//use ajax for addtocart . similar for quickview ,location etc modals
+            })
+        })
+    </script>
 
 </body>
 

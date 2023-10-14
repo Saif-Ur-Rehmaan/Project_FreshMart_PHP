@@ -1,4 +1,5 @@
-<?php include "../inc/config.php"; ?><!DOCTYPE html>
+<?php include "../inc/config.php"; ?>
+<!DOCTYPE html>
 <html lang="en">
 
 
@@ -102,7 +103,7 @@
                 <!-- btn -->
                 <div class="col-12 d-grid">
                   <input type="submit" class="btn btn-primary" Value="Register">
-                  <input type="hidden" class="btn btn-primary"  value="true" name="RegisterUser">
+                  <input type="hidden" class="btn btn-primary" value="true" name="RegisterUser">
                 </div>
 
                 <!-- text -->
@@ -118,65 +119,63 @@
     </section>
   </main>
   <?php
-  //   print_r($_POST);
-  // if (isset($_POST["RegisterUser"])) {
-  //   $Firstname = $_POST["Firstname"];
-  //   $Lastname = $_POST["Lastname"];
-
-  //   $Email = $_POST["Email"];
-  //   $PassWord = password_hash($_POST["PassWord"],PASSWORD_DEFAULT);
-
-  //   $RegisterUser = $_POST["RegisterUser"];
-
-  //   $a = DatabaseManager::query("SELECT * FROM clients WHERE  clients.Cli_Mail='$Email' AND clients.Cli_Password='$PassWord' ");
-  //   if ($a->num_rows == 0) {
-  //     $disName = $Firstname . " " . $Lastname;
-  //     $res = DatabaseManager::query("INSERT INTO clients (Cli_Role, Cli_DisplayName, Cli_Mail, Cli_Password) 
-  //     VALUES (1, '$disName', '$Email', '$PassWord')");
-  //     $res=true;
-  //     if ($res) { 
-  //       $cliId = DatabaseManager::select("clients","Cli_Id as cliid","Cli_Mail='$Email' AND Cli_Password='$PassWord'")[0]['cliid'];
-  //       print_r($cliId);
-  //       $data=[
-  //         "_Client_Id"=>"$cliId"
-  //       ];
-  //       $res2 = DatabaseManager::insert("users",$data);
-  //       if ($res2) {
-  //         $_SESSION["UserLogin"] =
-  //           [
-  //             "Email" => DatabaseManager::select("clients", "Cli_Mail", "Cli_Mail=$Email And Cli_Password=$PassWord"),
-  //             "Full Name" => DatabaseManager::select("clients", "Cli_DisplayName", "Cli_Mail=$Email And Cli_Password=$PassWord"),
-  //             "ContactNumber" => DatabaseManager::select("Users", "_Client_Id", "Cli_Mail=$Email And Cli_Password=$PassWord LIMIT 1"),
-  //             "Role" => "User",
-  //             "Cart" => [] /*productid goes here as arry val*/,
-  //             "Wishlish" => [] /*productid goes here as arry val*/
-            // ]; ?>
-           <!-- <script> -->
-             <!-- alert("Login Success"); -->
-             <!-- window.location.href = "../index.php"; -->
-             <!-- </script> -->
-         <!-- <?php //} -->
-
-      //}
-    ?>
-
-
-
-
-     <?php //} else {?>
-       <script>
-         let cnfm = confirm("You Are Already Registered With That Mail And Pass Do You Want To SignIn?");
-         if (cnfm) {
-           window.location.href = "signin.php";
-         } else {
-           window.location.href = "signup.php";
-  
-       }
+   if((isset($_SESSION["UserLogin"]))){ ?>
+      <script>
+        window.location.href="../index.php";
       </script>
-      
-    <?php //}
+  <?php }
+   
+  if (isset($_POST["RegisterUser"])) {
+    $Firstname = $_POST["Firstname"];
+    $Lastname = $_POST["Lastname"];
 
-   //}
+    $Email = $_POST["Email"];
+    $PassWord = password_hash($_POST["PassWord"], PASSWORD_DEFAULT);
+
+    $RegisterUser = $_POST["RegisterUser"];
+
+    $a = DatabaseManager::query("SELECT * FROM clients WHERE  clients.Cli_Mail='$Email' AND clients.Cli_Password='$PassWord' ");
+    if ($a->num_rows == 0) {
+      $disName = $Firstname . " " . $Lastname;
+      $res = DatabaseManager::query("INSERT INTO clients (Cli_Role, Cli_DisplayName, Cli_Mail, Cli_Password) 
+      VALUES (1, '$disName', '$Email', '$PassWord')");
+      $res = true;
+      if ($res) {
+        $cliId = DatabaseManager::select("clients", "Cli_Id as cliid", "Cli_Mail='$Email' AND Cli_Password='$PassWord'")[0]['cliid'];
+        print_r($cliId);
+        $data = [
+          "_Client_Id" => "$cliId"
+        ];
+        $res2 = DatabaseManager::insert("users", $data);
+        if ($res2) {
+          $cliId = DatabaseManager::select("clients", "Cli_Id as cliid", "Cli_Mail='$Email' AND Cli_Password='$PassWord'")[0]['cliid'];
+           ?>
+          <script>
+            alert("Account Created SuccessFully");
+            window.location.href = "signin.php";
+          </script>
+        <?php }
+
+      }
+      ?>
+
+
+
+
+    <?php } else { ?>
+      <script>
+        let cnfm = confirm("You Are Already Registered With That Mail And Pass Do You Want To SignIn?");
+        if (cnfm) {
+          window.location.href = "signin.php";
+        } else {
+          window.location.href = "signup.php";
+
+        }
+      </script>
+
+    <?php }
+
+  }
 
   ?>
 

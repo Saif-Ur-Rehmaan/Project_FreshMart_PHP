@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2023 at 11:38 PM
+-- Generation Time: Oct 15, 2023 at 12:46 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -74,7 +74,8 @@ CREATE TABLE `clients` (
 INSERT INTO `clients` (`Cli_Id`, `Cli_Role`, `Cli_DisplayName`, `Cli_Mail`, `Cli_Password`) VALUES
 (1, 3, 'Saif-Ur-Rehman', 'Saif@gmail.com', 'example123'),
 (2, 1, 'Ahmed Raza', 'Ahmed524@gmail.com', 'ahmed123'),
-(3, 2, 'Seller1', 'Seller1@gmail.com', 'Seller1');
+(3, 2, 'Seller1', 'Seller1@gmail.com', 'Seller1'),
+(27, 1, 'User1 Name', 'User1@gmail.com', '$2y$10$TIpBzUiQI0Zl22I1Eyac3.ekJdBKcX6KtW5cjrND.HUT3moL/fVJ6');
 
 -- --------------------------------------------------------
 
@@ -346,7 +347,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`Use_Id`, `_Client_Id`, `Use_ContactNo`, `Use_Address`, `Use_image`, `Use_PaymentMethod`, `Use_RegistrationDate`) VALUES
-(1, 2, '03365584244', 'abc street ,lahore,pakistan', 'UserDefault.jpg', 'PayPal', '2023-10-01');
+(1, 2, '03365584244', 'abc street ,lahore,pakistan', 'UserDefault.jpg', 'PayPal', '2023-10-01'),
+(15, 27, NULL, NULL, 'UserDefault.jpg', NULL, '2023-10-15');
 
 -- --------------------------------------------------------
 
@@ -498,7 +500,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `Cli_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `Cli_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `discounts`
@@ -546,7 +548,7 @@ ALTER TABLE `sellers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `Use_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Use_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables

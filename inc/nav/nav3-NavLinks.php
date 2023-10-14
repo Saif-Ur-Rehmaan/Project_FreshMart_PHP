@@ -195,29 +195,31 @@ $slashOrNot = ($filename == "index.php") ? "" : "../";
               data-bs-toggle="dropdown" aria-expanded="false">
               Account
             </a>
+
+
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/signin.php">Sign in</a></li>
-              <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/signup.php">Signup</a></li>
-              <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/forgot-password.php">Forgot
-                  Password</a></li>
-              <li class="dropdown-submenu dropend">
-                <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="<?php echo $slashOrNot; ?>#">
-                  My Account
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/account-orders.php">Orders</a></li>
-                  <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/account-settings.php">Settings</a>
-                  </li>
-                  <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/account-address.php">Address</a>
-                  </li>
-                  <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/account-payment-method.php">Payment
-                      Method</a>
-                  </li>
-                  <li><a class="dropdown-item"
-                      href="<?php echo $slashOrNot; ?>pages/account-notification.php">Notification</a></li>
-                </ul>
-              </li>
+              <?php
+              if (!(isset($_SESSION["UserLogin"]))) {
+                echo '<li><a class="dropdown-item" href="' . $slashOrNot . 'pages/signin.php">Sign in</a></li>';
+                echo '<li><a class="dropdown-item" href="' . $slashOrNot . 'pages/signup.php">Signup</a></li>';
+              }
+              if(isset($_SESSION["UserLogin"])){
+                echo '
+                
+                <li><a class="dropdown-item" href="'.$slashOrNot.'pages/account-settings.php?selectTab=Orders">Orders</a></li>
+                <li><a class="dropdown-item" href="'.$slashOrNot.'pages/account-settings.php?selectTab=Settings">Settings</a>
+                </li>
+                <li><a class="dropdown-item" href="'.$slashOrNot.'pages/account-settings.php?selectTab=Address">Address</a>
+                </li>
+                <li><a class="dropdown-item" href="'.$slashOrNot.'pages/account-settings.php?selectTab=Payment">Payment
+                    Method</a>
+                </li>
+                <li><a class="dropdown-item" href="'.$slashOrNot.'pages/account-settings.php?selectTab=Notification">Notification</a></li>
+                ';
+              }
+                ?>
             </ul>
+ 
           </li>
           <?php if (isset($_SESSION["adminloggedin"])) { ?>
 
@@ -310,11 +312,11 @@ $slashOrNot = ($filename == "index.php") ? "" : "../";
               data-bs-toggle="dropdown" aria-expanded="false">
               Mega Menu
             </a>
-             
-                   
-               
+
+
+
             <ul class="dropdown-menu">
-             
+
               <?php
               $categories = DatabaseManager::select("categories", "C_id,C_name", "C_ParentCategory Is null");
               if (count($categories) <= 4) {
@@ -325,8 +327,8 @@ $slashOrNot = ($filename == "index.php") ? "" : "../";
                   $catname = $value["C_name"];
                   echo '
                   <li class="dropdown-submenu ">
-                  <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="'.$slashOrNot.'#">
-                    '.$catname.'
+                  <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="' . $slashOrNot . '#">
+                    ' . $catname . '
                   </a>
                   <ul class="dropdown-menu">
                  ';
@@ -338,25 +340,25 @@ $slashOrNot = ($filename == "index.php") ? "" : "../";
                       $InnerValue = $subCategories[$j];
                       $subCatName = $InnerValue["C_name"];
                       $subCatId = $InnerValue["C_id"];
-                      echo ' <li><a class="dropdown-item" href="'.$slashOrNot.'pages/shop-grid.php">'.$subCatName.'</a></li>';
+                      echo ' <li><a class="dropdown-item" href="' . $slashOrNot . 'pages/shop-grid.php">' . $subCatName . '</a></li>';
 
                     } else {
                       $subCatName = "subCat : $j";
                       $subCatId = "subId : $j";
-                      echo ' <li><a class="dropdown-item" href="'.$slashOrNot.'pages/shop-grid.php">'.$subCatName.'</a></li>';
+                      echo ' <li><a class="dropdown-item" href="' . $slashOrNot . 'pages/shop-grid.php">' . $subCatName . '</a></li>';
                     }
                   }
-                  echo'</ul>';
+                  echo '</ul>';
                 }
               } else {
 
               }
               ?>
-             </ul>
-           
-            
-            
-           
+            </ul>
+
+
+
+
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="<?php echo $slashOrNot; ?>#" role="button"
@@ -378,29 +380,27 @@ $slashOrNot = ($filename == "index.php") ? "" : "../";
               data-bs-toggle="dropdown" aria-expanded="false">
               Account
             </a>
+
+
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/signin.php">Sign in</a></li>
-              <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/signup.php">Signup</a></li>
-              <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/forgot-password.php">Forgot
-                  Password</a></li>
-              <li class="dropdown-submenu dropend">
-                <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="<?php echo $slashOrNot; ?>#">
-                  My Account
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/account-orders.php">Orders</a></li>
-                  <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/account-settings.php">Settings</a>
-                  </li>
-                  <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/account-address.php">Address</a>
-                  </li>
-                  <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/account-payment-method.php">Payment
-                      Method</a>
-                  </li>
-                  <li><a class="dropdown-item"
-                      href="<?php echo $slashOrNot; ?>pages/account-notification.php">Notification</a></li>
-                </ul>
+              <?php
+              if (!(isset($_SESSION["UserLogin"]))) {
+                echo '<li><a class="dropdown-item" href="' . $slashOrNot . 'pages/signin.php">Sign in</a></li>';
+                echo '<li><a class="dropdown-item" href="' . $slashOrNot . 'pages/signup.php">Signup</a></li>';
+              }
+              ?>
+              <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/account-settings.php?selectTab=orders">Orders</a></li>
+              <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/account-settings.php?selectTab=settings">Settings</a>
               </li>
+              <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/account-settings.php?selectTab=address">Address</a>
+              </li>
+              <li><a class="dropdown-item" href="<?php echo $slashOrNot; ?>pages/account-settings?selectTab=payment">Payment
+                  Method</a>
+              </li>
+              <li><a class="dropdown-item"
+                  href="<?php echo $slashOrNot; ?>pages/account-settings.php?selectTab=notification">Notification</a></li>
             </ul>
+
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="<?php echo $slashOrNot; ?>dashboard/index.php">

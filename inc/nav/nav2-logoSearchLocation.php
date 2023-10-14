@@ -1,9 +1,13 @@
-<div class="py-4 pt-lg-3 pb-lg-0">
+<?php 
+
+$filename = basename($_SERVER["SCRIPT_NAME"]);
+$slashOrNot = ($filename == "index.php") ? "" : "../";
+?><div class="py-4 pt-lg-3 pb-lg-0">
       <div class="container">
         <div class="row w-100 align-items-center gx-lg-2 gx-0">
           <div class="col-xxl-2 col-lg-3">
             <a class="navbar-brand d-none d-lg-block" href="index.php">
-              <img src="assets/images/freshcart-logo.svg" alt="eCommerce HTML Template">
+              <img src="<?php echo $slashOrNot?>assets/images/freshcart-logo.svg" alt="eCommerce HTML Template">
 
             </a>
             <div class="d-flex justify-content-between w-100 d-lg-none">
