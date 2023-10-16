@@ -207,14 +207,11 @@ $slashOrNot = ($filename == "index.php") ? "" : "../";
                 echo '
                 
                 <li><a class="dropdown-item" href="'.$slashOrNot.'pages/account-settings.php?selectTab=Orders">Orders</a></li>
-                <li><a class="dropdown-item" href="'.$slashOrNot.'pages/account-settings.php?selectTab=Settings">Settings</a>
-                </li>
-                <li><a class="dropdown-item" href="'.$slashOrNot.'pages/account-settings.php?selectTab=Address">Address</a>
-                </li>
-                <li><a class="dropdown-item" href="'.$slashOrNot.'pages/account-settings.php?selectTab=Payment">Payment
-                    Method</a>
-                </li>
                 <li><a class="dropdown-item" href="'.$slashOrNot.'pages/account-settings.php?selectTab=Notification">Notification</a></li>
+                <li><a class="dropdown-item" href="'.$slashOrNot.'pages/account-settings.php?selectTab=Address">Address</a></li>
+                <li><a class="dropdown-item" href="'.$slashOrNot.'pages/account-settings.php?selectTab=Payment">PaymentMethod</a></li>
+                <li><a class="dropdown-item" href="'.$slashOrNot.'pages/account-settings.php?selectTab=Settings">Settings</a></li>
+                <li><a class="dropdown-item text-danger" href="'.$slashOrNot.'pages/account-settings.php?LogOutUser=true">Logout</a></li>
                 ';
               }
                 ?>

@@ -523,9 +523,9 @@
 
                                         <div class="d-flex justify-content-between align-items-center mt-3">
                                             <div><span class="text-dark">$
+                                                <?php echo $salep//will be calculated by taking fix percent e.g 20% of actual price  ?>
+                                            </span> <span class="text-decoration-line-through text-muted">$
                                                     <?php echo $regprice ?>
-                                                </span> <span class="text-decoration-line-through text-muted">$
-                                                    <?php echo $salep ?>
                                                 </span>
                                             </div>
                                             <div>

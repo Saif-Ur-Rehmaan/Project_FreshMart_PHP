@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2023 at 12:46 AM
+-- Generation Time: Oct 16, 2023 at 11:43 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `freshcart`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `addresses`
+--
+
+CREATE TABLE `addresses` (
+  `Add_Id` int(11) NOT NULL,
+  `_Client_Id` int(11) NOT NULL,
+  `Add_Name` varchar(255) NOT NULL,
+  `Add_Address` text NOT NULL,
+  `Add_IsDefault` int(11) NOT NULL DEFAULT 0 COMMENT '0=no,1=yes'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `addresses`
+--
+
+INSERT INTO `addresses` (`Add_Id`, `_Client_Id`, `Add_Name`, `Add_Address`, `Add_IsDefault`) VALUES
+(1, 30, 'Home', 'Jitu Chauhan 4450 North Avenue Oakland, Nebraska, United States, 402-776-1106', 1),
+(6, 30, 'Office', 'a', 0);
 
 -- --------------------------------------------------------
 
@@ -75,7 +97,7 @@ INSERT INTO `clients` (`Cli_Id`, `Cli_Role`, `Cli_DisplayName`, `Cli_Mail`, `Cli
 (1, 3, 'Saif-Ur-Rehman', 'Saif@gmail.com', 'example123'),
 (2, 1, 'Ahmed Raza', 'Ahmed524@gmail.com', 'ahmed123'),
 (3, 2, 'Seller1', 'Seller1@gmail.com', 'Seller1'),
-(27, 1, 'User1 Name', 'User1@gmail.com', '$2y$10$TIpBzUiQI0Zl22I1Eyac3.ekJdBKcX6KtW5cjrND.HUT3moL/fVJ6');
+(30, 1, 'Hassan Ur Rehman', 'hassancity4005@gmail.com', '$2y$10$pUGPmZ4CM.iR9/yGu4IbEOO4/XS45oIqFbpKf969F/U2GQzDZWGHC');
 
 -- --------------------------------------------------------
 
@@ -348,7 +370,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`Use_Id`, `_Client_Id`, `Use_ContactNo`, `Use_Address`, `Use_image`, `Use_PaymentMethod`, `Use_RegistrationDate`) VALUES
 (1, 2, '03365584244', 'abc street ,lahore,pakistan', 'UserDefault.jpg', 'PayPal', '2023-10-01'),
-(15, 27, NULL, NULL, 'UserDefault.jpg', NULL, '2023-10-15');
+(18, 30, '01145584759', NULL, 'UserDefault.jpg', NULL, '2023-10-15');
 
 -- --------------------------------------------------------
 
@@ -414,6 +436,13 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `addresses`
+--
+ALTER TABLE `addresses`
+  ADD PRIMARY KEY (`Add_Id`),
+  ADD KEY `FK_Client_idForAdd` (`_Client_Id`);
 
 --
 -- Indexes for table `categories`
@@ -491,6 +520,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `addresses`
+--
+ALTER TABLE `addresses`
+  MODIFY `Add_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
@@ -500,7 +535,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `Cli_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `Cli_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `discounts`
@@ -548,11 +583,17 @@ ALTER TABLE `sellers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `Use_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `Use_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `addresses`
+--
+ALTER TABLE `addresses`
+  ADD CONSTRAINT `FK_Client_idForAdd` FOREIGN KEY (`_Client_Id`) REFERENCES `clients` (`Cli_Id`);
 
 --
 -- Constraints for table `clients`

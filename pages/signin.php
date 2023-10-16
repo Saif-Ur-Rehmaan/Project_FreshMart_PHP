@@ -40,6 +40,7 @@ if ((isset($_SESSION["UserLogin"]))) { ?>
                   $_SESSION["UserLogin"] =
                     [
                       "Email" => $email,
+                      "Client_Id" => $cliId,
                       "Full Name" => $Name,
                       "ContactNumber" => $CN,
                       "Address" => $Address,
