@@ -984,6 +984,7 @@ if (isset($_POST["LogoutUser"]) || isset($_GET["LogOutUser"])) {
     ?>
 
     <script>
+      //select contentdiv  on get req
       document.addEventListener("DOMContentLoaded", function () {
         let NL = document.getElementsByClassName("_Nav_link");
         for (let i = 0; i < NL.length; i++) {

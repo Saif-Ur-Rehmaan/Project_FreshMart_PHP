@@ -281,22 +281,30 @@
                                               <span class="badge bg-danger">Sale</span>
                                           </div>';
                                         }
+                                        $pid=$value["ProductId"];
                                         ?>
 
-                                        <a href="#!" style="height:13.25rem;display: flex;
-    justify-content: center;
-    align-items: center; ">
+                                        <a href="#!"
+                                            style="height:13.25rem;display: flex;justify-content: center;align-items: center; ">
                                             <img src="assets/images/<?php echo $value["ProductImg"] ?>"
                                                 alt="<?php echo $value["ProductName"] ?>" class="mb-3 img-fluid"></a>
 
                                         <div class="card-product-action">
                                             <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                                data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                    data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></a>
+                                                data-bs-target="#quickViewModal">
+                                                <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true"
+                                                    title="Quick View"></i>
+                                            </a>
+                                            <a  class="btn-action _WishlishBtn "
+                                                data-custom-product-id="<?php echo $value["ProductId"]; ?>"
+                                                data-bs-toggle="tooltip" data-bs-html="true" title="<?= (isset($_SESSION["Wishlist"]) && in_array($pid, $_SESSION["Wishlist"])) ? "Added" : "Wishlist"; ?>">
+
+                                                <i class="_WishlishHeartIcon <?= (isset($_SESSION["Wishlist"]) && in_array($pid, $_SESSION["Wishlist"])) ? "bi bi-heart-fill \" style=\" color:green;\"" : "bi bi-heart \" style=\"color:;\""; ?> "></i>
+                                                </a>
                                             <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                                title="Wishlist"><i class="bi bi-heart"></i></a>
-                                            <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                                title="Compare"><i class="bi bi-arrow-left-right"></i></a>
+                                                title="Compare">
+                                                <i class="bi bi-arrow-left-right"></i>
+                                            </a>
                                         </div>
 
                                     </div>
@@ -523,8 +531,8 @@
 
                                         <div class="d-flex justify-content-between align-items-center mt-3">
                                             <div><span class="text-dark">$
-                                                <?php echo $salep//will be calculated by taking fix percent e.g 20% of actual price  ?>
-                                            </span> <span class="text-decoration-line-through text-muted">$
+                                                    <?php echo $salep //will be calculated by taking fix percent e.g 20% of actual price  ?>
+                                                </span> <span class="text-decoration-line-through text-muted">$
                                                     <?php echo $regprice ?>
                                                 </span>
                                             </div>
@@ -721,9 +729,79 @@
         })
     </script>
 
+
+
+    <script>
+        // wishlist add and remove
+        let wishBtns = document.getElementsByClassName("_WishlishBtn");
+        let wishicons = document.getElementsByClassName("_WishlishHeartIcon");
+        let CountWishlist=document.getElementById("CountWishlist");
+        for (let i = 0; i < wishBtns.length; i++) {
+            const Wbtn = wishBtns[i];
+            Wbtn.addEventListener("click", (e) => {
+                let clickedbtn = wishBtns[i];
+                let icon = wishicons[i];
+                let product = clickedbtn.getAttribute("data-custom-product-id")
+                let AddedOrNot = clickedbtn.getAttribute("data-bs-original-title");
+
+                if (AddedOrNot == 'Wishlist') {
+
+                    $.ajax({
+                        url: 'inc/worker.php',
+                        method: 'POST',
+                        data: {
+                            AddToWishlist: product
+                        },
+                        success: (responce) => {
+                            let res = JSON.parse(responce);
+                            //changing icon
+                            icon.classList = "bi bi-heart-fill _WishlishHeartIcon";
+                            icon.style.color = "green";
+                            //changing class and tooltip
+                            
+                            clickedbtn.setAttribute("data-bs-original-title", "Added");
+                            
+                            CountWishlist.innerText=res.TotalItems
+                            
+                              
+                        },
+                        error: (error) => {
+                            console.error(error);
+                        }
+                    })
+                } else if (AddedOrNot == "Added") {
+                    $.ajax({
+                        url: 'inc/worker.php',
+                        method: 'POST',
+                        data: {
+                            RemoveFromWishlist: product
+                        },
+                        success: (responce) => {
+                            let res = JSON.parse(responce);
+                            //changing icon
+                            icon.classList = "bi bi-heart _WishlishHeartIcon";
+                            icon.style.color = " ";
+                            //changing class and tooltip
+                            
+                            clickedbtn.setAttribute("data-bs-original-title", "Wishlist");
+                            
+                            CountWishlist.innerText=res.TotalItems
+                             
+                        },
+                        error: (error) => {
+                            console.error(error);
+                        }
+                    })
+
+                } else {
+                    console.log("added or not attr is : " + AddedOrNot);
+                }
+
+            })
+        }
+    </script>
 </body>
 
 
-<!-- Mirrored from freshcart.codescandy.com/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Mar 2023 10:10:03 GMT -->
 
 </html>

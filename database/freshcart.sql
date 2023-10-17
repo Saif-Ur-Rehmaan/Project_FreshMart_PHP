@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2023 at 11:43 PM
+-- Generation Time: Oct 17, 2023 at 11:46 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -41,7 +41,7 @@ CREATE TABLE `addresses` (
 
 INSERT INTO `addresses` (`Add_Id`, `_Client_Id`, `Add_Name`, `Add_Address`, `Add_IsDefault`) VALUES
 (1, 30, 'Home', 'Jitu Chauhan 4450 North Avenue Oakland, Nebraska, United States, 402-776-1106', 1),
-(6, 30, 'Office', 'a', 0);
+(6, 30, 'Office', 'hanif center lahore\r\n', 0);
 
 -- --------------------------------------------------------
 
@@ -182,6 +182,26 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`Ord_Id`, `_Client_Id`, `_Product_Id`, `Ord_Quantity`, `Ord_Date`, `Ord_Status`, `Ord_Name`, `Ord_UnitPrice`, `Ord_ShippingPrice`) VALUES
 (5, 3, 54, '2', '2022-10-01', 5, 'FC#1007', '15', 10),
 (6, 3, 57, '3', '2023-09-25', 5, 'FC#1009', '35', 15);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `paymentmethods`
+--
+
+CREATE TABLE `paymentmethods` (
+  `Pay_Id` int(11) NOT NULL,
+  `_Client_Id` int(11) NOT NULL,
+  `Pay_Type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `paymentmethods`
+--
+
+INSERT INTO `paymentmethods` (`Pay_Id`, `_Client_Id`, `Pay_Type`) VALUES
+(1, 30, 'PayPal'),
+(2, 30, 'EasyPesa');
 
 -- --------------------------------------------------------
 
@@ -358,7 +378,6 @@ CREATE TABLE `users` (
   `Use_Id` int(11) NOT NULL,
   `_Client_Id` int(11) NOT NULL,
   `Use_ContactNo` varchar(255) DEFAULT NULL,
-  `Use_Address` varchar(255) DEFAULT NULL,
   `Use_image` varchar(255) DEFAULT 'UserDefault.jpg',
   `Use_PaymentMethod` varchar(255) DEFAULT NULL,
   `Use_RegistrationDate` date DEFAULT current_timestamp()
@@ -368,9 +387,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`Use_Id`, `_Client_Id`, `Use_ContactNo`, `Use_Address`, `Use_image`, `Use_PaymentMethod`, `Use_RegistrationDate`) VALUES
-(1, 2, '03365584244', 'abc street ,lahore,pakistan', 'UserDefault.jpg', 'PayPal', '2023-10-01'),
-(18, 30, '01145584759', NULL, 'UserDefault.jpg', NULL, '2023-10-15');
+INSERT INTO `users` (`Use_Id`, `_Client_Id`, `Use_ContactNo`, `Use_image`, `Use_PaymentMethod`, `Use_RegistrationDate`) VALUES
+(1, 2, '03365584244', 'UserDefault.jpg', 'PayPal', '2023-10-01'),
+(18, 30, '01145584759', 'UserDefault.jpg', NULL, '2023-10-15');
 
 -- --------------------------------------------------------
 
@@ -480,6 +499,13 @@ ALTER TABLE `orders`
   ADD KEY `fk_product` (`_Product_Id`);
 
 --
+-- Indexes for table `paymentmethods`
+--
+ALTER TABLE `paymentmethods`
+  ADD PRIMARY KEY (`Pay_Id`),
+  ADD KEY `FK_Client_idPM` (`_Client_Id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -556,6 +582,12 @@ ALTER TABLE `orders`
   MODIFY `Ord_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `paymentmethods`
+--
+ALTER TABLE `paymentmethods`
+  MODIFY `Pay_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
@@ -614,6 +646,12 @@ ALTER TABLE `messeges`
 ALTER TABLE `orders`
   ADD CONSTRAINT `FK_Product_id` FOREIGN KEY (`_Product_id`) REFERENCES `products` (`P_Id`),
   ADD CONSTRAINT `fk_product` FOREIGN KEY (`_Product_id`) REFERENCES `products` (`P_Id`);
+
+--
+-- Constraints for table `paymentmethods`
+--
+ALTER TABLE `paymentmethods`
+  ADD CONSTRAINT `FK_Client_idPM` FOREIGN KEY (`_Client_Id`) REFERENCES `clients` (`Cli_Id`);
 
 --
 -- Constraints for table `products`

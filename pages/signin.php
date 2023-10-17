@@ -7,67 +7,66 @@ if ((isset($_SESSION["UserLogin"]))) { ?>
   </script>
 <?php } ?>
 <?php
-            if (isset($_POST['SignInUser'])) {
+if (isset($_POST['SignInUser'])) {
 
-              $email = $_POST['email'];
-              $password = $_POST['password'];
-              echo "\n";
-              $isUser = false;
-              $d = DatabaseManager::select("clients", "Cli_Mail as Mail,Cli_Password as pass", "Cli_Mail='$email'");
-              for ($i = 0; $i < count($d); $i++) {
-                $PassFromDB = $d[$i]["pass"];
-                $isUser = password_verify($password, $PassFromDB);
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  echo "\n";
+  $isUser = false;
+  $d = DatabaseManager::select("clients", "Cli_Mail as Mail,Cli_Password as pass", "Cli_Mail='$email'");
+  for ($i = 0; $i < count($d); $i++) {
+    $PassFromDB = $d[$i]["pass"];
+    $isUser = password_verify($password, $PassFromDB);
 
-                if ($isUser) {
-                  $Name = DatabaseManager::select("clients", "Cli_DisplayName as Name", "Cli_Mail='$email' And Cli_Password='$PassFromDB'")[0]["Name"];
-                  $cliId = DatabaseManager::select("clients", "Cli_Id as Cid", "Cli_Mail='$email' And Cli_Password='$PassFromDB'")[0]["Cid"];
-                  $RoleFromDb = DatabaseManager::select("clients", "Cli_Role as Role", "Cli_Mail='$email' And Cli_Password='$PassFromDB'")[0]["Role"];
-                  $CN = DatabaseManager::select("Users", "Use_ContactNo as CN", "_Client_Id='$cliId' LIMIT 1")[0]["CN"];
-                  $Address = DatabaseManager::select("Users", "Use_Address as Address", "_Client_Id='$cliId' LIMIT 1")[0]["Address"];
-                  switch ($RoleFromDb) {
-                    case '3':
-                      $Role = "Admin";
-                      break;
-                    case '2':
-                      $Role = "Seller";
-                      break;
+    if ($isUser) {
+      $Name = DatabaseManager::select("clients", "Cli_DisplayName as Name", "Cli_Mail='$email' And Cli_Password='$PassFromDB'")[0]["Name"];
+      $cliId = DatabaseManager::select("clients", "Cli_Id as Cid", "Cli_Mail='$email' And Cli_Password='$PassFromDB'")[0]["Cid"];
+      $RoleFromDb = DatabaseManager::select("clients", "Cli_Role as Role", "Cli_Mail='$email' And Cli_Password='$PassFromDB'")[0]["Role"];
+      $CN = DatabaseManager::select("Users", "Use_ContactNo as CN", "_Client_Id='$cliId' LIMIT 1")[0]["CN"];
+      $Address = DatabaseManager::select("addresses", "Add_Address as Address", "_Client_Id='$cliId' AND Add_IsDefault=1 LIMIT 1")[0]["Address"];
+      switch ($RoleFromDb) {
+        case '3':
+          $Role = "Admin";
+          break;
+        case '2':
+          $Role = "Seller";
+          break;
 
-                    default:
-                      $Role = "User";
-                      break;
-                  }
+        default:
+          $Role = "User";
+          break;
+      }
 
-                  $_SESSION["UserLogin"] =
-                    [
-                      "Email" => $email,
-                      "Client_Id" => $cliId,
-                      "Full Name" => $Name,
-                      "ContactNumber" => $CN,
-                      "Address" => $Address,
-                      "Role" => $Role,
-                      "Cart" => [] /*productid goes here as arry val*/,
-                      "Wishlish" => [] /*productid goes here as arry val*/
-                    ];
-                    ?>
-                    <script>
-                      alert("Sign In Succesfully");
-                      window.location.href = "../index.php";
-                    </script>
-                  <?php 
-                    break;
+      $_SESSION["UserLogin"] =
+        [
+          "Email" => $email,
+          "Client_Id" => $cliId,
+          "Full Name" => $Name,
+          "ContactNumber" => $CN,
+          "Address" => $Address,
+          "Role" => $Role,
+          "Wishlish" => [] /*productid goes here as arry val*/
+        ];
+      ?>
+      <script>
+        alert("Sign In Succesfully");
+        window.location.href = "../index.php";
+      </script>
+      <?php
+      break;
 
-                }
+    }
 
-              }
-              if (!$isUser) { ?>
-                <script>
-                  alert("Email Or Password Incorrect");
-                  window.location.href = "signin.php";
-                </script>
-              <?php }
+  }
+  if (!$isUser) { ?>
+    <script>
+      alert("Email Or Password Incorrect");
+      window.location.href = "signin.php";
+    </script>
+  <?php }
 
-            }
-            ?>
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -156,7 +155,7 @@ if ((isset($_SESSION["UserLogin"]))) { ?>
 
 
 
-        
+
 
 
 
