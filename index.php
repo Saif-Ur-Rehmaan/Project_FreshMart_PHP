@@ -281,7 +281,7 @@
                                               <span class="badge bg-danger">Sale</span>
                                           </div>';
                                         }
-                                        $pid=$value["ProductId"];
+                                        $pid = $value["ProductId"];
                                         ?>
 
                                         <a href="#!"
@@ -295,12 +295,14 @@
                                                 <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true"
                                                     title="Quick View"></i>
                                             </a>
-                                            <a  class="btn-action _WishlishBtn "
+                                            <a class="btn-action _WishlishBtn "
                                                 data-custom-product-id="<?php echo $value["ProductId"]; ?>"
-                                                data-bs-toggle="tooltip" data-bs-html="true" title="<?= (isset($_SESSION["Wishlist"]) && in_array($pid, $_SESSION["Wishlist"])) ? "Added" : "Wishlist"; ?>">
+                                                data-bs-toggle="tooltip" data-bs-html="true"
+                                                title="<?= (isset($_SESSION["Wishlist"]) && in_array($pid, $_SESSION["Wishlist"])) ? "Added" : "Wishlist"; ?>">
 
-                                                <i class="_WishlishHeartIcon <?= (isset($_SESSION["Wishlist"]) && in_array($pid, $_SESSION["Wishlist"])) ? "bi bi-heart-fill \" style=\" color:green;\"" : "bi bi-heart \" style=\"color:;\""; ?> "></i>
-                                                </a>
+                                                <i
+                                                    class="_WishlishHeartIcon <?= (isset($_SESSION["Wishlist"]) && in_array($pid, $_SESSION["Wishlist"])) ? "bi bi-heart-fill \" style=\" color:green;\"" : "bi bi-heart \" style=\"color:;\""; ?> "></i>
+                                            </a>
                                             <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
                                                 title="Compare">
                                                 <i class="bi bi-arrow-left-right"></i>
@@ -421,14 +423,21 @@
                                         </div>
                                         <div>
                                             <a href="#!" class="btn btn-primary btn-sm _AddToCartBtn"
-                                                data-Product_id="<?php echo $value["ProductId"] ?>">
-                                                <svg xmlns="http://www.w3.org/2000/svg" onclick="this.parentNode.click()"
-                                                    width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round" class="feather feather-plus">
+                                                data-Product_id="<?php echo $value["ProductId"] ?>" data-custom-attr="<?= (isset($_SESSION["Cart"]) && in_array($value["ProductId"],$_SESSION["Cart"]))?"Added":"Add";?>">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="_addIcon" width="16"
+                                                    height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-plus">
+                                                    <?= (isset($_SESSION["Cart"]) && in_array($value["ProductId"],$_SESSION["Cart"]))?'
+                                                    <polyline points="20 6 9 17 4 12"></polyline>':'
                                                     <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                                </svg> Add
+                                                    <line x1="5" y1="12" x2="19" y2="12"></line>';?>
+                                                </svg>
+
+                                                <span class="_addtext">
+                                                <?= (isset($_SESSION["Cart"]) &&in_array($value["ProductId"],$_SESSION["Cart"]))?"Added":"Add";?>
+                                                </span>
                                             </a>
                                         </div>
                                     </div>
@@ -720,12 +729,69 @@
 
     <!---------------------------------- Javascript------------------------------------------------>
     <script>
+        //add and remove product from cart
         $(document).ready(() => {
-            $("._AddToCartBtn").on("click", (e) => {
-                let productId = e.target.getAttribute("data-Product_id");
-                console.log(productId);
-                //$.ajax()//use ajax for addtocart . similar for quickview ,location etc modals
-            })
+            let AddtocartBtns = document.getElementsByClassName("_AddToCartBtn");
+            let AddtocartPlusIcon = document.getElementsByClassName("_addIcon");
+            let AddtocartText = document.getElementsByClassName("_addtext");
+            let cartProductCounter=document.getElementsByClassName("_CountCartItem");
+            for (let i = 0; i < AddtocartBtns.length; i++) {
+                const ADBTN = AddtocartBtns[i];
+
+
+                ADBTN.addEventListener("click", (e) => {
+                    let clickedbtn=AddtocartBtns[i];
+                    let productId = clickedbtn.getAttribute("data-Product_id");
+                    let IsAdded = clickedbtn.getAttribute("data-custom-attr"); 
+                    if (IsAdded=="Add") {
+                        $.ajax({
+                            url: 'inc/worker.php',
+                            method: 'POST',
+                            data: {
+                                AddToCartProduct: productId
+                            },
+                            success: (responce) => {
+                                let res = JSON.parse(responce) 
+                                clickedbtn.setAttribute("data-custom-attr","Added")
+                                
+                                AddtocartText[i].innerText = "Added";
+                                
+                                AddtocartPlusIcon[i].innerHTML='<polyline points="20 6 9 17 4 12"></polyline>';//ok icon
+                                for (let ac = 0; ac < cartProductCounter.length; ac++) {
+                                    const a = cartProductCounter[ac];
+                                    a.innerHTML=res.TotalCartItems;
+                                }
+                            },
+                            error: (error) => {
+                                console.error(error);
+                            }
+                        })
+                    }else{
+                        $.ajax({
+                            url: 'inc/worker.php',
+                            method: 'POST',
+                            data: {
+                                RemoveFromCartProduct: productId
+                            },
+                            success: (responce) => {
+                                let res = JSON.parse(responce) ;
+                                AddtocartText[i].innerText = "Add";
+                                clickedbtn.setAttribute("data-custom-attr","Add")
+                                AddtocartPlusIcon[i].innerHTML=' <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>';//ok icon
+                                for (let ac = 0; ac < cartProductCounter.length; ac++) {
+                                    const a = cartProductCounter[ac];
+                                    a.innerHTML=res.TotalCartItems;
+                                }
+                            
+                            },
+                            error: (error) => {
+                                console.error(error);
+                            }
+                        }) 
+                    }
+
+                })
+            }
         })
     </script>
 
@@ -735,7 +801,7 @@
         // wishlist add and remove
         let wishBtns = document.getElementsByClassName("_WishlishBtn");
         let wishicons = document.getElementsByClassName("_WishlishHeartIcon");
-        let CountWishlist=document.getElementById("CountWishlist");
+        let CountWishlist = document.getElementById("CountWishlist");
         for (let i = 0; i < wishBtns.length; i++) {
             const Wbtn = wishBtns[i];
             Wbtn.addEventListener("click", (e) => {
@@ -758,12 +824,12 @@
                             icon.classList = "bi bi-heart-fill _WishlishHeartIcon";
                             icon.style.color = "green";
                             //changing class and tooltip
-                            
+
                             clickedbtn.setAttribute("data-bs-original-title", "Added");
-                            
-                            CountWishlist.innerText=res.TotalItems
-                            
-                              
+
+                            CountWishlist.innerText = res.TotalItems
+
+
                         },
                         error: (error) => {
                             console.error(error);
@@ -782,11 +848,11 @@
                             icon.classList = "bi bi-heart _WishlishHeartIcon";
                             icon.style.color = " ";
                             //changing class and tooltip
-                            
+
                             clickedbtn.setAttribute("data-bs-original-title", "Wishlist");
-                            
-                            CountWishlist.innerText=res.TotalItems
-                             
+
+                            CountWishlist.innerText = res.TotalItems
+
                         },
                         error: (error) => {
                             console.error(error);

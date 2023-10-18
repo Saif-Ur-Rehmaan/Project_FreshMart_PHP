@@ -41,5 +41,39 @@ if (isset($_POST["AddToWishlist"])) {
     echo json_encode($responcetosend);
 }
 // wishlish end
+// addTocart start
+if(isset($_POST["AddToCartProduct"])){
+    $ProductId=$_POST["AddToCartProduct"];
+    if(!isset($_SESSION["Cart"])){
+        $_SESSION["Cart"]=[];
+        array_push( $_SESSION["Cart"], $ProductId); 
+    }else{
+        array_push( $_SESSION["Cart"], $ProductId); 
+    }
+
+    $ResponceToSent=[
+        "Product_Id"=> $ProductId,
+        "TotalCartItems"=> count($_SESSION["Cart"]),
+        "Cart"=> $_SESSION["Cart"]
+    ];
+    echo json_encode($ResponceToSent);
+}
+if(isset($_POST["RemoveFromCartProduct"])){
+    $ProductId=$_POST["RemoveFromCartProduct"];
+     $index=array_search($ProductId,$_SESSION["Cart"]);
+     if($index!==false){
+        array_splice($_SESSION["Cart"],$index,1);
+     }else{
+        $ResponceToSent+=["error"=>"index not present"];
+     }
+
+    $ResponceToSent=[
+        "Product_Id"=> $ProductId,
+        "TotalCartItems"=> count($_SESSION["Cart"]),
+        "Cart"=> $_SESSION["Cart"]
+    ];
+    echo json_encode($ResponceToSent);
+}
+// addTocart end
 
 ?>

@@ -41,8 +41,9 @@ $slashOrNot = ($filename == "index.php") ? "" : "../";
                         <line x1="3" y1="6" x2="21" y2="6"></line>
                         <path d="M16 10a4 4 0 0 1-8 0"></path>
                       </svg>
-                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                        1
+                      <span class="position-absolute top-0 _CountCartItem start-100 translate-middle badge rounded-pill bg-success">
+                      <?= (isset($_SESSION["Cart"])) ? count($_SESSION["Cart"]) : 0; ?>
+
                         <span class="visually-hidden">unread messages</span>
                       </span>
                     </a>
@@ -107,8 +108,8 @@ $slashOrNot = ($filename == "index.php") ? "" : "../";
                   </svg>
                   <span id="CountWishlist" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
                   <?= (isset($_SESSION["Wishlist"])) ? count($_SESSION["Wishlist"]) : 0; ?>
-                    <span class="visually-hidden">unread messages</span>
-                  </span>
+                  <span class="visually-hidden">unread messages</span>
+                </span>
                 </a></div>
               <div class="list-inline-item">
 
@@ -131,8 +132,9 @@ $slashOrNot = ($filename == "index.php") ? "" : "../";
                     <line x1="3" y1="6" x2="21" y2="6"></line>
                     <path d="M16 10a4 4 0 0 1-8 0"></path>
                   </svg>
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                    1
+                  <span class="position-absolute top-0 start-100 _CountCartItem translate-middle badge rounded-pill bg-success">
+                    <?= (isset($_SESSION["Cart"])) ? count($_SESSION["Cart"]) : 0; ?>
+                     
                     <span class="visually-hidden">unread messages</span>
                   </span>
                 </a>
