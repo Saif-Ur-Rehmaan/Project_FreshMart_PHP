@@ -22,8 +22,11 @@ if (isset($_POST['SignInUser'])) {
       $Name = DatabaseManager::select("clients", "Cli_DisplayName as Name", "Cli_Mail='$email' And Cli_Password='$PassFromDB'")[0]["Name"];
       $cliId = DatabaseManager::select("clients", "Cli_Id as Cid", "Cli_Mail='$email' And Cli_Password='$PassFromDB'")[0]["Cid"];
       $RoleFromDb = DatabaseManager::select("clients", "Cli_Role as Role", "Cli_Mail='$email' And Cli_Password='$PassFromDB'")[0]["Role"];
-      $CN = DatabaseManager::select("Users", "Use_ContactNo as CN", "_Client_Id='$cliId' LIMIT 1")[0]["CN"];
-      $Address = DatabaseManager::select("addresses", "Add_Address as Address", "_Client_Id='$cliId' AND Add_IsDefault=1 LIMIT 1")[0]["Address"];
+
+      $ContactNumber = DatabaseManager::select("Users", "Use_ContactNo as CN", "_Client_Id='$cliId' LIMIT 1");
+      $address = DatabaseManager::select("addresses", "Add_Address as Address", "_Client_Id='$cliId' AND Add_IsDefault=1 LIMIT 1");
+      $CN=(isset($ContactNumber[0]))? $ContactNumber[0]["CN"]:"";
+      $Address=(isset($address[0]))? $address[0]["Address"]:"";
       switch ($RoleFromDb) {
         case '3':
           $Role = "Admin";
@@ -49,7 +52,7 @@ if (isset($_POST['SignInUser'])) {
         ];
       ?>
       <script>
-        alert("Sign In Succesfully");
+        //alert("Sign In Succesfully");
         window.location.href = "../index.php";
       </script>
       <?php
@@ -60,7 +63,7 @@ if (isset($_POST['SignInUser'])) {
   }
   if (!$isUser) { ?>
     <script>
-      alert("Email Or Password Incorrect");
+      //alert("Email Or Password Incorrect");
       window.location.href = "signin.php";
     </script>
   <?php }

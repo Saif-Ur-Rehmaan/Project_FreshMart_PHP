@@ -1,4 +1,7 @@
-<?php include "inc/config.php"; ?>
+<?php 
+ 
+ 
+include "inc/config.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -120,10 +123,8 @@
                 </div>
                 <div class="category-slider ">
                     <?php
-                    $res = DatabaseManager::query("SELECT DISTINCT
-                                        (SELECT categories.C_name FROM categories WHERE categories.C_id=products._Category_id) as Cname,
-                                            products.P_Images as Category1stProductimg
-                                        , products._Category_id as cid FROM products WHERE products.P_IsFeatured=1  group BY products._Category_id");
+
+                    $res = DatabaseManager::query("SELECT C_Logo as Category1stProductimg ,C_id as cid ,C_name as Cname From categories");
                     while ($row = mysqli_fetch_assoc($res)) {
                         $cid = $row["cid"];
                         $ProductImg = $row["Category1stProductimg"];
@@ -752,8 +753,7 @@
                             },
                             success: (responce) => {
                                 let res = JSON.parse(responce) 
-                                clickedbtn.setAttribute("data-custom-attr","Added")
-                                
+                                clickedbtn.setAttribute("data-custom-attr","Added") 
                                 AddtocartText[i].innerText = "Added";
                                 
                                 AddtocartPlusIcon[i].innerHTML='<polyline points="20 6 9 17 4 12"></polyline>';//ok icon
@@ -765,7 +765,9 @@
                             error: (error) => {
                                 console.error(error);
                             }
-                        })
+                        });
+                  
+                        
                     }else{
                         $.ajax({
                             url: 'inc/worker.php',
@@ -789,6 +791,21 @@
                             }
                         }) 
                     }
+                    $.ajax({
+                            url: 'inc/worker.php',
+                            method: 'POST',
+                            data: {
+                                RefreshSidebarCart:true
+                            },
+                            success: (responce) => { 
+                                let res = JSON.parse(responce) 
+                                document.getElementById("_SidebarCart").innerHTML=res; 
+                                
+                            },
+                            error: (error) => {
+                                console.error(error);
+                            }
+                        });
 
                 })
             }

@@ -102,14 +102,14 @@ if (isset($_POST["SaveNewAddress"])) {
   $aid = $_POST["adid"];
   $name = $_POST["Name"];
   $address = $_POST["Address"];
-    if (DatabaseManager::query("UPDATE `addresses` SET `Add_Name`='$name',`Add_Address`='$address' WHERE `Add_Id`='$aid'")) {
-      echo "
+  if (DatabaseManager::query("UPDATE `addresses` SET `Add_Name`='$name',`Add_Address`='$address' WHERE `Add_Id`='$aid'")) {
+    echo "
      <script>
     //  alert('Address Updated Successfully');
      window.location.href='account-settings.php?selectTab=Address';
      </script>
      ";
- 
+
 
   }
 }
@@ -149,6 +149,52 @@ if (isset($_GET["changedefaultto"])) {
     $con->rollback();
   }
   $con->close();
+}
+if (isset($_POST["NewAddress"])) {
+  $cliid=$_SESSION["UserLogin"]["Client_Id"];
+  $NameOfAddress = $_POST["Name"];
+  $Address = $_POST["Address"];
+  $isPresent=DatabaseManager::query("SELECT Add_Id FROM Addresses WHERE _Client_Id=$cliid And Add_Name='$NameOfAddress'");
+  $isPresent2=DatabaseManager::query("SELECT Add_Id FROM Addresses WHERE _Client_Id=$cliid And Add_Name='$NameOfAddress' AND Add_Address='$Address'");
+  if(mysqli_num_rows($isPresent2)>0){
+    ?>
+    <script> 
+    alert("Adress Already Exist")
+    window.location.href = "account-settings.php?selectTab=Address";
+    </script>
+  <?php 
+    return;
+  }else if(mysqli_num_rows($isPresent)>0){
+    ?>
+    <script> 
+    alert("Name Of Address Cannot Be Same")
+    window.location.href = "account-settings.php?selectTab=Address";
+    </script>
+  <?php 
+    return;
+
+  }
+  $data = [
+    "_Client_Id" => $cliid,
+    "Add_Name" => $NameOfAddress,
+    "Add_Address" => $Address
+  ];
+  $isAdded = DatabaseManager::insert("Addresses", $data);
+  if ($isAdded) { ?>
+    <script> 
+      window.location.href = "account-settings.php?selectTab=Address";
+      console.log("Added");
+    </script>
+  <?php } else {
+    ?>
+    <script>
+      alert("Address Not Added");
+      window.location.href = "account-settings.php?selectTab=Address";
+      console.log("Not Added");
+    </script>
+  <?php
+  }
+
 }
 
 if (!(isset($_SESSION["UserLogin"]))) { ?>
@@ -546,11 +592,12 @@ if (isset($_POST["LogoutUser"]) || isset($_GET["LogOutUser"])) {
                 <!-- heading -->
                 <h2 class="mb-0">Address</h2>
                 <!-- button -->
-                <a href="#" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addAddressModal">Add
+                <a id="_AddNewAddrss" class="btn btn-outline-primary" data-bs-toggle="modal"
+                  data-bs-target="#addAddressModal">Add
                   a
                   new address </a>
               </div>
-              <div class="row">
+              <div class="row " id="_AddressContainingDiv">
                 <!-- col -->
                 <style>
                   /* Style the label to look like an input field */
@@ -575,7 +622,8 @@ if (isset($_POST["LogoutUser"]) || isset($_GET["LogOutUser"])) {
                     box-shadow: 0 0 3px 2px #0077FF;
                   }
                 </style>
-                <?php
+                <?php 
+
                 $clientId = $_SESSION["UserLogin"]["Client_Id"];
                 $q = "SELECT
                             addresses.Add_Id as id,
@@ -1079,9 +1127,7 @@ if (isset($_POST["LogoutUser"]) || isset($_GET["LogOutUser"])) {
                                 <textarea type="text" class="form-control" name="Address" aria-label="Sizing example input" style="min-height:120px;overflow: hidden scroll;" aria-describedby="inputGroup-sizing-sm">${OldAddress}</textarea>
                               </div>
                               <div class=\"mt-4\">
-                              <form methos='post' action='account-settings.php'>
                                 <input type="submit" class="btn btn-outline-success" name="SaveNewAddress" value="Save">
-                                </form>
                               </div>
                               <div class="hidden _NameOfAddress "></div>
                               <div class="hidden _Address  "></div>
@@ -1113,7 +1159,46 @@ if (isset($_POST["LogoutUser"]) || isset($_GET["LogOutUser"])) {
       })
     }
   </script>
+  <script>
+    // add new address
+    let addressbtn = document.getElementById("_AddNewAddrss");
+    let ACD = document.getElementById("_AddressContainingDiv");
+    addressbtn.addEventListener("click", () => {
+      let html;
+      html = `
+                    <div class=\"col-lg-5 col-xxl-4 col-12 mb-4 P_a\">
+                      <form action="account-settings.php?selectTab=Address" method="post">
+                        <div class=\"card\">
+                          <div class=\"card-body p-6\">
+                            <div class="input-group input-group-sm mb-3">
+                              <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+                              <input type="text"  requierd class="form-control" name="Name" value=' ' aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                            <!-- address -->
+                              <div class="input-group input-group-sm mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Address</span>
+                                <textarea type="text" required class="form-control" name="Address" aria-label="Sizing example input" style="min-height:120px;overflow: hidden scroll;" aria-describedby="inputGroup-sizing-sm"></textarea>
+                              </div>
+                              <div class=\"mt-4\">
+                              <form methos='post' action='account-settings.php'>
+                                <input type="submit" class="btn btn-outline-success" name="NewAddress" value="AddNewAddres">
+                                </form>
+                              </div>
+                              <div class="hidden _NameOfAddress "></div>
+                              <div class="hidden _Address  "></div>
+                              <input class="hidden _inpwid" type='hidden' name='adid' value=''/>
+                              
 
+                            </div>
+                            </div>
+                      </form>
+                    </div>
+      `;
+      ACD.innerHTML += html;
+    })
+
+
+  </script>
 
 </body>
 

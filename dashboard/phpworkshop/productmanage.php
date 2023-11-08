@@ -115,35 +115,39 @@ if (isset($_POST["Edit_Product"])) {
     $P_MetaTitle = $_POST["P_MetaTitle"];
     $P_MetaDescription = $_POST["P_MetaDescription"];
 
-    $images = $_FILES["file"]; //array
+    $images = $_FILES["file"]["name"]; //array
     
-    $P_Images =time().$_FILES['file']['name'];
-    $from = $_FILES['file']['tmp_name'];
-    $name=$P_Images;
-    $to = '../../assets/images/' .$name;
-     
-
-
-
-
-  if($P_Images!=null){
-    $filename = "../../assets/images/".DatabaseManager::select("products","P_Images as cl","P_Id=$Edit_Product_id")[0]["cl"]; // Specify the path to the file
+    print_r($images  !=null);
+    
+    
+    
+    
+    if($images!=null){
+      $P_Images =time().$_FILES['file']['name'];
+      $from = $_FILES['file']['tmp_name'];
+      $name=$P_Images;
+      $to = '../../assets/images/' .$name;
+      $filename = "../../assets/images/".DatabaseManager::select("products","P_Images as cl","P_Id=$Edit_Product_id")[0]["cl"]; // Specify the path to the file
     
     if (file_exists($filename)) {
         if (unlink($filename)) {
-            echo "File 'i.png' has been deleted.";
+            echo "Image File has been deleted.";
+            
         } else {
             echo "Unable to delete the file.";
         }
     } else {
-        echo "File 'i.png' does not exist.";
+        echo "Image File does not exist in Folder.";
     }
-
-    $editQuery = "UPDATE `products` SET `P_Title` = '$P_Title', `P_Weight` = '$P_Weight', `P_Units` = '$P_Units', `P_Images` = '$P_Images', `P_Description` = '$P_Description',`P_Status`='$P_Status',`P_InStock`='$P_InStock',`Date`=CURRENT_TIMESTAMP() , `P_Code` = '$P_Code', `P_SKU` = '$P_SKU', `P_RegularPrice` = '$P_RegularPrice', `P_SalePrice` = '$P_SalePrice', `P_MetaTitle` = '$P_MetaTitle', `P_MetaDescription` = '$P_MetaDescription' WHERE `products`.`P_Id` = $Edit_Product_id
+    if(move_uploaded_file($from,$to)){
+        echo "Image File Moved TO New Folder .";
+    }
+    
+    $editQuery = "UPDATE `products` SET `_Category_Id` = '$_Catagory_id',`P_Title` = '$P_Title', `P_Weight` = '$P_Weight', `P_Units` = '$P_Units', `P_Images` = '$P_Images', `P_Description` = '$P_Description',`P_Status`='$P_Status',`P_InStock`='$P_InStock',`Date`=CURRENT_TIMESTAMP() , `P_Code` = '$P_Code', `P_SKU` = '$P_SKU', `P_RegularPrice` = '$P_RegularPrice', `P_SalePrice` = '$P_SalePrice', `P_MetaTitle` = '$P_MetaTitle', `P_MetaDescription` = '$P_MetaDescription' WHERE `products`.`P_Id` = $Edit_Product_id
     ";
     // echo $editQuery;
 }else{
-    $editQuery = "UPDATE `products` SET `P_Title` = '$P_Title', `P_Weight` = '$P_Weight', `P_Units` = '$P_Units', `P_Description` = '$P_Description',`P_Status`='$P_Status',`P_InStock`='$P_InStock',`Date`=CURRENT_TIMESTAMP() , `P_Code` = '$P_Code', `P_SKU` = '$P_SKU', `P_RegularPrice` = '$P_RegularPrice', `P_SalePrice` = '$P_SalePrice', `P_MetaTitle` = '$P_MetaTitle', `P_MetaDescription` = '$P_MetaDescription' WHERE `products`.`P_Id` = $Edit_Product_id
+    $editQuery = "UPDATE `products` SET `_Category_Id` = '$_Catagory_id',`P_Title` = '$P_Title', `P_Weight` = '$P_Weight', `P_Units` = '$P_Units', `P_Description` = '$P_Description',`P_Status`='$P_Status',`P_InStock`='$P_InStock',`Date`=CURRENT_TIMESTAMP() , `P_Code` = '$P_Code', `P_SKU` = '$P_SKU', `P_RegularPrice` = '$P_RegularPrice', `P_SalePrice` = '$P_SalePrice', `P_MetaTitle` = '$P_MetaTitle', `P_MetaDescription` = '$P_MetaDescription' WHERE `products`.`P_Id` = $Edit_Product_id
     ";
     // echo $editQuery;
 

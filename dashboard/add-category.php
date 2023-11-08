@@ -1,4 +1,5 @@
-<?php include "inc/config.php"; 
+<?php  
+include "inc/config.php"; 
 $EditId=(isset($_GET["EditCategoryOfId"]))?$_GET["EditCategoryOfId"]:"";
 ?>
 <!DOCTYPE html>

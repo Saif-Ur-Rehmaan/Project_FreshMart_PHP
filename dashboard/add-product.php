@@ -2,7 +2,8 @@
 
 use function PHPSTORM_META\type;
 
- include "inc/config.php"; ?>
+  
+include "inc/config.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,21 +89,19 @@ use function PHPSTORM_META\type;
                                             <!-- input catagori -->
                                             <div class="mb-3 col-lg-6">
                                                 <label class="form-label">Product Category</label>
-                                                <select name="_Catagory_id" class="form-select">
+                                                <select name="_Catagory_id" class="form-select" >
                                                     <option value="null">Product Category</option>
-                                                    <!-- value my Catagori id aai gi jo forien key h  -->
                                                     <?php $cname = DatabaseManager::select("categories", 'C_name,C_id');
                                                     $catid = $row["_Category_id"];
+                                                    $dbselectedid=DatabaseManager::select("products","_Category_Id as cid","P_Id=$EditId")[0]["cid"];
+                                                 
                                                     foreach ($cname as $key => $value) {
                                                         $a = $value["C_name"];
                                                         $b = $value["C_id"];
-                                                        $c = ($catId == $row['_Catagory_id']) ? 'checked' : "";
+                                                        $c = ($b ==$dbselectedid )? 'selected' : "";
+                                                    
                                                         echo "<option $c  value='$b'>$a</option>";
                                                     } ?>
-                                                    <!-- <option value="2" <?php //$catId=0;if ($catId==$row['_Catagory_id']) { echo 'checked';} 
-                                                        ?>>DryFruit & Bakery</option> -->
-
-                                                    <!-- php loop chly ga or categori ki table sy catagories aain gi -->
                                                 </select>
                                             </div>
                                             <!-- input -->
@@ -271,7 +270,8 @@ use function PHPSTORM_META\type;
                                                 <label class="form-label">Product Category</label>
                                                 <select name="_Catagory_id" class="form-select">
                                                     <option selected value="null">Product Category</option>
-                                                    <?php $cname = DatabaseManager::select("categories", 'C_name,C_id');
+                                                    <?php 
+                                                    $cname = DatabaseManager::select("categories", 'C_name,C_id');
                                                     
                                                     foreach ($cname as $key => $value) {
                                                         $a = $value["C_name"];

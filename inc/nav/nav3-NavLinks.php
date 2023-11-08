@@ -218,14 +218,6 @@ $slashOrNot = ($filename == "index.php") ? "" : "../";
             </ul>
  
           </li>
-          <?php if (isset($_SESSION["adminloggedin"])) { ?>
-
-            <li class="nav-item ">
-              <a class="nav-link" href="<?php echo $slashOrNot; ?>dashboard/index.php">
-                Dashboard
-              </a>
-            </li>
-          <?php } ?>
           <li class="nav-item dropdown dropdown-flyout">
             <a class="nav-link" href="<?php echo $slashOrNot; ?>#" id="navbarDropdownDocs" role="button"
               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -266,6 +258,14 @@ $slashOrNot = ($filename == "index.php") ? "" : "../";
               </a>
             </div>
           </li>
+          <?php if (isset($_SESSION["UserLogin"]) && $_SESSION["UserLogin"]["Role"]=="Admin") { ?>
+
+            <li class="nav-item ">
+              <a class="nav-link" href="<?php echo $slashOrNot; ?>dashboard/index.php">
+                Dashboard
+              </a>
+            </li>
+          <?php } ?>
         </ul>
       </div>
       <div class="d-block d-lg-none h-100" data-simplebar="">

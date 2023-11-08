@@ -103,7 +103,7 @@
                                             $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
                                             $offset = ($currentPage - 1) * $cardsPerPage;
                                             
-                                            $responce = mysqli_query($connection, "SELECT `P_Id`,`P_Images`,`P_Title`,`Date`,`P_Status`,`P_RegularPrice` FROM `products` limit $offset,$cardsPerPage");
+                                            $responce = mysqli_query($connection, "SELECT   (SELECT C_name From categories where C_id=_Category_Id ) as CatName,`P_Id`,`P_Images`,`P_Title`,`Date`,`P_Status`,`P_RegularPrice` FROM `products` limit $offset,$cardsPerPage");
                                              
 
                                             while ($row = mysqli_fetch_assoc($responce)) {
@@ -129,7 +129,10 @@
                                                     <td><a href="#" class="text-reset">
                                                             <?php echo $row["P_Title"] ?>
                                                         </a></td>
-                                                    <td>Snack & Munchies</td>
+                                                    <td>
+                                                        <?php echo $row["CatName"] ?>
+
+                                                    </td>
 
                                                     <td>
                                                         <?php
