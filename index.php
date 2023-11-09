@@ -209,45 +209,29 @@ include "inc/config.php"; ?>
                 <div class="row g-4 row-cols-lg-5 row-cols-2 row-cols-md-3">
                     <?php
                     $query = "SELECT
-                  products.P_Id AS pid,
-                  products.P_Title AS productname,
-                  (SELECT categories.C_name FROM categories WHERE categories.C_id = products._Category_id) AS categoryname,
-                  (SELECT SUM(reviews_products.Rev_Star) FROM reviews_products WHERE reviews_products._Product_id = products.P_Id) AS total_rating,
-                  (SELECT COUNT(reviews_products.Rev_Id) FROM reviews_products WHERE reviews_products._Product_id = products.P_Id) AS total_reviews,
-                  CASE
+                     products.P_Id AS pid,
+                    products.P_Title AS productname,
+                     (SELECT categories.C_name FROM categories WHERE categories.C_id = products._Category_id) AS categoryname,
+                     (SELECT SUM(reviews_products.Rev_Star) FROM reviews_products WHERE reviews_products._Product_id = products.P_Id) AS total_rating,
+                     (SELECT COUNT(reviews_products.Rev_Id) FROM reviews_products WHERE reviews_products._Product_id = products.P_Id) AS total_reviews,
+                     CASE
                       WHEN (SELECT COUNT(reviews_products.Rev_Id) FROM reviews_products WHERE reviews_products._Product_id = products.P_Id) > 0 THEN
                           ROUND((SELECT SUM(reviews_products.Rev_Star) FROM reviews_products WHERE reviews_products._Product_id = products.P_Id) /
                           (SELECT COUNT(reviews_products.Rev_Id) FROM reviews_products WHERE reviews_products._Product_id = products.P_Id) * 2) / 2
                       ELSE
                           0
-                  END AS average_rating,
-                  (SELECT COUNT(reviews_products.Rev_Id) FROM reviews_products WHERE reviews_products._Product_id = products.P_Id) as ReviewCount,
-                  products.P_RegularPrice as Price,
-                  products.P_SalePrice as SalePrice,
-                  products.P_Images as pimg
-              FROM products
-               order by
-                (SELECT COUNT(reviews_products.Rev_Id) FROM reviews_products WHERE reviews_products._Product_id = products.P_Id) desc;              
-              ";
+                     END AS average_rating,
+                     (SELECT COUNT(reviews_products.Rev_Id) FROM reviews_products WHERE reviews_products._Product_id = products.P_Id) as ReviewCount,
+                     products.P_RegularPrice as Price,
+                     products.P_SalePrice as SalePrice,
+                     products.P_Images as pimg
+                        FROM products
+                         order by
+                        (SELECT COUNT(reviews_products.Rev_Id) FROM reviews_products WHERE reviews_products._Product_id = products.P_Id) desc LIMIT 10;              
+                        ";
                     $res = mysqli_query($connection, $query);
                     $PopularProducts = [];
-
-                    if ($res->num_rows > 10) {
-                        for ($i = 0; $i < 10; $i++) {
-                            $row = $row = mysqli_fetch_assoc($res);
-                            $data = [
-                                "ProductId" => $row["pid"],
-                                "CategoryName" => $row["categoryname"],
-                                "ProductName" => $row["productname"],
-                                "ProductImg" => $row["pimg"],
-                                "AverageRating" => $row["average_rating"],
-                                "NumberOfReviews" => $row["ReviewCount"],
-                                "RegularPrice" => $row["Price"],
-                                "SalePrice" => $row["SalePrice"]
-                            ];
-                            array_push($PopularProducts, $data);
-                        }
-                    } else {
+ 
                         while ($row = mysqli_fetch_assoc($res)) {
                             $data = [
                                 "ProductId" => $row["pid"],
@@ -262,8 +246,7 @@ include "inc/config.php"; ?>
                             array_push($PopularProducts, $data);
 
                         }
-
-                    }
+ 
 
                     foreach ($PopularProducts as $key => $value) {
                         ?>
@@ -729,160 +712,13 @@ include "inc/config.php"; ?>
     <script src="assets/js/vendors/increment-value.js"></script>
 
     <!---------------------------------- Javascript------------------------------------------------>
-    <script>
-        //add and remove product from cart
-        $(document).ready(() => {
-            let AddtocartBtns = document.getElementsByClassName("_AddToCartBtn");
-            let AddtocartPlusIcon = document.getElementsByClassName("_addIcon");
-            let AddtocartText = document.getElementsByClassName("_addtext");
-            let cartProductCounter=document.getElementsByClassName("_CountCartItem");
-            for (let i = 0; i < AddtocartBtns.length; i++) {
-                const ADBTN = AddtocartBtns[i];
-
-
-                ADBTN.addEventListener("click", (e) => {
-                    let clickedbtn=AddtocartBtns[i];
-                    let productId = clickedbtn.getAttribute("data-Product_id");
-                    let IsAdded = clickedbtn.getAttribute("data-custom-attr"); 
-                    if (IsAdded=="Add") {
-                        $.ajax({
-                            url: 'inc/worker.php',
-                            method: 'POST',
-                            data: {
-                                AddToCartProduct: productId
-                            },
-                            success: (responce) => {
-                                let res = JSON.parse(responce) 
-                                clickedbtn.setAttribute("data-custom-attr","Added") 
-                                AddtocartText[i].innerText = "Added";
-                                
-                                AddtocartPlusIcon[i].innerHTML='<polyline points="20 6 9 17 4 12"></polyline>';//ok icon
-                                for (let ac = 0; ac < cartProductCounter.length; ac++) {
-                                    const a = cartProductCounter[ac];
-                                    a.innerHTML=res.TotalCartItems;
-                                }
-                            },
-                            error: (error) => {
-                                console.error(error);
-                            }
-                        });
-                  
-                        
-                    }else{
-                        $.ajax({
-                            url: 'inc/worker.php',
-                            method: 'POST',
-                            data: {
-                                RemoveFromCartProduct: productId
-                            },
-                            success: (responce) => {
-                                let res = JSON.parse(responce) ;
-                                AddtocartText[i].innerText = "Add";
-                                clickedbtn.setAttribute("data-custom-attr","Add")
-                                AddtocartPlusIcon[i].innerHTML=' <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>';//ok icon
-                                for (let ac = 0; ac < cartProductCounter.length; ac++) {
-                                    const a = cartProductCounter[ac];
-                                    a.innerHTML=res.TotalCartItems;
-                                }
-                            
-                            },
-                            error: (error) => {
-                                console.error(error);
-                            }
-                        }) 
-                    }
-                    $.ajax({
-                            url: 'inc/worker.php',
-                            method: 'POST',
-                            data: {
-                                RefreshSidebarCart:true
-                            },
-                            success: (responce) => { 
-                                let res = JSON.parse(responce) 
-                                document.getElementById("_SidebarCart").innerHTML=res; 
-                                
-                            },
-                            error: (error) => {
-                                console.error(error);
-                            }
-                        });
-
-                })
-            }
-        })
-    </script>
+    <?php include "inc/js/Js_addtocart.php"?>
+    <?php include "inc/js/Js_Whishlist.php"?>
+     
 
 
 
-    <script>
-        // wishlist add and remove
-        let wishBtns = document.getElementsByClassName("_WishlishBtn");
-        let wishicons = document.getElementsByClassName("_WishlishHeartIcon");
-        let CountWishlist = document.getElementById("CountWishlist");
-        for (let i = 0; i < wishBtns.length; i++) {
-            const Wbtn = wishBtns[i];
-            Wbtn.addEventListener("click", (e) => {
-                let clickedbtn = wishBtns[i];
-                let icon = wishicons[i];
-                let product = clickedbtn.getAttribute("data-custom-product-id")
-                let AddedOrNot = clickedbtn.getAttribute("data-bs-original-title");
-
-                if (AddedOrNot == 'Wishlist') {
-
-                    $.ajax({
-                        url: 'inc/worker.php',
-                        method: 'POST',
-                        data: {
-                            AddToWishlist: product
-                        },
-                        success: (responce) => {
-                            let res = JSON.parse(responce);
-                            //changing icon
-                            icon.classList = "bi bi-heart-fill _WishlishHeartIcon";
-                            icon.style.color = "green";
-                            //changing class and tooltip
-
-                            clickedbtn.setAttribute("data-bs-original-title", "Added");
-
-                            CountWishlist.innerText = res.TotalItems
-
-
-                        },
-                        error: (error) => {
-                            console.error(error);
-                        }
-                    })
-                } else if (AddedOrNot == "Added") {
-                    $.ajax({
-                        url: 'inc/worker.php',
-                        method: 'POST',
-                        data: {
-                            RemoveFromWishlist: product
-                        },
-                        success: (responce) => {
-                            let res = JSON.parse(responce);
-                            //changing icon
-                            icon.classList = "bi bi-heart _WishlishHeartIcon";
-                            icon.style.color = " ";
-                            //changing class and tooltip
-
-                            clickedbtn.setAttribute("data-bs-original-title", "Wishlist");
-
-                            CountWishlist.innerText = res.TotalItems
-
-                        },
-                        error: (error) => {
-                            console.error(error);
-                        }
-                    })
-
-                } else {
-                    console.log("added or not attr is : " + AddedOrNot);
-                }
-
-            })
-        }
-    </script>
+ 
 </body>
 
 

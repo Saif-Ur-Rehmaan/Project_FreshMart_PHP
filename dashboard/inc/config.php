@@ -1,10 +1,26 @@
-<?php 
+<?php
 session_start();
+if (isset($_SESSION["UserLogin"])) {
+    if (!($_SESSION["UserLogin"]["Role"] == "Admin")) {
+        ?>
+        <script>
+            window.location.href = "../index.php";
+        </script>
+        <?php
+    }
+} else {
+    ?>
+    <script>
+        window.location.href = "../index.php";
+    </script>
+    <?php
+
+}
 $connection = mysqli_connect("localhost", "root", "", "freshcart");
 if (!$connection) {
     header("location: pages/404.php");
     die();
-} 
+}
 class DatabaseManager
 {
     public static function connect()
@@ -144,5 +160,3 @@ class DatabaseManager
 }
 
 ?>
-
- 

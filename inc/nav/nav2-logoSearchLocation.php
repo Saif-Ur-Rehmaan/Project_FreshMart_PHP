@@ -6,7 +6,7 @@ $slashOrNot = ($filename == "index.php") ? "" : "../";
       <div class="container">
         <div class="row w-100 align-items-center gx-lg-2 gx-0">
           <div class="col-xxl-2 col-lg-3">
-            <a class="navbar-brand d-none d-lg-block" href="index.php">
+            <a class="navbar-brand d-none d-lg-block" href="<?php echo $slashOrNot?>index.php">
               <img src="<?php echo $slashOrNot?>assets/images/freshcart-logo.svg" alt="eCommerce HTML Template">
 
             </a>
@@ -97,7 +97,7 @@ $slashOrNot = ($filename == "index.php") ? "" : "../";
 
             <div class="list-inline">
               <div class="list-inline-item">
-                <a href="pages/shop-wishlist.php" class="text-muted position-relative">
+                <a href="<?= $slashOrNot?>pages/shop-wishlist.php" class="text-muted position-relative">
 
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
