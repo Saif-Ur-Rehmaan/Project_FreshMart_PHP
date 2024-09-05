@@ -1,35 +1,44 @@
-=======================================================================================================
-/*Daily discount procedure to return the product id which is not present in discount table*/
-DELIMITER //
-CREATE PROCEDURE DailyDiscount(
-    OUT productIdNotInDailySale INT,
-    OUT b INT
-)
-BEGIN
-    DECLARE randomProductId INT;
+# Fresh Mart
 
-    -- Initialize b to 0
-    SET b = 0;
+**Fresh Mart** is an e-commerce website template designed for buying vegetables online. It is built using PHP and MySQLi for the backend and extensively utilizes AJAX for a smoother user experience.
 
-    -- Generate a random product ID
-    SET randomProductId = FLOOR(RAND() * (SELECT COUNT(*) FROM products)) + 1;
+## Features
 
-    WHILE b = 0 DO
-        -- Check if the random product ID exists in the daily sale table
-        SELECT COUNT(*) INTO b FROM daily_sale WHERE product_id = randomProductId;
+- **Dynamic E-Commerce Template**: A ready-to-use template for selling vegetables online.
+- **Backend with PHP and MySQLi**: Efficient server-side handling with well-structured database relations.
+- **Smooth User Experience**: High use of AJAX for seamless page interactions without reloads.
+- **User Authentication**: Secure login and signup system with session management.
+- **Responsive Design**: Compatible with various devices and screen sizes.
 
-        IF b = 0 THEN
-            -- If b is still 0, it means the product ID doesn't exist in the daily sale table, set it to productIdNotInDailySale
-            SET productIdNotInDailySale = randomProductId;
-        ELSE
-            -- If b is not 0, it means the product ID already exists in the daily sale table, generate a new random ID
-            SET randomProductId = FLOOR(RAND() * (SELECT COUNT(*) FROM products)) + 1;
-        END IF;
-    END WHILE;
+## Installation
 
-END;
-//
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/fresh-mart.git
+   cd fresh-mart
 
-DELIMITER ;
+2. **Set up the Database:**
 
-=======================================================================================================
+- **Import the provided freshmart.sql file into your MySQL database.
+- **Update the database configuration in config.php with your MySQL credentials.
+
+3. **Run the Application:**
+
+- **Ensure your server (e.g., Apache) is running.
+- **Open the application in your browser (e.g., http://localhost/fresh-mart).
+
+## Usage
+- **Register or log in as a user.
+- **Browse the available vegetables and add them to your cart.
+
+##Contributing
+Contributions are welcome! Please follow these steps:
+
+1. **Fork the repository.
+2. **Create a new branch (git checkout -b feature-branch).
+3. **Commit your changes (git commit -m "Add a feature").
+4. **Push to the branch (git push origin feature-branch).
+5. **Open a Pull Request.
+
+##Contact
+For any questions or feedback, please contact aptech.saif@gmail.com.
